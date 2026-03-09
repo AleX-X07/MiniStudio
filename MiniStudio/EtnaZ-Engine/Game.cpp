@@ -1,7 +1,14 @@
 #include "Game.h"
 #include "MainMenu.h"
+#include "Player.h"
+
 
 Game::Game(RenderWindow* window, vector<GameState*>* _states) : GameState(window, _states) {
+	player = new Player();
+
+	player->setFillColor(Color::Red);
+	player->setSize(Vector2f(100.f, 100.f));
+	player->setPosition(Vector2f(960.f, 540.f));
 
 }
 
@@ -18,9 +25,19 @@ void Game::manageState() {
 }
 
 void Game::update(float& dt) {
-
+	if (player) {
+		player->update(dt);
+	}
 }
 
 void Game::render() {
+	if (player) {
+		player->render(window);
+	}
+
 	cout << "Game" << endl;
+}
+
+Game::~Game() {
+	delete player;
 }
