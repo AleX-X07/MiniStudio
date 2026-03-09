@@ -6,39 +6,39 @@
 class GameObject
 {
 public:
-	// Variable
-	Texture* tex;
+    // Variable
+    Texture* tex;
     Color color;
 
-	Vector2f pos;
-	Vector2f size;
-	Vector2f scale;
+    Vector2f pos;
+    Vector2f size;
+    Vector2f scale;
 
-	RectangleShape rect;
-	bool visibility;
+    RectangleShape rect;
+    bool visibility;
 
 public:
-	// Constructor/Destructor
-	GameObject() = default;
-	GameObject(float x, float y);
-	GameObject(float x, float y, float w, float h);
-	virtual ~GameObject();
+    // Constructor/Destructor
+    GameObject() = default;
+    GameObject(float x, float y);
+    GameObject(float x, float y, float w, float h);
+    virtual ~GameObject();
 
-	// Method get/set
-	Texture* getTexture();
-	Vector2f getPos();
-	Vector2f getSize();
+    // Method get/set
+    Texture* getTexture();
+    Vector2f getPos();
+    Vector2f getSize();
 
-	void setTexture(Texture* tex);
-	void setColor(Color nColor);
-	void setPos(Vector2f nPos);
-	void setSize(Vector2f nSize);
-	void setScale(Vector2f scale);
+    void setTexture(Texture* tex);
+    void setColor(Color nColor);
+    void setPos(Vector2f nPos);
+    void setSize(Vector2f nSize);
+    void setScale(Vector2f scale);
 
-	void setVisibilityTrue();
-	void setVisibilityFalse();
+    void setVisibilityTrue();
+    void setVisibilityFalse();
 
-	// Method virtual
-	virtual void update(float& dt, Input& input);
-	virtual void render(RenderWindow* window);
+    // Method virtual
+    virtual void update(float& dt, Input& input);
+    virtual void render(RenderWindow* window);
 };
