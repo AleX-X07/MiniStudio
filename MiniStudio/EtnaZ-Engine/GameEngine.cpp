@@ -69,8 +69,8 @@ void GameEngine::run() {
 		updateEvent();
 		updateDt();
 		update();
-		render();
 		window->clear();
+		render();
 		window->display();
 	}
 }
