@@ -31,6 +31,9 @@
     <Filter Include="Fichiers sources\Tool">
       <UniqueIdentifier>{c4f8f596-b7bc-4f10-800f-473c719e4849}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\Game\Load Level">
+      <UniqueIdentifier>{38ebc66e-ad2f-40c5-96ac-e79e712db627}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -51,6 +54,9 @@
     <ClCompile Include="GameState.cpp">
       <Filter>Fichiers sources\Game\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="LoadLevel.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">
@@ -70,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="GameState.h">
       <Filter>Fichiers d%27en-tête\Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadLevel.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
