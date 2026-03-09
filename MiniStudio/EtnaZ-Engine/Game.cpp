@@ -7,8 +7,8 @@ Game::Game(RenderWindow* window, vector<GameState*>* _states) : GameState(window
 	player = new Player();
 
 	player->setFillColor({255,0,0,255});
-	player->setSize(Vector2f(25.f, 25.f));
-	player->setPosition(Vector2f(500, 300));
+	player->setSize(Vector2f(50.f, 50.f));
+	player->setPosition(Vector2f(900, 750));
 
 }
 
