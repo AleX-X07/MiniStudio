@@ -51,6 +51,9 @@
     <ClCompile Include="GameState.cpp">
       <Filter>Fichiers sources\Game\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">
@@ -70,6 +73,9 @@
     </ClInclude>
     <ClInclude Include="GameState.h">
       <Filter>Fichiers d%27en-tête\Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Fichiers d%27en-tête\Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
