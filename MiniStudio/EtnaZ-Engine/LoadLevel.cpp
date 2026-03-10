@@ -2,6 +2,7 @@
 #include <sstream>
 #include <string>
 #include <fstream>
+
 std::ifstream infile("thefile.txt");
 
 LoadLevel::LoadLevel()
@@ -39,6 +40,8 @@ bool LoadLevel::loadLevel(){
 			float x, y, w, h;
 			string path;
 			iss >> x >> y >> w >> h >> path;
+			Platform.push_back(new GameObject(x, y, w, h));
+
 			//platform.pushback(new Platforme (...);
 		}
 		else if (section == "OBJECT") {

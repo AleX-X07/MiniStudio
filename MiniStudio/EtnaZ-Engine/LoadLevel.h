@@ -2,15 +2,15 @@
 #include <vector>
 #include <iostream>
 #include "Globals.h"
-
-
-
+#include "GameObject.h"
 using namespace std;
 
 class LoadLevel
 {
 
 private:
+	vector<GameObject*>Platform;
+
 	//vector platform * platform
 	//vector objects * object
 	
