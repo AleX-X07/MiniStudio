@@ -1,7 +1,7 @@
 #pragma once
 #include "GameState.h"
 #include "Player.h"
-
+#include "Camera.h"
 
 class MainMenu;
 
@@ -9,6 +9,8 @@ class Game : public GameState
 {
 private:
 	Player* player;
+	Camera* camera;
+		
 public:
 	Game() = default;
 	Game(RenderWindow * window, vector<GameState*>* states);

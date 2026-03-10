@@ -10,6 +10,8 @@ Game::Game(RenderWindow* window, vector<GameState*>* _states) : GameState(window
 	player->setSize(Vector2f(50.f, 50.f));
 	player->setPosition(Vector2f(900, 750));
 
+	camera = new Camera(0.005);
+
 }
 
 void Game::Instance(RenderWindow* window, vector<GameState*>*& states) {
