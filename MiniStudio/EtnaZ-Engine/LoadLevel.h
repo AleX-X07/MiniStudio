@@ -7,16 +7,11 @@
 
 using namespace std;
 
-class LoadLevel
-{
+class LoadLevel{
 
 private:
 	vector<GameObject*>Platform;
 	vector<GameObject*>Object;
-
-	//vector platform * platform
-	//vector objects * object
-	
 
 public:
 
