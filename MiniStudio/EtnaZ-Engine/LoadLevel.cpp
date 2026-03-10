@@ -38,17 +38,15 @@ bool LoadLevel::loadLevel(){
 
 		if (section == "PLATFORM") {
 			float x, y, w, h;
-			string path;
-			iss >> x >> y >> w >> h >> path;
-			Platform.push_back(new GameObject(x, y, w, h));
+			iss >> x >> y >> w >> h;
+			GameObject* myPlaftform = new GameObject(x, y, w, h);
+			myPlaftform->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::Platform));
+			Platform.push_back(myPlaftform);
 
-			//platform.pushback(new Platforme (...);
 		}
 		else if (section == "OBJECT") {
 			float x, y, w, h;
-			string path;
-			iss >> x >> y >> w >> h >> path;
-			//platform.pushback(new Platforme (...);
+			iss >> x >> y >> w >> h;
 		}
 			
 			

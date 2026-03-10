@@ -4,31 +4,32 @@
 
 #include "Globals.h"
 
-class Textures
-{
-private:
-    std::vector<sf::Texture> tabTextures;
-    std::vector<sf::Font> tabFonts;
-
+class Textures {
 public:
-    enum class texturesIndices
-    {
+    enum class texturesIndices{
         Platform,
     };
 
-    enum class fontsIndices
-    {
+    enum class fontsIndices{
     };
-
+private:
     Textures();
+public:
     ~Textures() = default;
 
     sf::Texture& getTexture(texturesIndices index);
     sf::Font& getFont(fontsIndices index);
 
-private:
     void loadAllTexture();
     void loadAllFont();
     void loadTexture(texturesIndices _index, const char* filename);
     void loadFont(fontsIndices _index, const char* filename);
+
+    static Textures* getMyTextures();
+
+private:
+    static Textures* TextureManager;
+
+    std::vector<sf::Texture> tabTextures;
+    std::vector<sf::Font> tabFonts;
 };

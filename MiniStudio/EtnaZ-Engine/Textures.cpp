@@ -1,12 +1,21 @@
 #include "Textures.h"
 
+Textures* Textures::TextureManager = nullptr;
+
 Textures::Textures() {
     loadAllTexture();
     loadAllFont();
 }
 
-void Textures::loadAllTexture() {
+Textures* Textures::getMyTextures() {
+    if (TextureManager == nullptr) {
+        TextureManager = new Textures();
+    }
+    return TextureManager;
+}
 
+void Textures::loadAllTexture() {
+    //loadTexture(Textures::texturesIndices::Platform, assets/iahgiuahioua.png);
 }
 
 void Textures::loadAllFont() {
