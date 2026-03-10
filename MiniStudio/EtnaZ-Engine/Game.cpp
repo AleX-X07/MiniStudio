@@ -21,6 +21,8 @@ void Game::manageState() {
 	if (Keyboard::isKeyPressed(Keyboard::Key::Escape)) {
 		GameState::nextState(states);
 		MainMenu::Instance(window, states);
+		cout << "Menu" << endl;
+
 	}
 }
 
@@ -35,7 +37,6 @@ void Game::render() {
 		player->render(window);
 	}
 
-	cout << "Game" << endl;
 }
 
 Game::~Game() {

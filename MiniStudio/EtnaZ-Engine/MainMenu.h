@@ -1,16 +1,20 @@
 #pragma once
 #include "GameState.h"
+#include "Button.h"
+
 
 class Game;
 
 class MainMenu : public GameState
 {
 private:
+	Button* buttonPlay;
+	Button* buttonQuit;
 
 public:
 	MainMenu() = default;
 	MainMenu(RenderWindow* window, vector<GameState*>* states);
-	~MainMenu() = default;
+	~MainMenu();
 
 	static void Instance(RenderWindow* window, vector<GameState*>*& states);
 
