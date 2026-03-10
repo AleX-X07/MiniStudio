@@ -5,6 +5,6 @@ class Collision
 {
 	public:
 	// Method
-		bool isColliding(GameObject& gameObject1, GameObject& gameObject2);
+	bool isColliding(GameObject& gameObject1, GameObject& gameObject2);
 };
 
