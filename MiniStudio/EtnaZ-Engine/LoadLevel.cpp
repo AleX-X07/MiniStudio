@@ -16,14 +16,39 @@ bool LoadLevel::loadLevel(){
 	std::ifstream file("niveau.txt");
 
 	string line;
+	string section;
 
 	while(getline(file, line)) {
-		//istringstream iss(line);
 
-		
-		
+		if (line == "PLATFORM") {
+			section = "PLATFORM";
+			continue;
+		}
+		if (line == "PLAYER") {
+			section = "PLAYER";
+			continue;
+		}
+		if (line == "OBJECT") {
+			section = "OBJECT";
+			continue;
+		}
 
+		istringstream iss(line);
 
+		if (section == "PLATFORM") {
+			float x, y, w, h;
+			string path;
+			iss >> x >> y >> w >> h >> path;
+			//platform.pushback(new Platforme (...);
+		}
+		else if (section == "OBJECT") {
+			float x, y, w, h;
+			string path;
+			iss >> x >> y >> w >> h >> path;
+			//platform.pushback(new Platforme (...);
+		}
+			
+			
 	}
 
 
