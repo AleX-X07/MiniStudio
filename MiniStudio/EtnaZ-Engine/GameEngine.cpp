@@ -18,28 +18,11 @@ GameEngine::~GameEngine() {
 
 void GameEngine::updateEvent() {
 
-	/*currentInputKey = nullptr;
-	currentInputMouse = nullptr;*/
-
-	/*while (const optional event = window->pollEvent()) {
+	while (const optional event = window->pollEvent()) {
 		if (event->is<Event::Closed>()) {
 			window->close();
 		}
-
-		if (currentInputKey = event->getIf<sf::Event::KeyPressed>()) {
-			input->setInputKey(currentInputKey);
-		}
-		if (currentInputMouse = event->getIf<sf::Event::MouseButtonPressed>()) {
-			input->setInputMouse(currentInputMouse);
-		}
 	}
-
-	if (input->currentInputKey) {
-		if (input->currentInputKey->scancode == Keyboard::Scancode::D) {
-			cout << "rohjapjth";
-		}
-	}*/
-
 }
 
 void GameEngine::updateDt() {

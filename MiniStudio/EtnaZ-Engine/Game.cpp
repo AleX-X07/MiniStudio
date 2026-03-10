@@ -4,11 +4,10 @@
 
 
 Game::Game(RenderWindow* window, vector<GameState*>* _states) : GameState(window, _states) {
-	player = new Player();
+	player = new Player(900,750);
 
-	player->setFillColor({255,0,0,255});
+	player->setColor({255,0,0,255});
 	player->setSize(Vector2f(50.f, 50.f));
-	player->setPosition(Vector2f(900, 750));
 
 	camera = new Camera(0.005);
 
@@ -28,11 +27,15 @@ void Game::manageState() {
 
 void Game::update(float& dt) {
 	if (player) {
-		player->update(dt);
+		player->update(dt, input);
+		camera->updateCamera(player);
 	}
 }
 
 void Game::render() {
+	
+	camera->setCamera(window);
+	
 	if (player) {
 		player->render(window);
 	}
