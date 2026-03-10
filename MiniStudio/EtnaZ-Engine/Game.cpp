@@ -34,8 +34,6 @@ void Game::render() {
 	if (player) {
 		player->render(window);
 	}
-
-	cout << "Game" << endl;
 }
 
 Game::~Game() {
