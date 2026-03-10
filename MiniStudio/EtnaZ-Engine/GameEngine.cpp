@@ -1,7 +1,7 @@
 #include "GameEngine.h"
 
 GameEngine::GameEngine() {
-	window = new RenderWindow(VideoMode({ win_width, win_heigt }), "EtnaZ-Engine");
+	window = new RenderWindow(VideoMode({ win_width, win_height }), "EtnaZ-Engine");
 	dt = 0;
 	states = new vector<GameState*>;
 	input = new Input();

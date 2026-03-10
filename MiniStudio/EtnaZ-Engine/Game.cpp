@@ -38,4 +38,5 @@ void Game::render() {
 
 Game::~Game() {
 	delete player;
+	player = nullptr;
 }
