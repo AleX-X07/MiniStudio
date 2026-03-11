@@ -1,6 +1,7 @@
 #pragma once
 #include "Globals.h"
 #include "Input.h"
+#include "Player.h"
 
 // Class for create an object
 class GameObject
@@ -35,6 +36,8 @@ public:
     void setSize(Vector2f nSize);
     void setScale(Vector2f scale);
 
+    bool isColliding(GameObject& gameObject1, GameObject& gameObject2);
+    void resolveCollision(Player& player, GameObject& platform);
     void setVisibilityTrue();
     void setVisibilityFalse();
 

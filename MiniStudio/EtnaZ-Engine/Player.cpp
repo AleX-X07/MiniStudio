@@ -30,13 +30,44 @@ void Player::render(RenderWindow* window)
 	}
 }
 
-void Player::update(float& dt) {
-	if (Keyboard::isKeyPressed(Keyboard::Key::Left)) {
-		position.x -= speed * dt;
-		shape.setPosition(position);
-	}
-	if (Keyboard::isKeyPressed(Keyboard::Key::Right)) {
-		position.x += speed * dt;
-		shape.setPosition(position);
+void Player::update(float& dt)
+{
+    if (Keyboard::isKeyPressed(Keyboard::Key::Left))
+    {
+        position.x -= speed * dt;
+        shape.setPosition(position);
+    }
+    if (Keyboard::isKeyPressed(Keyboard::Key::Right))
+    {
+        position.x += speed * dt;
+        shape.setPosition(position);
+    }
+    if (!onGround)
+    {
+        velocityY += gravity * dt;
+        if (velocityY > 600.0f) velocityY = 600.0f;
+
+        position.y += velocityY * dt;
+        position.x += velocityX * dt;
+        velocityX = 0;
+        shape.setPosition(position);
+    }
+}
+
+void Player::moveLeft(float& dt) {
+	velocityX = -speed;
+}
+
+void Player::moveRight(float& dt) {
+	velocityX = speed;
+}
+
+void Player::jump() 
+{
+	if (onGround) 
+	{
+		velocityY = jumpForce;
+		onGround = false;
+		/*standingOnPlatform = nullptr;*/
 	}
 }
