@@ -43,6 +43,12 @@
     <Filter Include="Fichiers d%27en-tête\GameObject\Entity">
       <UniqueIdentifier>{da5590dc-9170-482e-a7c2-e694e1823bd8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Level">
+      <UniqueIdentifier>{95d3617d-c468-4a63-9404-f10c051e7e2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Level">
+      <UniqueIdentifier>{ec8a0214-4a9f-4a99-97cb-09cdad089c86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -75,6 +81,9 @@
     <ClCompile Include="Player.cpp">
       <Filter>Fichiers sources\GameObject\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="LoadLevel.cpp">
+      <Filter>Fichiers sources\Level</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">
@@ -106,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="Collision.h">
       <Filter>Fichiers d%27en-tête\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadLevel.h">
+      <Filter>Fichiers d%27en-tête\Level</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
