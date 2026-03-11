@@ -3,12 +3,7 @@
 #include "Player.h"
 
 
-Game::Game(RenderWindow* window, vector<GameState*>* _states) : GameState(window, _states) {
-	player = new Player();
-
-	player->setFillColor({255,0,0,255});
-	player->setSize(Vector2f(50.f, 50.f));
-	player->setPosition(Vector2f(900, 750));
+Game::Game(RenderWindow* window, vector<GameState*>* _states) : GameState(window, _states), gOBuild(false) {
 
 }
 
@@ -24,20 +19,49 @@ void Game::manageState() {
 	}
 }
 
-void Game::update(float& dt) {
-	if (player) {
-		player->update(dt);
+void Game::setEntity() {
+	if (!gOBuild) {
+
+		// Background white
+		GameObject* backWhite = new GameObject(0, 0, win_width, win_height);
+		backWhite->setColor(Color::White);
+		gameObject.push_back(backWhite);
+
+		//Player
+		player = new Player(900, 750);
+		player->setColor(Color::Red);
+
+		//Camera
+		camera = new Camera(0.01);
+
+		gOBuild = true;
 	}
 }
 
+void Game::update(float& dt) {
+	
+	setEntity();
+	if (player) {
+		player->update(dt, input);
+	}
+	camera->updateCamera(player);
+
+}
+
 void Game::render() {
+	
+	camera->setCamera(window);
+
+	for (auto gO : gameObject) {
+		gO->render(window);
+	}
+
 	if (player) {
 		player->render(window);
 	}
-
-	cout << "Game" << endl;
 }
 
 Game::~Game() {
 	delete player;
+	player = nullptr;
 }
