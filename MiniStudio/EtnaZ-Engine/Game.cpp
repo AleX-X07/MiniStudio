@@ -25,6 +25,18 @@ void Game::manageState() {
 	}
 }
 
+void Game::setEntity() {
+	if (!gOBuild) {
+
+		// Background white
+		GameObject* backWhite = new GameObject(0, 0, win_width, win_height);
+		backWhite->setColor(Color::White);
+		gameObject.push_back(backWhite);
+
+		gOBuild = true;
+	}
+}
+
 void Game::update(float& dt) {
 	if (player) {
 		player->update(dt, input);
@@ -35,7 +47,11 @@ void Game::update(float& dt) {
 void Game::render() {
 	
 	camera->setCamera(window);
-	
+
+	for (auto gO : gameObject) {
+		gO->render(window);
+	}
+
 	if (player) {
 		player->render(window);
 	}
