@@ -3,13 +3,7 @@
 #include "Player.h"
 
 
-Game::Game(RenderWindow* window, vector<GameState*>* _states) : GameState(window, _states) {
-	player = new Player(900,750);
-
-	player->setColor({255,0,0,255});
-	player->setSize(Vector2f(50.f, 50.f));
-
-	camera = new Camera(0.005);
+Game::Game(RenderWindow* window, vector<GameState*>* _states) : GameState(window, _states), gOBuild(false) {
 
 }
 
@@ -33,15 +27,25 @@ void Game::setEntity() {
 		backWhite->setColor(Color::White);
 		gameObject.push_back(backWhite);
 
+		//Player
+		player = new Player(900, 750);
+		player->setColor(Color::Red);
+
+		//Camera
+		camera = new Camera(0.01);
+
 		gOBuild = true;
 	}
 }
 
 void Game::update(float& dt) {
+	
+	setEntity();
 	if (player) {
 		player->update(dt, input);
-		camera->updateCamera(player);
 	}
+	camera->updateCamera(player);
+
 }
 
 void Game::render() {

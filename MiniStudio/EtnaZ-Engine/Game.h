@@ -8,9 +8,8 @@ class MainMenu;
 class Game : public GameState
 {
 private:
-	Player* player;
 	Camera* camera;
-		
+	Player* player;
 	vector<GameObject*> gameObject;
 	bool gOBuild;
 
