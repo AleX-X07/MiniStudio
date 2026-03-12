@@ -83,24 +83,20 @@ void GameObject::render(RenderWindow* window)
     }
 }
 
-bool GameObject::isColliding(Player& player, GameObject& gameObject)
+bool GameObject::isColliding(GameObject& gameObject)
 {
-  /*  auto& rectpos1 = player.position;
-    auto& rectsize1 = player.shape;
-    auto& rectpos2 = gameObject.pos;
-    auto& rectsize2 = gameObject.size;*/ 
-    return (player.position.x < gameObject.pos.x + gameObject.size.x &&     // w = size.x, h = size.y
-        player.position.x + player.shape.getSize().x > gameObject.pos.x &&
-        player.position.y < gameObject.pos.y + gameObject.size.y &&
-        player.position.y + player.shape.getSize().y > gameObject.size.y);
+    return (pos.x < gameObject.pos.x + gameObject.size.x &&   // w = size.x, h = size.y
+            pos.x + size.x > gameObject.pos.x &&
+            pos.y < gameObject.pos.y + gameObject.size.y &&
+            pos.y + size.y > gameObject.size.y);
 }
 
-void GameObject::resolveCollision(Player& player, GameObject& gameObject)
+void GameObject::resolveCollision(GameObject& gameObject)
 {
-    float overlapLeft = (player.position.x + player.shape.getSize().x) - gameObject.pos.x;
-    float overlapRight = (gameObject.pos.x + gameObject.size.x) - player.position.x;
-    float overlapTop = (player.position.y + player.shape.getSize().y) - gameObject.pos.y;
-    float overlapBottom = (gameObject.pos.y + gameObject.size.y) - player.position.y;
+    float overlapLeft = (pos.x + size.x) - gameObject.pos.x;
+    float overlapRight = (gameObject.pos.x + gameObject.size.x) - pos.x;
+    float overlapTop = (pos.y + size.y) - gameObject.pos.y;
+    float overlapBottom = (gameObject.pos.y + gameObject.size.y) - pos.y;
 
     bool fromLeft = std::abs(overlapLeft) < std::abs(overlapRight);
     bool fromTop = std::abs(overlapTop) < std::abs(overlapBottom);
@@ -110,22 +106,19 @@ void GameObject::resolveCollision(Player& player, GameObject& gameObject)
 
     if (std::abs(minOverlapX) < std::abs(minOverlapY))
     {
-        player.position.x += fromLeft ? -minOverlapX : minOverlapX;
-        player.velocityX = 0;
+        pos.x += fromLeft ? -minOverlapX : minOverlapX;
     }
     else
     {
         if (fromTop)
         {
-            player.position.y -= minOverlapY;
-            player.velocityY = 0;
-            player.onGround = true;
+            pos.y -= minOverlapY;
         }
         else
         {
-            player.position.y += minOverlapY;
-            player.velocityY = 0;
+            pos.y += minOverlapY;
         }
     }
-    player.shape.setPosition(player.position);
+
+	setPos(pos);
 }

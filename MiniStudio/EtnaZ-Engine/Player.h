@@ -1,13 +1,11 @@
 #pragma once
 #include "GameState.h"
-class Player
+#include "Globals.h"
+#include "GameObject.h"
+
+class Player : public GameObject
 {
-private :
-
-public :
-	RectangleShape shape;
-	Vector2f position;
-
+private:
 	float speed = 300.f;
 	float jumpForce = -500.f;
 	float gravity = 980.f;
@@ -16,15 +14,19 @@ public :
 
 	bool onGround = false;
 
-	Player();
+public :
+	Player() = default;
+	Player(float x, float y);
 	~Player() = default;
 
+	void clampInScreen();
 	void setFillColor(Color color);
 	void setSize(Vector2f size);
 	void setPosition(Vector2f pos);
 
-	void render(RenderWindow* window);
-	void update(float& dt);
+	virtual void render(RenderWindow* window) override;
+	virtual void update(float& dt, Input& input) override;
+	virtual void resolveCollision(GameObject& gameObject) override;
 	void moveLeft(float& dt);
 	void moveRight(float& dt);
 	void jump();

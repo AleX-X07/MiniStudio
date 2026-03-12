@@ -36,8 +36,8 @@ public:
     void setSize(Vector2f nSize);
     void setScale(Vector2f scale);
 
-    bool isColliding(Player& player, GameObject& gameObject);
-    void resolveCollision(Player& player, GameObject& gameObject);
+    bool isColliding(GameObject& gameObject);
+    virtual void resolveCollision(GameObject& gameObject);
     void setVisibilityTrue();
     void setVisibilityFalse();
 

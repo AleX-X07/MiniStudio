@@ -23,7 +23,7 @@ void Game::update(float& dt)
 {
 	if (player) 
 	{
-		player->update(dt);
+		player->update(dt, input);
 	        updateCollision();
         }
 }
@@ -51,14 +51,13 @@ void Game::updateCollision()
 {
 	if (!player) return;
 
-	/*for (auto& gameObject : ) 
+	for (auto& gameObject : gameObject)
 	{
-		if (gameObject->visibility && gameObject->isColliding(*player, *gameObject)) 
+		if (gameObject->visibility && player->isColliding(*gameObject) && gameObject != player) 
 		{
-			gameObject->resolveCollision(*player, *gameObject);
+			player->resolveCollision(*gameObject);
 		}
-	}*/
-
+	}
 }
 
 void Game::update(float& dt) {
@@ -68,6 +67,7 @@ void Game::update(float& dt) {
 		player->update(dt, input);
 	}
 	camera->updateCamera(player);
+	updateCollision();
 
 }
 
