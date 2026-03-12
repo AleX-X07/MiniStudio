@@ -2,18 +2,16 @@
 #include <vector>
 #include <iostream>
 #include "Globals.h"
-
-
+#include "GameObject.h"
+#include "Textures.h"
 
 using namespace std;
 
-class LoadLevel
-{
+class LoadLevel{
 
 private:
-	//vector platform * platform
-	//vector objects * object
-	
+	vector<GameObject*>Platform;
+	vector<GameObject*>Object;
 
 public:
 

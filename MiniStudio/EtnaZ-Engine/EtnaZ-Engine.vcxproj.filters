@@ -84,6 +84,12 @@
     <ClCompile Include="LoadLevel.cpp">
       <Filter>Fichiers sources\Level</Filter>
     </ClCompile>
+    <ClCompile Include="LoadLevel.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Textures.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">
@@ -118,6 +124,12 @@
     </ClInclude>
     <ClInclude Include="LoadLevel.h">
       <Filter>Fichiers d%27en-tête\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadLevel.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Textures.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

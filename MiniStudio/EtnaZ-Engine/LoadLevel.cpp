@@ -2,6 +2,7 @@
 #include <sstream>
 #include <string>
 #include <fstream>
+
 std::ifstream infile("thefile.txt");
 
 LoadLevel::LoadLevel()
@@ -37,15 +38,15 @@ bool LoadLevel::loadLevel(){
 
 		if (section == "PLATFORM") {
 			float x, y, w, h;
-			string path;
-			iss >> x >> y >> w >> h >> path;
-			//platform.pushback(new Platforme (...);
+			iss >> x >> y >> w >> h;
+			GameObject* myPlaftform = new GameObject(x, y, w, h);
+			myPlaftform->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::Platform));
+			Platform.push_back(myPlaftform);
+
 		}
 		else if (section == "OBJECT") {
 			float x, y, w, h;
-			string path;
-			iss >> x >> y >> w >> h >> path;
-			//platform.pushback(new Platforme (...);
+			iss >> x >> y >> w >> h;
 		}
 			
 			
