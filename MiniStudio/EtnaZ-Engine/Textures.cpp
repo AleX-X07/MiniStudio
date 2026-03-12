@@ -23,7 +23,8 @@ void Textures::loadAllFont() {
 }
 
 void Textures::loadTexture(texturesIndices _index, const char* fileName) {
-    sf::Texture texture(fileName);
+    sf::Texture texture = sf::Texture();
+    auto toto = texture.loadFromFile(fileName);
 
     auto index = (int)_index;
     if (index >= tabTextures.size())
