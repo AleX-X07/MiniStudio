@@ -2,6 +2,11 @@
 
 Button::Button()
 {
+	
+}
+
+Button::~Button()
+{
 }
 
 void Button::setFillColor(Color color)
@@ -32,47 +37,55 @@ void Button::update(float& dt) {
 
 
 
+
+
 TextButton::TextButton()
-	: font(nullptr)
 {
-	
-	
+
 }
 
 void TextButton::setFillColor(Color color)
 {
-	text->setFillColor(color);
+	if (text) {
+		text->setFillColor(color);
+	}
 }
 
 void TextButton::setPosition(Vector2f pos)
 {
-	text->setPosition(pos);
+	if (text) {
+		text->setPosition(pos);
+	}
 }
 
 void TextButton::setCharacterSize(unsigned int size)
 {
-	text->setCharacterSize(size);
+	if (text) {
+		text->setCharacterSize(size);
+	}
 }
 
 void TextButton::setFont(sf::Font& _font)
 {
     font = &_font;
-    if (font) {
+    if (font && text) {
         text->setFont(*font);
         std::cout << "Police assignée au TextButton" << std::endl;
     } else {
-        std::cout << "ERREUR: Police nulle dans setFont()" << std::endl;
+        std::cout << "erreur: Police nulle dans setFont()" << std::endl;
     }
 }
 
 void TextButton::setString(const std::string& str)
 {
-	text->setString(str);
+	if (text) {
+		text->setString(str);
+	}
 }
 
 void TextButton::render(RenderWindow* window)
 {
-	if (window) {
+	if (window && text) {
 		window->draw(*text);
 	}
 }
@@ -81,7 +94,3 @@ void TextButton::update(float& dt) {
 
 }
 
-TextButton::~TextButton()
-{
-	delete text;
-}

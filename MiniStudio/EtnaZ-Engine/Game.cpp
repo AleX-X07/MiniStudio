@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "MainMenu.h"
 #include "Player.h"
+#include "PauseMenu.h"
 
 
 Game::Game(RenderWindow* window, vector<GameState*>* _states) : GameState(window, _states) {
@@ -20,8 +21,8 @@ void Game::Instance(RenderWindow* window, vector<GameState*>*& states) {
 void Game::manageState() {
 	if (Keyboard::isKeyPressed(Keyboard::Key::Escape)) {
 		GameState::nextState(states);
-		MainMenu::Instance(window, states);
-		cout << "Menu" << endl;
+		PauseMenu::Instance(window, states);
+		cout << "Pause" << endl;
 
 	}
 }

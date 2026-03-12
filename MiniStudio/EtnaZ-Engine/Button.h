@@ -2,6 +2,7 @@
 #include "GameState.h"
 #include "Textures.h"
 #include <SFML/Graphics/Text.hpp>
+#include <iostream>
 
 
 class Button
@@ -11,7 +12,7 @@ private :
 	
 public :
 	Button();
-	~Button() = default;
+	~Button();
 
 	FloatRect getGlobalBounds() const {
 		return shape.getGlobalBounds();
