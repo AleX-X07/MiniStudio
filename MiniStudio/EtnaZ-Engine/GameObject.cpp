@@ -30,67 +30,78 @@ Vector2f GameObject::getSize() {
 }
 
 
-void GameObject::setTexture(Texture* nTex) {
+void GameObject::setTexture(Texture* nTex) 
+{
     tex = nTex;
 }
 
-void GameObject::setColor(Color nColor) {
+void GameObject::setColor(Color nColor) 
+{
     rect.setFillColor(nColor);
 }
 
-void GameObject::setPos(Vector2f nPos) {
+void GameObject::setPos(Vector2f nPos) 
+{
     rect.setPosition(nPos);
 }
 
-void GameObject::setSize(Vector2f nSize) {
+void GameObject::setSize(Vector2f nSize) 
+{
     rect.setSize(nSize);
 }
 
-void GameObject::setScale(Vector2f nScale) {
+void GameObject::setScale(Vector2f nScale) 
+{
     rect.setScale(nScale);
 }
 
 
-void GameObject::setVisibilityTrue() {
+void GameObject::setVisibilityTrue() 
+{
     visibility = true;
 }
 
-void GameObject::setVisibilityFalse() {
+void GameObject::setVisibilityFalse() 
+{
     visibility = false;
 }
 
 
-void GameObject::update(float& dt, Input& input) {
+void GameObject::update(float& dt, Input& input) 
+{
 
 }
 
-void GameObject::render(RenderWindow* window) {
-    if (visibility) {
-        if (tex) {
+void GameObject::render(RenderWindow* window) 
+{
+    if (visibility) 
+    {
+        if (tex) 
+        {
             rect.setTexture(tex);
         }
         window->draw(rect);
     }
 }
 
-bool GameObject::isColliding(GameObject& gameObject1, GameObject& gameObject2)
+bool GameObject::isColliding(Player& player, GameObject& gameObject)
 {
-    auto& rectpos1 = gameObject1.pos;
-    auto& rectsize1 = gameObject1.size;
-    auto& rectpos2 = gameObject2.pos;
-    auto& rectsize2 = gameObject2.size; // w = size.x, h = size.y
-    return (rectpos1.x < rectpos2.x + rectsize2.x &&
-        rectpos1.x + rectsize1.x > rectpos2.x &&
-        rectpos1.y < rectpos2.y + rectsize2.y &&
-        rectpos1.y + rectsize1.y > rectpos2.y);
+  /*  auto& rectpos1 = player.position;
+    auto& rectsize1 = player.shape;
+    auto& rectpos2 = gameObject.pos;
+    auto& rectsize2 = gameObject.size;*/ 
+    return (player.position.x < gameObject.pos.x + gameObject.size.x &&     // w = size.x, h = size.y
+        player.position.x + player.shape.getSize().x > gameObject.pos.x &&
+        player.position.y < gameObject.pos.y + gameObject.size.y &&
+        player.position.y + player.shape.getSize().y > gameObject.size.y);
 }
 
-void GameObject::resolveCollision(Player& player, GameObject& platform)
+void GameObject::resolveCollision(Player& player, GameObject& gameObject)
 {
-    float overlapLeft = (player.position.x + player.shape.getSize().x) - platform.pos.x;
-    float overlapRight = (platform.pos.x + platform.size.x) - player.position.x;
-    float overlapTop = (player.position.y + player.shape.getSize().y) - platform.pos.y;
-    float overlapBottom = (platform.pos.y + platform.size.y) - player.position.y;
+    float overlapLeft = (player.position.x + player.shape.getSize().x) - gameObject.pos.x;
+    float overlapRight = (gameObject.pos.x + gameObject.size.x) - player.position.x;
+    float overlapTop = (player.position.y + player.shape.getSize().y) - gameObject.pos.y;
+    float overlapBottom = (gameObject.pos.y + gameObject.size.y) - player.position.y;
 
     bool fromLeft = std::abs(overlapLeft) < std::abs(overlapRight);
     bool fromTop = std::abs(overlapTop) < std::abs(overlapBottom);

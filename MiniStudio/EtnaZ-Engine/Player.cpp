@@ -25,7 +25,8 @@ void Player::setPosition(Vector2f pos)
 
 void Player::render(RenderWindow* window)
 {
-	if (window) {
+	if (window) 
+    {
 		window->draw(shape);
 	}
 }
@@ -42,6 +43,11 @@ void Player::update(float& dt)
         position.x += speed * dt;
         shape.setPosition(position);
     }
+    if (Keyboard::isKeyPressed(Keyboard::Key::Up))
+    {
+        jump();
+		shape.setPosition(position);
+	}
     if (!onGround)
     {
         velocityY += gravity * dt;
@@ -54,11 +60,13 @@ void Player::update(float& dt)
     }
 }
 
-void Player::moveLeft(float& dt) {
+void Player::moveLeft(float& dt) 
+{
 	velocityX = -speed;
 }
 
-void Player::moveRight(float& dt) {
+void Player::moveRight(float& dt) 
+{
 	velocityX = speed;
 }
 
@@ -68,6 +76,5 @@ void Player::jump()
 	{
 		velocityY = jumpForce;
 		onGround = false;
-		/*standingOnPlatform = nullptr;*/
 	}
 }

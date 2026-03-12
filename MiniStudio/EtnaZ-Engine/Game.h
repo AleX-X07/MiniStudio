@@ -16,6 +16,8 @@ public:
 		
 	static void Instance(RenderWindow* window, vector<GameState*>*& states);
 
+	void updateCollision();
+
 	virtual void manageState() override;
 	virtual void update(float& dt) override;
 	virtual void render() override;

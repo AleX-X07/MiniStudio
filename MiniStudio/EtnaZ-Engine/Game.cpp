@@ -1,6 +1,6 @@
 #include "Game.h"
 #include "MainMenu.h"
-#include "Player.h"
+#include "GameObject.h"
 
 
 Game::Game(RenderWindow* window, vector<GameState*>* _states) : GameState(window, _states) {
@@ -24,10 +24,27 @@ void Game::manageState() {
 	}
 }
 
-void Game::update(float& dt) {
-	if (player) {
+void Game::update(float& dt) 
+{
+	if (player) 
+	{
 		player->update(dt);
 	}
+	updateCollision();
+}
+
+void Game::updateCollision() 
+{
+	if (!player) return;
+
+	/*for (auto& gameObject : ) 
+	{
+		if (gameObject->visibility && gameObject->isColliding(*player, *gameObject)) 
+		{
+			gameObject->resolveCollision(*player, *gameObject);
+		}
+	}*/
+
 }
 
 void Game::render() {
