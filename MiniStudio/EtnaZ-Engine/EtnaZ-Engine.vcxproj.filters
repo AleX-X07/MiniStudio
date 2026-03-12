@@ -31,6 +31,24 @@
     <Filter Include="Fichiers sources\Tool">
       <UniqueIdentifier>{c4f8f596-b7bc-4f10-800f-473c719e4849}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\GameObject">
+      <UniqueIdentifier>{51a46934-4b68-4a86-bcdf-d452c9639374}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GameObject\Entity">
+      <UniqueIdentifier>{a0e78ce6-d1d1-4329-966c-dada40d2e0b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GameObject">
+      <UniqueIdentifier>{7604fff7-a0a1-4de1-b83c-3edee9702b3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GameObject\Entity">
+      <UniqueIdentifier>{da5590dc-9170-482e-a7c2-e694e1823bd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Level">
+      <UniqueIdentifier>{95d3617d-c468-4a63-9404-f10c051e7e2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Level">
+      <UniqueIdentifier>{ec8a0214-4a9f-4a99-97cb-09cdad089c86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -51,8 +69,20 @@
     <ClCompile Include="GameState.cpp">
       <Filter>Fichiers sources\Game\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Fichiers sources\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Fichiers sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Fichiers sources\GameObject</Filter>
+    </ClCompile>
     <ClCompile Include="Player.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\GameObject\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadLevel.cpp">
+      <Filter>Fichiers sources\Level</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>Fichiers sources</Filter>
@@ -77,8 +107,20 @@
     <ClInclude Include="GameState.h">
       <Filter>Fichiers d%27en-tête\Game\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Fichiers d%27en-tête\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Fichiers d%27en-tête\GameObject</Filter>
+    </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Fichiers d%27en-tête\Game</Filter>
+      <Filter>Fichiers d%27en-tête\GameObject\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Fichiers d%27en-tête\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadLevel.h">
+      <Filter>Fichiers d%27en-tête\Level</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>Fichiers d%27en-tête\Game</Filter>

@@ -1,42 +1,30 @@
 #include "Player.h"
-#include "GameEngine.h"
 
-Player::Player()
+Player::Player(float x, float y) : GameObject(x,y)
 {
 	speed = 300.0f;
-	position = Vector2f(0.f, 0.f);
 }
 
-void Player::setFillColor(Color color)
-{
-	shape.setFillColor(color);
-}
-
-void Player::setSize(Vector2f size)
-{
-	shape.setSize(size);
-}
-
-void Player::setPosition(Vector2f pos)
-{
-	position = pos;
-	shape.setPosition(pos);
+void Player::clampInScreen() {
+	pos.x = std::max(0.f, std::min(pos.x, (float)(level_size_width - size.x)));
+	pos.y = std::max(0.f, std::min(pos.y, (float)(level_size_heigt - size.y)));
+	setPos(pos);
 }
 
 void Player::render(RenderWindow* window)
 {
 	if (window) {
-		window->draw(shape);
+		window->draw(rect);
 	}
 }
 
-void Player::update(float& dt) {
+void Player::update(float& dt, Input& input) {
 	if (Keyboard::isKeyPressed(Keyboard::Key::Left)) {
-		position.x -= speed * dt;
-		shape.setPosition(position);
+		pos.x -= speed * dt;
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Right)) {
-		position.x += speed * dt;
-		shape.setPosition(position);
+		pos.x += speed * dt;
 	}
+	clampInScreen();
+	setPos(pos);
 }

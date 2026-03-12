@@ -1,21 +1,21 @@
 #pragma once
-#include "GameState.h"
-class Player
+#include "Globals.h"
+#include "GameObject.h"
+
+
+class Player : public GameObject
 {
 private :
-	RectangleShape shape;
 	float speed;
-	Vector2f position;
 
 public :
-	Player();
+	Player() = default;
+	Player(float x, float y);
 	~Player() = default;
 
-	void setFillColor(Color color);
-	void setSize(Vector2f size);
-	void setPosition(Vector2f pos);
+	void clampInScreen();
 
-	void render(RenderWindow* window);
-	void update(float& dt);
+	virtual void render(RenderWindow* window) override;
+	virtual void update(float& dt, Input& input) override;
 };
 
