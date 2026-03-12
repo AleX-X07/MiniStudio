@@ -15,7 +15,7 @@ Textures* Textures::getMyTextures() {
 }
 
 void Textures::loadAllTexture() {
-    //loadTexture(Textures::texturesIndices::Platform, assets/iahgiuahioua.png);
+    loadTexture(Textures::texturesIndices::testSprite, "assets/testSprite.png");
 }
 
 void Textures::loadAllFont() {

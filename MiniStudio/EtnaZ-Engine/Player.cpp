@@ -11,11 +11,19 @@ void Player::clampInScreen() {
 	setPos(pos);
 }
 
+void Player::setAnimation(Animation* _myAnimation) {
+	myAnimation = _myAnimation;
+}
+
+
 void Player::render(RenderWindow* window)
 {
-	if (window) {
-		window->draw(rect);
-	}
+	myAnimation->render(*window);
+
+	rect.setTextureRect(myAnimation->myStateRect);
+
+	GameObject::render(window);
+
 }
 
 void Player::update(float& dt, Input& input) {
@@ -27,4 +35,6 @@ void Player::update(float& dt, Input& input) {
 	}
 	clampInScreen();
 	setPos(pos);
+
+	myAnimation->update(dt);
 }

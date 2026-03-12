@@ -2,16 +2,12 @@
 #include "GameObject.h"
 #include "Player.h"
 
-Animation::Animation() : Animation(nullptr, 0, 0, 0, 0) {
-
-}
-
-Animation::Animation(const char* _pathSpriteSheet, int _maxFrames, float _frameDuration, int _spriteWidth, int _spriteHeight) {
+Animation::Animation(Texture _texture, int _maxFrames, float _frameDuration, int _spriteWidth, int _spriteHeight) {
 
     currentState = CharacterState::IDLE;
     previousState = CharacterState::IDLE;
 
-    pathSpriteSheet = _pathSpriteSheet;
+    texture = _texture;
     maxFrames = _maxFrames;
     frameDuration = _frameDuration;
     spriteWidth = _spriteWidth;
@@ -21,7 +17,6 @@ Animation::Animation(const char* _pathSpriteSheet, int _maxFrames, float _frameD
     currentFrame = 0;
     animationRow = 0;
 }
-
 
 Animation::~Animation() {
 

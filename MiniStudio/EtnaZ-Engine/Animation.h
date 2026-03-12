@@ -30,12 +30,13 @@ private:
 
 public:
     sf::IntRect myStateRect;
-    const char* pathSpriteSheet;
     int animationRow;
+    Texture texture;
+
 public:
     // Constructor/Destructor
-    Animation();
-    Animation(const char* pathSpriteSheet, int maxFrames, float frameDuration, int spriteWidth, int spriteHeight);
+    Animation() = default;
+    Animation(Texture texture, int maxFrames, float frameDuration, int spriteWidth, int spriteHeight);
     ~Animation();
 
     //Get/Set
