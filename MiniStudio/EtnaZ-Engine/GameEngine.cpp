@@ -1,7 +1,7 @@
 #include "GameEngine.h"
 
 GameEngine::GameEngine() {
-	window = new RenderWindow(VideoMode({ win_width, win_height }), "EtnaZ-Engine");
+	window = new RenderWindow(VideoMode({ win_width, win_heigt }), "EtnaZ-Engine");
 	dt = 0;
 	states = new vector<GameState*>;
 	input = new Input();
@@ -18,11 +18,28 @@ GameEngine::~GameEngine() {
 
 void GameEngine::updateEvent() {
 
-	while (const optional event = window->pollEvent()) {
+	/*currentInputKey = nullptr;
+	currentInputMouse = nullptr;*/
+
+	/*while (const optional event = window->pollEvent()) {
 		if (event->is<Event::Closed>()) {
 			window->close();
 		}
+
+		if (currentInputKey = event->getIf<sf::Event::KeyPressed>()) {
+			input->setInputKey(currentInputKey);
+		}
+		if (currentInputMouse = event->getIf<sf::Event::MouseButtonPressed>()) {
+			input->setInputMouse(currentInputMouse);
+		}
 	}
+
+	if (input->currentInputKey) {
+		if (input->currentInputKey->scancode == Keyboard::Scancode::D) {
+			cout << "rohjapjth";
+		}
+	}*/
+
 }
 
 void GameEngine::updateDt() {
