@@ -57,6 +57,9 @@
     <ClCompile Include="Button.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="Textures.cpp">
+      <Filter>Fichiers sources\Tool</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">
@@ -82,6 +85,9 @@
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>Fichiers d%27en-tête\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Textures.h">
+      <Filter>Fichiers d%27en-tête\Tool</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

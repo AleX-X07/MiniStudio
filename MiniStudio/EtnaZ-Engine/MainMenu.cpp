@@ -4,6 +4,8 @@
 
 
 MainMenu::MainMenu(RenderWindow* window, vector<GameState*>* _states) : GameState(window, _states) {
+	sf::Font& font = Textures::getMyTextures()->getFont(Textures::fontsIndices::FontTest);
+	
 	buttonPlay = new Button();
 
 	buttonPlay->setFillColor({ 100,0,50,255 });
@@ -15,6 +17,22 @@ MainMenu::MainMenu(RenderWindow* window, vector<GameState*>* _states) : GameStat
 	buttonQuit->setFillColor({ 200,180,90,255 });
 	buttonQuit->setSize(Vector2f(400, 80));
 	buttonQuit->setPosition(Vector2f(775, 450));
+
+	textPlay = new TextButton();
+
+	textPlay->setFillColor(Color::White);
+	textPlay->setCharacterSize(unsigned int(35));
+	textPlay->setPosition(Vector2f(775, 200));
+	textPlay->setFont(font);
+	textPlay->setString("Play");
+
+	textQuit = new TextButton();
+
+	textQuit->setFillColor(Color::White);
+	textQuit->setCharacterSize(unsigned int(35));
+	textQuit->setPosition(Vector2f(775, 450));
+	textQuit->setFont(font);
+	textQuit->setString("Quit");
 }
 
 void MainMenu::Instance(RenderWindow* window, vector<GameState*>*& states) {
@@ -57,10 +75,19 @@ void MainMenu::render() {
 	if (buttonQuit) {
 		buttonQuit->render(window);
 	}
-	
+
+	if (textPlay) {
+		textPlay->render(window);
+	}
+
+	if (textQuit) {
+		textQuit->render(window);
+	}
 }
 
 MainMenu::~MainMenu(){
 	delete buttonPlay;
 	delete buttonQuit;
+	delete textPlay;
+	delete textQuit;
 }

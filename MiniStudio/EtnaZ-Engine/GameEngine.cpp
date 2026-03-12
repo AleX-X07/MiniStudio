@@ -18,28 +18,6 @@ GameEngine::~GameEngine() {
 
 void GameEngine::updateEvent() {
 
-	/*currentInputKey = nullptr;
-	currentInputMouse = nullptr;*/
-
-	/*while (const optional event = window->pollEvent()) {
-		if (event->is<Event::Closed>()) {
-			window->close();
-		}
-
-		if (currentInputKey = event->getIf<sf::Event::KeyPressed>()) {
-			input->setInputKey(currentInputKey);
-		}
-		if (currentInputMouse = event->getIf<sf::Event::MouseButtonPressed>()) {
-			input->setInputMouse(currentInputMouse);
-		}
-	}
-
-	if (input->currentInputKey) {
-		if (input->currentInputKey->scancode == Keyboard::Scancode::D) {
-			cout << "rohjapjth";
-		}
-	}*/
-
 }
 
 void GameEngine::updateDt() {
@@ -62,6 +40,11 @@ void GameEngine::render() {
 }
 
 void GameEngine::run() {
+
+	Textures::getMyTextures()->loadAllTexture();
+	Textures::getMyTextures()->loadAllFont();
+
+	Textures::getMyTextures()->getFont(Textures::fontsIndices::FontTest); //-> ligne pour récupérer le font dans le tableau à l'indice "FontTest"
 
 	MainMenu::Instance(window, states);
 

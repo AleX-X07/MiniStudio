@@ -1,5 +1,8 @@
 #pragma once
 #include "GameState.h"
+#include "Textures.h"
+#include <SFML/Graphics/Text.hpp>
+
 
 class Button
 {
@@ -22,21 +25,21 @@ public :
 	void update(float& dt);
 };
 
-//class Text
-//{
-//private :
-//	Font font;
-//	Text text;
-//
-//public:
-//	Text();
-//	~Text() = default;
-//
-//	void setFillColor(Color color);
-//	void setSize(Vector2f size);
-//	void setPosition(Vector2f pos);
-//	void setCharacterSize(Vector2f pos);
-//
-//	void render(RenderWindow* window);
-//	void update(float& dt);
-//};
+class TextButton
+{
+private :
+	sf::Text* text;
+	sf::Font* font;
+public:
+	TextButton();
+	~TextButton();
+
+	void setFillColor(Color color);
+	void setPosition(Vector2f pos);
+	void setCharacterSize(unsigned int size);
+	void setFont(sf::Font& _font);
+	void setString(const std::string& str);
+
+	void render(RenderWindow* window);
+	void update(float& dt);
+};

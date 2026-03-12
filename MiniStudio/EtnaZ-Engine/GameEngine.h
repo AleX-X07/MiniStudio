@@ -3,6 +3,7 @@
 
 #include "Globals.h"
 #include "Input.h"
+#include "Textures.h"
 
 #include "GameState.h"
 #include "MainMenu.h"

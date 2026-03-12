@@ -10,6 +10,8 @@ class MainMenu : public GameState
 private:
 	Button* buttonPlay;
 	Button* buttonQuit;
+	TextButton* textPlay;
+	TextButton* textQuit;
 
 public:
 	MainMenu() = default;
