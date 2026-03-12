@@ -4,16 +4,19 @@
 #include "Globals.h"
 #include "GameObject.h"
 #include "Textures.h"
+#include "Tile.h"
 
 using namespace std;
 
 class LoadLevel{
 
 private:
-	vector<GameObject*>Platform;
-	vector<GameObject*>Object;
+	sf::Texture tileSet;
+	
 
 public:
+	vector<GameObject*>Platform;
+	vector<Tile*>tiles;
 
 	LoadLevel();
 	~LoadLevel();
