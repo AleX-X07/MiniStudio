@@ -32,6 +32,11 @@ void Game::setEntity() {
 		platform->setColor(Color::Green);
 		gameObjectCollider.push_back(platform);
 
+		// Test block
+		GameObject* block = new GameObject(500, 880, 100, 100);
+		block->setColor((Color::Black));
+		gameObjectCollider.push_back(block);
+
 		//Player
 		player = new Player(900, 750);
 		player->setColor(Color::Red);
@@ -45,9 +50,8 @@ void Game::setEntity() {
 
 void Game::updateCollision() {
 	if (!player) return;
-
+	player->onGround = false;
 	for (auto& gameObject : gameObjectCollider) {
-		player->onGround = false;
 		if (player->isColliding(*gameObject) && gameObject != player) {
 			std::cout << "Collision detected!" << std::endl;
 			player->resolveCollision(*gameObject);
