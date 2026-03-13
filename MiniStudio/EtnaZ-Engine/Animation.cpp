@@ -2,16 +2,17 @@
 #include "GameObject.h"
 #include "Player.h"
 
-Animation::Animation(Texture _texture, int _maxFrames, float _frameDuration, int _spriteWidth, int _spriteHeight) {
+Animation::Animation(Texture _texture, int _maxFrames, int _nbrAnimation, float _frameDuration, int _spriteWidth, int _spriteHeight) {
 
     currentState = CharacterState::IDLE;
     previousState = CharacterState::IDLE;
 
     texture = _texture;
     maxFrames = _maxFrames;
+    nbrAnimation = _nbrAnimation;
     frameDuration = _frameDuration;
-    spriteWidth = _spriteWidth;
-    spriteHeight = _spriteHeight;
+    spriteWidth = _spriteWidth/maxFrames;
+    spriteHeight = _spriteHeight/nbrAnimation;
 
     animationTimer = 0;
     currentFrame = 0;
@@ -92,7 +93,7 @@ void Animation::render(sf::RenderWindow& window) {
     }
 
     if (currentState != CharacterState::IDLE) {
-        myStateRect = { {currentFrame * spriteWidth, animationRow * spriteHeight}, {spriteWidth,spriteHeight} };
+        myStateRect = { {  currentFrame * spriteWidth, animationRow * spriteHeight}, {spriteWidth,spriteHeight} };
     }
     else {
         myStateRect = { {0 * spriteWidth, animationRow * spriteHeight}, {spriteWidth,spriteHeight} };

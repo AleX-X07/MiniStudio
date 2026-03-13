@@ -4,7 +4,8 @@ GameObject::GameObject(float x, float y) : GameObject(x, y, 50, 50) {
 
 }
 
-GameObject::GameObject(float x, float y, float w, float h) : pos({ x,y }), size({ w,h }), visibility(true), tex(nullptr), color({ 255,0,0,255 }), scale({ 1,1 }) {
+GameObject::GameObject(float x, float y, float w, float h) : pos({ x,y }), size({ w,h }), visibility(true), tex(nullptr), scale({ 1,1 }) {
+    color = Color::White;
     rect.setFillColor(color);
     rect.setPosition(pos);
     rect.setSize(size);

@@ -21,6 +21,7 @@ private:
 
     int currentFrame;
     int maxFrames;
+    int nbrAnimation;
 
     float animationTimer;
     float frameDuration;
@@ -36,7 +37,7 @@ public:
 public:
     // Constructor/Destructor
     Animation() = default;
-    Animation(Texture texture, int maxFrames, float frameDuration, int spriteWidth, int spriteHeight);
+    Animation(Texture texture, int maxFrames, int nbrAnimation, float frameDuration, int spriteWidth, int spriteHeight);
     ~Animation();
 
     //Get/Set

@@ -3,6 +3,7 @@
 Player::Player(float x, float y) : GameObject(x,y)
 {
 	speed = 300.0f;
+	myAnimation = nullptr;
 }
 
 void Player::clampInScreen() {
@@ -20,17 +21,17 @@ void Player::render(RenderWindow* window)
 {
 	myAnimation->render(*window);
 
-	rect.setTextureRect(myAnimation->myStateRect);
+	rect.setTexture(&myAnimation->texture);             
+	rect.setTextureRect(myAnimation->myStateRect);     
 
-	GameObject::render(window);
-
+	window->draw(rect);
 }
 
 void Player::update(float& dt, Input& input) {
-	if (Keyboard::isKeyPressed(Keyboard::Key::Left)) {
+	if (Keyboard::isKeyPressed(Keyboard::Key::Q)) {
 		pos.x -= speed * dt;
 	}
-	if (Keyboard::isKeyPressed(Keyboard::Key::Right)) {
+	if (Keyboard::isKeyPressed(Keyboard::Key::D)) {
 		pos.x += speed * dt;
 	}
 	clampInScreen();

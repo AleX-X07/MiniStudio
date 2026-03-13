@@ -29,9 +29,8 @@ void Game::setEntity() {
 
 		//Player
 		player = new Player(900, 750);
-		Animation* myAnimation = new Animation(Textures::getMyTextures()->getTexture(Textures::texturesIndices::testSprite), 5, 0.2f, 480, 299);
+		Animation* myAnimation = new Animation(Textures::getMyTextures()->getTexture(Textures::texturesIndices::testSprite), 6, 4, 0.2f, 823, 547);
 		player->setAnimation(myAnimation);
-		player->setColor(Color::Red);
 
 		//Camera
 		camera = new Camera(0.01);
