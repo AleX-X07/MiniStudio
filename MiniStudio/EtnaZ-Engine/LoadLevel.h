@@ -15,15 +15,15 @@ private:
 	
 
 public:
-	vector<GameObject*>Platform;
-	vector<Tile*>tiles;
+	vector<GameObject*> Platform;
+	vector<Tile*> tiles;
 
 	LoadLevel();
 	~LoadLevel();
 
 	bool loadLevel();
 
-	void render(sf::RenderWindow& window);
+	void render(sf::RenderWindow* window);
 
 };
 

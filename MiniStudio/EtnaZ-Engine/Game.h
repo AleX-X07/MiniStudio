@@ -2,12 +2,14 @@
 #include "GameState.h"
 #include "Player.h"
 #include "Camera.h"
+#include "LoadLevel.h"
 
 class MainMenu;
 
 class Game : public GameState
 {
 private:
+	LoadLevel* myLevel;
 	Camera* camera;
 	Player* player;
 	vector<GameObject*> gameObject;

@@ -1,7 +1,7 @@
 #include "Game.h"
 #include "MainMenu.h"
 #include "Player.h"
-
+#include "LoadLevel.h"
 
 Game::Game(RenderWindow* window, vector<GameState*>* _states) : GameState(window, _states), gOBuild(false) {
 
@@ -22,6 +22,9 @@ void Game::manageState() {
 void Game::setEntity() {
 	if (!gOBuild) {
 
+		myLevel = new LoadLevel();
+		myLevel->loadLevel();
+
 		// Background white
 		GameObject* backWhite = new GameObject(0, 0, win_width, win_height);
 		backWhite->setColor(Color::White);
@@ -39,6 +42,7 @@ void Game::setEntity() {
 		//Camera
 		camera = new Camera(0.01);
 
+
 		gOBuild = true;
 	}
 }
@@ -49,7 +53,6 @@ void Game::updateCollision() {
 	for (auto& gameObject : gameObjectCollider) {
 		player->onGround = false;
 		if (player->isColliding(*gameObject) && gameObject != player) {
-			std::cout << "Collision detected!" << std::endl;
 			player->resolveCollision(*gameObject);
 		}
 	}
@@ -67,7 +70,10 @@ void Game::update(float& dt) {
 }
 
 void Game::render() {
-	
+
+
+
+
 	camera->setCamera(window);
 
 	for (auto gO : gameObject) {
@@ -78,12 +84,17 @@ void Game::render() {
 		gOC->render(window);
 	}
 
+	myLevel->render(window);
+
 	if (player) {
 		player->render(window);
 	}
 }
 
-Game::~Game() {
+Game::~Game() {/*
 	delete player;
 	player = nullptr;
+
+	delete myLevel;
+	myLevel = nullptr;*/
 }

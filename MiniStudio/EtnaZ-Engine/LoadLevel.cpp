@@ -21,6 +21,8 @@ LoadLevel::~LoadLevel()
 }
 
 bool LoadLevel::loadLevel(){
+	cout << "start";
+
 	std::ifstream file("niveau.txt");
 	tileSet.loadFromFile("tileset.png");
 
@@ -30,10 +32,12 @@ bool LoadLevel::loadLevel(){
 	while(getline(file, line)) {
 
 		if (line == "PLATFORM") {
+			cout << "plat";
 			section = "PLATFORM";
 			continue;
 		}
 		if (line == "TILES") {
+			cout << "tiles";
 			section = "TILES";
 			continue;
 		}
@@ -43,6 +47,7 @@ bool LoadLevel::loadLevel(){
 		if (section == "PLATFORM") {
 			float x, y, w, h;
 			iss >> x >> y >> w >> h;
+			cout << "plat create";
 			GameObject* myPlaftform = new GameObject(x, y, w, h);
 			//myPlaftform->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::Platform));
 			Platform.push_back(myPlaftform);
@@ -67,6 +72,9 @@ bool LoadLevel::loadLevel(){
 						int tileCol = (tileId - 1) % tilesetColumns;
 						int tileRow = (tileId - 1) / tilesetColumns;
 
+						cout << "tile create";
+
+
 						sf::IntRect tileRect({ tileCol * tileSize, tileRow * tileSize }, { tileSize, tileSize });
 						Tile* tile = new Tile(tileId, column * tileSize, currentRow * tileSize, tileSize, &tileSet);
 						tile->setTileRect(tileRect);
@@ -81,17 +89,20 @@ bool LoadLevel::loadLevel(){
 			
 	}
 
-
 	return true;
 }
 
-void LoadLevel::render(sf::RenderWindow& window)
+void LoadLevel::render(sf::RenderWindow* window)
 {
 	for (auto& platform : Platform) {
-		platform->render(&window);
+		platform->render(window);
+		cout << "renderplat";
+
 	}
 
 	for (auto& tile : tiles) {
-		tile->render(&window);
+		tile->render(window);
+		cout << "rendertile";
+
 	}
 }
