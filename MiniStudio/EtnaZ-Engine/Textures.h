@@ -8,12 +8,15 @@ class Textures {
 public:
     enum class texturesIndices{
         Platform,
+        testSprite,
     };
 
     enum class fontsIndices{
     };
+
 private:
     Textures();
+
 public:
     ~Textures() = default;
 

@@ -37,7 +37,11 @@ void Game::setEntity() {
 
 		//Player
 		player = new Player(900, 750);
-		player->setColor(Color::Red);
+		Animation* myAnimation = new Animation(Textures::getMyTextures()->getTexture(Textures::texturesIndices::testSprite), 5, 1, 0.2f, 512, 104);
+		player->setAnimation(myAnimation);
+		player->setSize({ 200,200 });
+
+		//player->setSize({ player->size.x * player->scale.x,player->size.y * player->scale.y});
 
 		//Camera
 		camera = new Camera(0.01);

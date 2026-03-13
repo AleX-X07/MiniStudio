@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Camera.h"
 #include "LoadLevel.h"
+#include "Textures.h"
 
 class MainMenu;
 

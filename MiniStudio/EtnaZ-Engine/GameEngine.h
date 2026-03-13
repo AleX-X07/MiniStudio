@@ -6,6 +6,7 @@
 
 #include "GameState.h"
 #include "MainMenu.h"
+#include "Textures.h"
 
 using namespace std;
 
