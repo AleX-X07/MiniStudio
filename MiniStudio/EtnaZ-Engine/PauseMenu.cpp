@@ -4,18 +4,32 @@
 
 PauseMenu::PauseMenu(RenderWindow* window, vector<GameState*>* _states) : GameState(window, _states)
 {
-    overlay.setSize(Vector2f(win_width, win_heigt));
-    overlay.setFillColor(Color(0, 0, 0, 150));
+    shape.setSize(Vector2f(win_width, win_heigt));
+    shape.setFillColor(Color(0, 0, 0, 150));
+
+    sf::Font& font = Textures::getMyTextures()->getFont(Textures::fontsIndices::FontTest);
 
     buttonResume = new Button();
     buttonResume->setFillColor(Color(100, 100, 250, 255));
     buttonResume->setSize(Vector2f(300, 80));
     buttonResume->setPosition(Vector2f(810, 400));
+    textResume = new TextButton();
+    textResume->setFillColor(Color::White);
+    textResume->setCharacterSize(35);
+    textResume->setPosition(Vector2f(810, 400));
+    textResume->setFont(font);
+    textResume->setString("Resume");
 
     buttonQuit = new Button();
     buttonQuit->setFillColor(Color(250, 100, 100, 255));
     buttonQuit->setSize(Vector2f(300, 80));
     buttonQuit->setPosition(Vector2f(810, 550));
+    textQuit = new TextButton();
+    textQuit->setFillColor(Color::White);
+    textQuit->setCharacterSize(35);
+    textQuit->setPosition(Vector2f(810, 550));
+    textQuit->setFont(font);
+    textQuit->setString("Quit");
 }
 
 void PauseMenu::Instance(RenderWindow* window, vector<GameState*>*& states)
@@ -67,7 +81,7 @@ void PauseMenu::update(float& dt)
 
 void PauseMenu::render()
 {
-    window->draw(overlay);
+    window->draw(shape);
 
     if (buttonResume)
     {
@@ -77,6 +91,16 @@ void PauseMenu::render()
     if (buttonQuit)
     {
         buttonQuit->render(window);
+    }
+
+    if (textResume)
+    {
+        textResume->render(window);
+    }
+
+    if (textQuit)
+    {
+        textQuit->render(window);
     }
 }
 

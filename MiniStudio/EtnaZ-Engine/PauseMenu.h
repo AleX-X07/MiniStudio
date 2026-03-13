@@ -9,7 +9,9 @@ class PauseMenu : public GameState
 private:
     Button* buttonResume;
     Button* buttonQuit;
-    RectangleShape overlay;
+    TextButton* textResume;
+    TextButton* textQuit;
+    RectangleShape shape;
 
 public:
     PauseMenu() = default;
