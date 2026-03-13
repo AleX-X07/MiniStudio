@@ -46,41 +46,41 @@ void Player::update(float& dt, Input& input)
     setPos(pos);
 }
 
-void Player::resolveCollision(GameObject& gameObject)
-{
-    float overlapLeft = (pos.x + size.x) - gameObject.pos.x;
-    float overlapRight = (gameObject.pos.x + gameObject.size.x) - pos.x;
-    float overlapTop = (pos.y + size.y) - gameObject.pos.y;
-    float overlapBottom = (gameObject.pos.y + gameObject.size.y) - pos.y;
-
-    bool fromLeft = std::abs(overlapLeft) < std::abs(overlapRight);
-    bool fromTop = std::abs(overlapTop) < std::abs(overlapBottom);
-
-    float minOverlapX = fromLeft ? overlapLeft : overlapRight;
-    float minOverlapY = fromTop ? overlapTop : overlapBottom;
-
-    if (std::abs(minOverlapX) < std::abs(minOverlapY))
-    {
-        pos.x += fromLeft ? -minOverlapX : minOverlapX;
-        velocityX = 0;
-    }
-    else
-    {
-        if (fromTop)
-        {
-            pos.y -= minOverlapY;
-            velocityY = 0;
-            onGround = true;
-        }
-        else
-        {
-            pos.y += minOverlapY;
-            velocityY = 0;
-        }
-    }
-
-    setPos(pos);
-}
+//void Player::resolveCollision(GameObject& gameObject)
+//{
+//    float overlapLeft = (pos.x + size.x) - gameObject.pos.x;
+//    float overlapRight = (gameObject.pos.x + gameObject.size.x) - pos.x;
+//    float overlapTop = (pos.y + size.y) - gameObject.pos.y;
+//    float overlapBottom = (gameObject.pos.y + gameObject.size.y) - pos.y;
+//
+//    bool fromLeft = std::abs(overlapLeft) < std::abs(overlapRight);
+//    bool fromTop = std::abs(overlapTop) < std::abs(overlapBottom);
+//
+//    float minOverlapX = fromLeft ? overlapLeft : overlapRight;
+//    float minOverlapY = fromTop ? overlapTop : overlapBottom;
+//
+//    if (std::abs(minOverlapX) < std::abs(minOverlapY))
+//    {
+//        pos.x += fromLeft ? -minOverlapX : minOverlapX;
+//        velocityX = 0;
+//    }
+//    else
+//    {
+//        if (fromTop)
+//        {
+//            pos.y -= minOverlapY;
+//            velocityY = 0;
+//            onGround = true;
+//        }
+//        else
+//        {
+//            pos.y += minOverlapY;
+//            velocityY = 0;
+//        }
+//    }
+//
+//    setPos(pos);
+//}
 
 void Player::jump() 
 {

@@ -27,8 +27,6 @@ public :
 	virtual void render(RenderWindow* window) override;
 	virtual void update(float& dt, Input& input) override;
 	virtual void resolveCollision(GameObject& gameObject) override;
-	void moveLeft(float& dt);
-	void moveRight(float& dt);
 	void jump();
 };
 

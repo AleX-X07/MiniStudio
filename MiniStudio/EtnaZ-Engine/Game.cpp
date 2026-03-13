@@ -19,15 +19,6 @@ void Game::manageState() {
 	}
 }
 
-void Game::update(float& dt) 
-{
-	if (player) 
-	{
-		player->update(dt, input);
-	        updateCollision();
-        }
-}
-
 void Game::setEntity() {
 	if (!gOBuild) {
 

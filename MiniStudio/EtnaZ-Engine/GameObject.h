@@ -37,11 +37,11 @@ public:
     void setScale(Vector2f scale);
 
     bool isColliding(GameObject& gameObject);
-    virtual void resolveCollision(GameObject& gameObject);
     void setVisibilityTrue();
     void setVisibilityFalse();
 
     // Method virtual
+    virtual void resolveCollision(GameObject& gameObject);
     virtual void update(float& dt, Input& input);
     virtual void render(RenderWindow* window);
 };

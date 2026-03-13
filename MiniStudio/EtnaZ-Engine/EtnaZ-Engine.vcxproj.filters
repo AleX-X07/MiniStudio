@@ -69,12 +69,6 @@
     <ClCompile Include="GameState.cpp">
       <Filter>Fichiers sources\Game\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Fichiers sources\Tool</Filter>
-    </ClCompile>
-    <ClCompile Include="Collision.cpp">
-      <Filter>Fichiers sources\GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Fichiers sources\GameObject</Filter>
     </ClCompile>
@@ -82,13 +76,10 @@
       <Filter>Fichiers sources\GameObject\Entity</Filter>
     </ClCompile>
     <ClCompile Include="LoadLevel.cpp">
-      <Filter>Fichiers sources\Level</Filter>
-    </ClCompile>
-    <ClCompile Include="LoadLevel.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="Textures.cpp">
-      <Filter>Fichiers sources\Tool</Filter>
+    <ClCompile Include="test.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -110,26 +101,17 @@
     <ClInclude Include="GameState.h">
       <Filter>Fichiers d%27en-tête\Game\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Fichiers d%27en-tête\Tool</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Fichiers d%27en-tête\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Fichiers d%27en-tête\GameObject\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="Collision.h">
-      <Filter>Fichiers d%27en-tête\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="LoadLevel.h">
-      <Filter>Fichiers d%27en-tête\Level</Filter>
-    </ClInclude>
     <ClInclude Include="LoadLevel.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Textures.h">
-      <Filter>Fichiers d%27en-tête\Tool</Filter>
+    <ClInclude Include="test.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
