@@ -12,9 +12,9 @@ private :
 	float velocityX = 0.f;
 	float velocityY = 0.f;
 
+public :
 	bool onGround = false;
 
-public :
 	Player() = default;
 	Player(float x, float y);
 	~Player() = default;

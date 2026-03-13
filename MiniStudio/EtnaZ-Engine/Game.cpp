@@ -47,8 +47,9 @@ void Game::updateCollision() {
 	if (!player) return;
 
 	for (auto& gameObject : gameObjectCollider) {
+		player->onGround = false;
 		if (player->isColliding(*gameObject) && gameObject != player) {
-			
+			std::cout << "Collision detected!" << std::endl;
 			player->resolveCollision(*gameObject);
 		}
 	}
@@ -62,6 +63,7 @@ void Game::update(float& dt) {
 	}
 	camera->updateCamera(player);
 	updateCollision();
+
 }
 
 void Game::render() {
