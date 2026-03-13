@@ -29,10 +29,6 @@ bool LoadLevel::loadLevel(){
 
 	while(getline(file, line)) {
 
-		if (line.empty()) {
-			continue;
-		}
-
 		if (line == "PLATFORM") {
 			section = "PLATFORM";
 			continue;
