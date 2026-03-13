@@ -3,6 +3,7 @@
 Player::Player(float x, float y) : GameObject(x,y)
 {
 	speed = 300.0f;
+	myAnimation = nullptr;
 }
 
 void Player::clampInScreen() {
@@ -22,13 +23,26 @@ void Player::render(RenderWindow* window) {
 	if (window) {
 		window->draw(rect);
 	}
+
+void Player::setAnimation(Animation* _myAnimation) {
+	myAnimation = _myAnimation;
+}
+
+
+void Player::render(RenderWindow* window) {
+	myAnimation->render(*window);
+
+	rect.setTexture(&myAnimation->texture);             
+	rect.setTextureRect(myAnimation->myStateRect);     
+
+	window->draw(rect);
 }
 
 void Player::update(float& dt, Input& input) {
-	if (Keyboard::isKeyPressed(Keyboard::Key::Left)) {
+	if (Keyboard::isKeyPressed(Keyboard::Key::Q)) {
 		pos.x -= speed * dt;
 	}
-	if (Keyboard::isKeyPressed(Keyboard::Key::Right)) {
+	if (Keyboard::isKeyPressed(Keyboard::Key::D)) {
 		pos.x += speed * dt;
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Up)) {
@@ -44,6 +58,7 @@ void Player::update(float& dt, Input& input) {
 	}
 	clampInScreen();
 	setPos(pos);
+	myAnimation->update(dt);
 }
 
 void Player::resolveCollision(GameObject& gameObject){
