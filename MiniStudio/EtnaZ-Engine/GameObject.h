@@ -38,7 +38,10 @@ public:
     void setVisibilityTrue();
     void setVisibilityFalse();
 
+    bool isColliding(GameObject& gameObject);
+
     // Method virtual
     virtual void update(float& dt, Input& input);
     virtual void render(RenderWindow* window);
+    virtual void resolveCollision(GameObject& gameObject);
 };

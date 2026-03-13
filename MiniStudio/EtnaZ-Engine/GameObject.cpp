@@ -58,6 +58,13 @@ void GameObject::setVisibilityFalse() {
     visibility = false;
 }
 
+bool GameObject::isColliding(GameObject& gameObject) {
+    return (pos.x < gameObject.pos.x + gameObject.size.x &&
+        pos.x + size.x > gameObject.pos.x &&
+        pos.y < gameObject.pos.y + gameObject.size.y &&
+        pos.y + size.y > gameObject.size.y);
+}
+
 
 void GameObject::update(float& dt, Input& input) {
 
@@ -70,4 +77,30 @@ void GameObject::render(RenderWindow* window) {
         }
         window->draw(rect);
     }
+}
+
+void GameObject::resolveCollision(GameObject& gameObject) {
+    float overlapLeft = (pos.x + size.x) - gameObject.pos.x;
+    float overlapRight = (gameObject.pos.x + gameObject.size.x) - pos.x;
+    float overlapTop = (pos.y + size.y) - gameObject.pos.y;
+    float overlapBottom = (gameObject.pos.y + gameObject.size.y) - pos.y;
+
+    bool fromLeft = std::abs(overlapLeft) < std::abs(overlapRight);
+    bool fromTop = std::abs(overlapTop) < std::abs(overlapBottom);
+
+    float minOverlapX = fromLeft ? overlapLeft : overlapRight;
+    float minOverlapY = fromTop ? overlapTop : overlapBottom;
+
+    if (std::abs(minOverlapX) < std::abs(minOverlapY)) {
+        pos.x += fromLeft ? -minOverlapX : minOverlapX;
+    }
+    else {
+        if (fromTop) {
+            pos.y -= minOverlapY;
+        }
+        else {
+            pos.y += minOverlapY;
+        }
+    }
+    setPos(pos);
 }

@@ -27,6 +27,11 @@ void Game::setEntity() {
 		backWhite->setColor(Color::White);
 		gameObject.push_back(backWhite);
 
+		// Test platform
+		GameObject* platform = new GameObject(0, 1080, 1920, -100);
+		platform->setColor(Color::Green);
+		gameObjectCollider.push_back(platform);
+
 		//Player
 		player = new Player(900, 750);
 		player->setColor(Color::Red);
@@ -38,6 +43,18 @@ void Game::setEntity() {
 	}
 }
 
+void Game::updateCollision() {
+	if (!player) return;
+
+	for (auto& gameObject : gameObjectCollider)
+	{
+		if (gameObject->visibility && player->isColliding(*gameObject) && gameObject != player)
+		{
+			player->resolveCollision(*gameObject);
+		}
+	}
+}
+
 void Game::update(float& dt) {
 	
 	setEntity();
@@ -45,7 +62,7 @@ void Game::update(float& dt) {
 		player->update(dt, input);
 	}
 	camera->updateCamera(player);
-
+	updateCollision();
 }
 
 void Game::render() {
@@ -54,6 +71,10 @@ void Game::render() {
 
 	for (auto gO : gameObject) {
 		gO->render(window);
+	}
+
+	for (auto gOC : gameObjectCollider) {
+		gOC->render(window);
 	}
 
 	if (player) {

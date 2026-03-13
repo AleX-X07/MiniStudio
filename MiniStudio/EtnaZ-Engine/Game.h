@@ -11,6 +11,7 @@ private:
 	Camera* camera;
 	Player* player;
 	vector<GameObject*> gameObject;
+	vector<GameObject*> gameObjectCollider;
 	bool gOBuild;
 
 public:
@@ -21,6 +22,7 @@ public:
 	static void Instance(RenderWindow* window, vector<GameState*>*& states);
 
 	void setEntity();
+	void updateCollision();
 
 	virtual void manageState() override;
 	virtual void update(float& dt) override;
