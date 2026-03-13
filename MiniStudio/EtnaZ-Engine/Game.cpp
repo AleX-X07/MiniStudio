@@ -28,7 +28,7 @@ void Game::setEntity() {
 		gameObject.push_back(backWhite);
 
 		// Test platform
-		GameObject* platform = new GameObject(0, 1080, 1920, -100);
+		GameObject* platform = new GameObject(0, 980, 1920, 100);
 		platform->setColor(Color::Green);
 		gameObjectCollider.push_back(platform);
 
@@ -46,10 +46,9 @@ void Game::setEntity() {
 void Game::updateCollision() {
 	if (!player) return;
 
-	for (auto& gameObject : gameObjectCollider)
-	{
-		if (gameObject->visibility && player->isColliding(*gameObject) && gameObject != player)
-		{
+	for (auto& gameObject : gameObjectCollider) {
+		if (player->isColliding(*gameObject) && gameObject != player) {
+			
 			player->resolveCollision(*gameObject);
 		}
 	}

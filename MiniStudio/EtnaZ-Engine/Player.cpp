@@ -12,10 +12,10 @@ void Player::clampInScreen() {
 }
 
 void Player::jump() {
-	//if (onGround) {
+	if (onGround) {
 		velocityY = jumpForce;
 		onGround = false;
-	//}
+	}
 }
 
 void Player::render(RenderWindow* window) {

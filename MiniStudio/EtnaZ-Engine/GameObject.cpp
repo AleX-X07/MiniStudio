@@ -59,10 +59,10 @@ void GameObject::setVisibilityFalse() {
 }
 
 bool GameObject::isColliding(GameObject& gameObject) {
-    return (pos.x < gameObject.pos.x + gameObject.size.x &&
-        pos.x + size.x > gameObject.pos.x &&
-        pos.y < gameObject.pos.y + gameObject.size.y &&
-        pos.y + size.y > gameObject.size.y);
+    return (pos.x > gameObject.pos.x &&
+        pos.x + size.x < gameObject.pos.x + gameObject.size.x &&
+        pos.y > gameObject.pos.y &&
+        pos.y + size.y < gameObject.pos.y + gameObject.size.y);
 }
 
 
