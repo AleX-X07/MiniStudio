@@ -11,7 +11,7 @@ private :
 	float gravity = 980.f;
 	float velocityX = 0.f;
 	float velocityY = 0.f;
-	Animation* myAnimation;
+	Animation* myAnimation;	
 
 public :
 	bool onGround = false;

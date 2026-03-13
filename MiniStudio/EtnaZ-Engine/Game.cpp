@@ -34,8 +34,11 @@ void Game::setEntity() {
 
 		//Player
 		player = new Player(900, 750);
-		Animation* myAnimation = new Animation(Textures::getMyTextures()->getTexture(Textures::texturesIndices::testSprite), 6, 4, 0.2f, 823, 547);
+		Animation* myAnimation = new Animation(Textures::getMyTextures()->getTexture(Textures::texturesIndices::testSprite), 5, 1, 0.2f, 512, 104);
 		player->setAnimation(myAnimation);
+		player->setSize({ 200,200 });
+
+		//player->setSize({ player->size.x * player->scale.x,player->size.y * player->scale.y});
 
 		//Camera
 		camera = new Camera(0.01);
@@ -50,7 +53,6 @@ void Game::updateCollision() {
 	for (auto& gameObject : gameObjectCollider) {
 		player->onGround = false;
 		if (player->isColliding(*gameObject) && gameObject != player) {
-			std::cout << "Collision detected!" << std::endl;
 			player->resolveCollision(*gameObject);
 		}
 	}

@@ -39,14 +39,17 @@ void GameObject::setColor(Color nColor) {
 }
 
 void GameObject::setPos(Vector2f nPos) {
+    pos = nPos;
     rect.setPosition(nPos);
 }
 
 void GameObject::setSize(Vector2f nSize) {
+    size = nSize;
     rect.setSize(nSize);
 }
 
 void GameObject::setScale(Vector2f nScale) {
+    scale = nScale;
     rect.setScale(nScale);
 }
 

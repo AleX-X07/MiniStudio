@@ -15,7 +15,7 @@ Textures* Textures::getMyTextures() {
 }
 
 void Textures::loadAllTexture() {
-    loadTexture(Textures::texturesIndices::testSprite, "assets/spriteTest.png");
+    loadTexture(Textures::texturesIndices::testSprite, "assets/myAnimation.png");
 }
 
 void Textures::loadAllFont() {

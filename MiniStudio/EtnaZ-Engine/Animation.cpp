@@ -85,10 +85,10 @@ void Animation::render(sf::RenderWindow& window) {
         animationRow = 0;
         break;
     case CharacterState::LEFT:
-        animationRow = 1;
+        animationRow = 0;
         break;
     case CharacterState::RIGHT:
-        animationRow = 2;
+        animationRow = 0;
         break;
     }
 
