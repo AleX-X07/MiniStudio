@@ -35,13 +35,13 @@ void Button::update(float& dt) {
 
 }
 
-
-
-
-
 TextButton::TextButton()
 {
 
+}
+
+TextButton::~TextButton()
+{
 }
 
 void TextButton::setFillColor(Color color)

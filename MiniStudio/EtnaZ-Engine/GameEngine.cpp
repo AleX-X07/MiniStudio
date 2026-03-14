@@ -44,7 +44,7 @@ void GameEngine::run() {
 	Textures::getMyTextures()->loadAllTexture();
 	Textures::getMyTextures()->loadAllFont();
 
-	Textures::getMyTextures()->getFont(Textures::fontsIndices::FontTest); //-> ligne pour récupérer le font dans le tableau à l'indice "FontTest"
+	//Textures::getMyTextures()->getFont(Textures::fontsIndices::FontTest); //-> ligne pour récupérer le font dans le tableau à l'indice "FontTest"
 
 	MainMenu::Instance(window, states);
 

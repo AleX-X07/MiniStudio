@@ -42,7 +42,7 @@ void PauseMenu::manageState()
 {
     if (Keyboard::isKeyPressed(Keyboard::Key::Escape))
     {
-        GameState::nextState(states);
+        //GameState::nextState(states);
     }
 
     if (Mouse::isButtonPressed(Mouse::Button::Left))
