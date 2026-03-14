@@ -11,7 +11,7 @@ void MainMenu::Instance(RenderWindow* window, vector<GameState*>*& states) {
 }
 
 void MainMenu::manageState() {
-	if (Keyboard::isKeyPressed(Keyboard::Key::D)) {
+	if (Keyboard::isKeyPressed(Keyboard::Key::Enter)) {
 		GameState::nextState(states);
 		Game::Instance(window, states);
 	}

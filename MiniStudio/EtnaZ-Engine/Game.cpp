@@ -37,15 +37,12 @@ void Game::setEntity() {
 
 		//Player
 		player = new Player(900, 750);
-		Animation* myAnimation = new Animation(Textures::getMyTextures()->getTexture(Textures::texturesIndices::testSprite), 5, 1, 0.2f, 512, 104);
+		Animation* myAnimation = new Animation(Textures::getMyTextures()->getTexture(Textures::texturesIndices::testSprite), 5, 1, 0.09f, 512, 104);
 		player->setAnimation(myAnimation);
-		player->setSize({ 200,200 });
-
-		//player->setSize({ player->size.x * player->scale.x,player->size.y * player->scale.y});
+		player->setSize({ 100,100 });
 
 		//Camera
 		camera = new Camera(0.01);
-
 
 		gOBuild = true;
 	}
@@ -75,9 +72,6 @@ void Game::update(float& dt) {
 
 void Game::render() {
 
-
-
-
 	camera->setCamera(window);
 
 	for (auto gO : gameObject) {
@@ -95,10 +89,10 @@ void Game::render() {
 	}
 }
 
-Game::~Game() {/*
+Game::~Game() {
 	delete player;
 	player = nullptr;
 
 	delete myLevel;
-	myLevel = nullptr;*/
+	myLevel = nullptr;
 }

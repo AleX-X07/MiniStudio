@@ -40,7 +40,7 @@ void Player::update(float& dt, Input & input) {
 	if (Keyboard::isKeyPressed(Keyboard::Key::D)) {
 		pos.x += speed * dt;
 	}
-	if (Keyboard::isKeyPressed(Keyboard::Key::Up)) {
+	if (Keyboard::isKeyPressed(Keyboard::Key::Space)) {
 		jump();
 	}
 	if (!onGround) {
