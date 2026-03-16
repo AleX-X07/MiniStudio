@@ -72,9 +72,6 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Fichiers sources\Tool</Filter>
     </ClCompile>
-    <ClCompile Include="Collision.cpp">
-      <Filter>Fichiers sources\GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Fichiers sources\GameObject</Filter>
     </ClCompile>
@@ -91,7 +88,10 @@
       <Filter>Fichiers sources\Tool</Filter>
     </ClCompile>
     <ClCompile Include="Tile.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Fichiers sources\Tool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,9 +122,6 @@
     <ClInclude Include="Player.h">
       <Filter>Fichiers d%27en-tête\GameObject\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="Collision.h">
-      <Filter>Fichiers d%27en-tête\GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="LoadLevel.h">
       <Filter>Fichiers d%27en-tête\Level</Filter>
     </ClInclude>
@@ -135,7 +132,10 @@
       <Filter>Fichiers d%27en-tête\Tool</Filter>
     </ClInclude>
     <ClInclude Include="Tile.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Fichiers d%27en-tête\Tool</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

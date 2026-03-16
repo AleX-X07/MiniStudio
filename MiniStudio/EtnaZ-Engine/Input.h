@@ -1,15 +1,25 @@
 #pragma once
 #include "Globals.h"
 
-struct Input
+class Input
 {
-	const Event::KeyPressed* currentInputKey;
-	const Event::MouseButtonPressed* currentInputMouse;
+private:
+	bool keyPressed;
+	Keyboard::Key key;
 
-	Input() = default;
+	bool mousePressed;
+	Mouse::Button mouse;
+	Vector2i mousePos;
+
+public:
+	Input();
 	~Input() = default;
 
-	void setInputKey(const Event::KeyPressed* input);
-	void setInputMouse(const Event::MouseButtonPressed* input);
+	void setEvent(const Event event);
+	void reset();
+
+	bool isKeyPressed(Keyboard::Key key);
+	bool isMousePressed(Mouse::Button button);
+	Vector2i getMousePos();
 };
 

@@ -4,7 +4,7 @@ GameEngine::GameEngine() {
 	window = new RenderWindow(VideoMode({ win_width, win_height }), "EtnaZ-Engine");
 	dt = 0;
 	states = new vector<GameState*>;
-	input = new Input();
+	input = Input();
 	clock.restart();
 
 	currentInputKey = nullptr;
@@ -17,11 +17,12 @@ GameEngine::~GameEngine() {
 }
 
 void GameEngine::updateEvent() {
-
+	input.reset();
 	while (const optional event = window->pollEvent()) {
 		if (event->is<Event::Closed>()) {
 			window->close();
 		}
+		input.setEvent(event.value());
 	}
 }
 

@@ -18,7 +18,6 @@ void MainMenu::manageState() {
 }
 
 void MainMenu::update(float& dt) {
-	
 
 }
 

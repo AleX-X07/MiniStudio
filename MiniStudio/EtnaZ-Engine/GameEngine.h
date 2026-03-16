@@ -16,7 +16,7 @@ private:
 	RenderWindow* window;
 	float dt;
 	vector<GameState*>* states;
-	Input* input;
+	Input input;
 	Clock clock;
 
 	const Event::KeyPressed* currentInputKey;
