@@ -17,7 +17,7 @@ void Game::manageState() {
 		GameState::nextState(states);
 		MainMenu::Instance(window, states);
 	}
-}
+} 
 
 void Game::setEntity() {
 	if (!gOBuild) {
@@ -57,6 +57,14 @@ void Game::updateCollision() {
 			player->resolveCollision(*gameObject);
 		}
 	}
+
+	for (auto& platform : myLevel->Platform) {
+		player->onGround = false;
+		if (player->isColliding(*platform) && platform != player) {
+			player->resolveCollision(*platform);
+		}
+	} 
+
 }
 
 void Game::update(float& dt) {
