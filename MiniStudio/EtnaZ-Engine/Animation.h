@@ -32,12 +32,12 @@ private:
 public:
     sf::IntRect myStateRect;
     int animationRow;
-    Texture texture;
+    sf::Texture texture;
 
 public:
     // Constructor/Destructor
     Animation() = default;
-    Animation(Texture texture, int maxFrames, int nbrAnimation, float frameDuration, int spriteWidth, int spriteHeight);
+    Animation(sf::Texture texture, int maxFrames, int nbrAnimation, float frameDuration, int spriteWidth, int spriteHeight);
     ~Animation();
 
     //Get/Set

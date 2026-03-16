@@ -23,6 +23,9 @@ void GameEngine::updateEvent() {
 			window->close();
 		}
 		input.setEvent(event.value());
+		if (input.quit) {
+			window->close();
+		}
 	}
 }
 
@@ -34,6 +37,7 @@ void GameEngine::updateDt() {
 
 void GameEngine::update() {
 	if (!states->empty()) {
+		states->back()->setInput(input);
 		states->back()->manageState();
 		states->back()->update(dt);
 	}

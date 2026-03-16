@@ -4,7 +4,7 @@
 #include "LoadLevel.h"
 
 Game::Game(RenderWindow* window, vector<GameState*>* _states) : GameState(window, _states), gOBuild(false) {
-
+	setEntity();
 }
 
 void Game::Instance(RenderWindow* window, vector<GameState*>*& states) {
@@ -61,7 +61,6 @@ void Game::updateCollision() {
 
 void Game::update(float& dt) {
 	
-	setEntity();
 	if (player) {
 		player->update(dt, input);
 	}

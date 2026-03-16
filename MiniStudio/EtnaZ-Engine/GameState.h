@@ -5,22 +5,21 @@
 #include "Globals.h"
 #include "Input.h"
 
-using namespace std;
-
 class GameState
 {
 protected:
 	RenderWindow* window;
-	vector<Texture*> textures;
-	vector<GameState*>* states;
+	std::vector<Texture*> textures;
+	std::vector<GameState*>* states;
 	Input input;
 
 public:
 	GameState() = default;
-	GameState(RenderWindow* window, vector<GameState*>* states);
+	GameState(RenderWindow* window, std::vector<GameState*>* states);
 	virtual ~GameState() = default;
 
-	void nextState(vector<GameState*>* states);
+	static void nextState(std::vector<GameState*>* states);
+
 	void setInput(Input &input);
 
 	virtual void manageState() = 0;

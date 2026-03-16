@@ -1,16 +1,18 @@
 #include "Input.h"
 
-Input::Input() : keyPressed(false), mousePressed(false), mousePos({ 0,0 }) {
+#include "SFML/Window/Event.hpp"
+
+Input::Input() : keyPressed(false), mousePressed(false), mousePos({ 0,0 }), quit(false) {
 
 }
 
 
-void Input::setEvent(const Event event) {
-    if (auto* k = event.getIf<Event::KeyPressed>()) {
+void Input::setEvent(sf::Event event) {
+    if (auto* k = event.getIf<sf::Event::KeyPressed>()) {
         keyPressed = true;
         key = k->code;
     }
-    else if (auto* m = event.getIf<Event::MouseButtonPressed>()) {
+    else if (auto* m = event.getIf<sf::Event::MouseButtonPressed>()) {
         mousePressed = true;
         mouse = m->button;
         mousePos = m->position;
@@ -23,14 +25,14 @@ void Input::reset() {
 }
 
 
-bool Input::isKeyPressed(Keyboard::Key _key) {
+bool Input::isKeyPressed(sf::Keyboard::Key _key) {
     return keyPressed && key == _key;
 }
 
-bool Input::isMousePressed(Mouse::Button _button) {
+bool Input::isMousePressed(sf::Mouse::Button _button) {
     return mousePressed && mouse == _button;
 }
 
-Vector2i Input::getMousePos() {
+sf::Vector2i Input::getMousePos() {
     return mousePos;
 }

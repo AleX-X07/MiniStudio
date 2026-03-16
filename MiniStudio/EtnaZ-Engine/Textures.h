@@ -6,9 +6,12 @@
 
 class Textures {
 public:
-    enum class texturesIndices{
+    enum class texturesIndices {
         Platform,
         testSprite,
+        buttonPlay,
+        buttonQuit,
+        backgroundMenu,
     };
 
     enum class fontsIndices{

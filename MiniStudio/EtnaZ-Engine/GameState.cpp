@@ -1,10 +1,10 @@
 #include "GameState.h"
 
-GameState::GameState(RenderWindow* window, vector<GameState*>* _states) : window(window), states(_states) {
+GameState::GameState(RenderWindow* window, std::vector<GameState*>* _states) : window(window), states(_states) {
 
 }
 
-void GameState::nextState(vector<GameState*>* states) {
+void GameState::nextState(std::vector<GameState*>* states) {
 	if (!states->empty()) {
 		states->pop_back();
 	}
