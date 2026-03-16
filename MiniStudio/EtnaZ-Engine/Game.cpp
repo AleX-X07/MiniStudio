@@ -36,7 +36,7 @@ void Game::setEntity() {
 		gameObjectCollider.push_back(platform);
 
 		//Player
-		player = new Player(900, 750);
+		player = new Player(750, 750);
 		Animation* myAnimation = new Animation(Textures::getMyTextures()->getTexture(Textures::texturesIndices::testSprite), 5, 1, 0.09f, 512, 104);
 		player->setAnimation(myAnimation);
 		player->setSize({ 100,100 });
@@ -59,7 +59,7 @@ void Game::updateCollision() {
 	}
 
 	for (auto& platform : myLevel->Platform) {
-		player->onGround = false;
+		//player->onGround = false;
 		if (player->isColliding(*platform) && platform != player) {
 			player->resolveCollision(*platform);
 		}
