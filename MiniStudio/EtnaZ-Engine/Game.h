@@ -8,7 +8,7 @@
 class MainMenu;
 
 class Game : public GameState
-{
+{ 
 private:
 	LoadLevel* myLevel;
 	Camera* camera;

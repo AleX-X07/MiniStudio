@@ -7,7 +7,7 @@ class Player : public GameObject
 {
 private :
 	float speed = 300.f;
-	float jumpForce = -500.f;
+	float jumpForce = -500.f; 
 	float gravity = 980.f;
 	float velocityX = 0.f;
 	float velocityY = 0.f;
@@ -24,6 +24,7 @@ private :
 	};
 
 	SlimeStates currentStates;
+
 public:
 	std::vector<GameObject*> slimePiece;
 
@@ -37,6 +38,7 @@ public :
 	void clampInScreen();
 	void jump();
 	void skillsLeaveSlime(Input& input);
+
 
 	void setAnimation(Animation* myAnimation);
 

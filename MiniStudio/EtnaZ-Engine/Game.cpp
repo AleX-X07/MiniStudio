@@ -17,7 +17,7 @@ void Game::manageState() {
 		GameState::nextState(states);
 		MainMenu::Instance(window, states);
 	}
-}
+} 
 
 void Game::setEntity() {
 	if (!gOBuild) {
@@ -36,7 +36,7 @@ void Game::setEntity() {
 		gameObjectCollider.push_back(platform);
 
 		//Player
-		player = new Player(900, 750);
+		player = new Player(750, 750);
 		Animation* myAnimation = new Animation(Textures::getMyTextures()->getTexture(Textures::texturesIndices::testSprite), 5, 1, 0.09f, 512, 104);
 		player->setAnimation(myAnimation);
 		player->setSize({ 100,100 });
@@ -60,6 +60,14 @@ void Game::updateCollision() {
 			psP->resolveCollision(*gameObject);
 		}
 	}
+
+	for (auto& platform : myLevel->Platform) {
+		//player->onGround = false;
+		if (player->isColliding(*platform) && platform != player) {
+			player->resolveCollision(*platform);
+		}
+	} 
+
 }
 
 void Game::update(float& dt) {
