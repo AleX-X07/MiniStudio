@@ -19,6 +19,36 @@ void Player::jump() {
 	}
 }
 
+void Player::skillsLeaveSlime(Input& input) {
+	if (input.isKeyPressed(sf::Keyboard::Key::A)) {
+		if (slimePiece.size() <= 2) {
+			float multipliterSlilme = 1 - weightLoss;
+
+			GameObject* block = new GameObject(getPos().x, getPos().y, 50, 50);
+			block->setColor((sf::Color::Blue));
+
+			sf::Vector2f sBlock = { float(getSize().x * weightLoss), float(getSize().y * weightLoss) };
+			block->setSize(sBlock);
+
+			sf::Vector2f nSizeSlime = { float(getSize().x * multipliterSlilme), float(getSize().y * multipliterSlilme) };
+			setSize(nSizeSlime);
+
+			slimePiece.push_back((block));
+
+			if (slimePiece.size() == 0) {
+				currentStates = Player::SlimeStates::normal;
+			}
+			else if (slimePiece.size() == 1) {
+				currentStates = Player::SlimeStates::light;
+			}
+			else if (slimePiece.size() == 2) {
+				currentStates = Player::SlimeStates::micro;
+			}
+			weightLoss *= 0.9;
+		}
+	}
+}
+
 void Player::setAnimation(Animation * _myAnimation) {
 	myAnimation = _myAnimation;
 }
@@ -31,6 +61,10 @@ void Player::render(RenderWindow * window) {
 	rect.setTextureRect(myAnimation->myStateRect);
 
 	window->draw(rect);
+
+	for (auto& sP : slimePiece) {
+		sP->render(window);
+	}
 }
 
 void Player::update(float& dt, Input & input) {
@@ -53,6 +87,7 @@ void Player::update(float& dt, Input & input) {
 	}
 	clampInScreen();
 	setPos(pos);
+	skillsLeaveSlime(input);
 	myAnimation->update(dt);
 }
 

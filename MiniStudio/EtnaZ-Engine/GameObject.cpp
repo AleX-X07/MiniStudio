@@ -62,6 +62,36 @@ void GameObject::setVisibilityFalse() {
     visibility = false;
 }
 
+void GameObject::applyGravity(){
+    /*float overlapLeft = (pos.x + size.x) - gameObject.pos.x;
+    float overlapright = (gameObject.pos.x + gameObject.size.x) - pos.x;
+    float overlaptop = (pos.y + size.y) - gameObject.pos.y;
+    float overlapbottom = (gameObject.pos.y + gameObject.size.y) - pos.y;
+
+    bool fromleft = std::abs(overlapLeft) < std::abs(overlapright);
+    bool fromtop = std::abs(overlaptop) < std::abs(overlapbottom);
+
+    float minoverlapx = fromleft ? overlapLeft : overlapright;
+    float minoverlapy = fromtop ? overlaptop : overlapbottom;
+
+    if (std::abs(minoverlapx) < std::abs(minoverlapy)) {
+        pos.x += fromleft ? -minoverlapx : minoverlapx;
+        velocityX = 0;
+    }
+    else {
+        if (fromtop) {
+            pos.y -= minoverlapy;
+            velocityY = 0;
+            onGround = true;
+        }
+        else {
+            pos.y += minoverlapy;
+            velocityY = 0;
+        }
+    }
+    setPos(pos);*/
+}
+
 bool GameObject::isColliding(GameObject& gameObject) {
     if (pos.x < gameObject.pos.x + gameObject.size.x &&
         pos.x + size.x > gameObject.pos.x &&
@@ -76,7 +106,6 @@ bool GameObject::isColliding(GameObject& gameObject) {
         return false;
 	}
 }
-
 
 void GameObject::update(float& dt, Input& input) {
 

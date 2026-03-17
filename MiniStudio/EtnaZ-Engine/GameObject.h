@@ -38,6 +38,7 @@ public:
     void setVisibilityTrue();
     void setVisibilityFalse();
 
+    void applyGravity();
     bool isColliding(GameObject& gameObject);
 
     // Method virtual

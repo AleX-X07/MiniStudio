@@ -11,7 +11,21 @@ private :
 	float gravity = 980.f;
 	float velocityX = 0.f;
 	float velocityY = 0.f;
-	Animation* myAnimation;	
+
+	Animation* myAnimation;
+
+	float weightLoss = 0.3; 
+
+	enum class SlimeStates {
+		micro,
+		light,
+		normal,
+		heavy,
+	};
+
+	SlimeStates currentStates;
+public:
+	std::vector<GameObject*> slimePiece;
 
 public :
 	bool onGround = false;
@@ -22,6 +36,7 @@ public :
 
 	void clampInScreen();
 	void jump();
+	void skillsLeaveSlime(Input& input);
 
 	void setAnimation(Animation* myAnimation);
 
