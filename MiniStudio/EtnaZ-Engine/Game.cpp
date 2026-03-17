@@ -20,7 +20,6 @@ void Game::Instance(RenderWindow* window, vector<GameState*>*& states) {
 
 void Game::manageState() {
 	if (Keyboard::isKeyPressed(Keyboard::Key::Escape)) {
-		GameState::nextState(states);
 		PauseMenu::Instance(window, states);
 		cout << "Pause" << endl;
 
