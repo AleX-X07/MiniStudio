@@ -21,3 +21,7 @@ void Camera::updateCamera(GameObject* myObject) {
 void Camera::setCamera(RenderWindow* window) {
     window->setView(myView);
 }
+
+void Camera::getCameraPos(Vector2f& _pos) const {
+    _pos = myView.getCenter();
+}

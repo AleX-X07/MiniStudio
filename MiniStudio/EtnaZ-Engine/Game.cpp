@@ -2,6 +2,7 @@
 #include "MainMenu.h"
 #include "Player.h"
 #include "LoadLevel.h"
+#include "parallax.h"
 
 Game::Game(RenderWindow* window, vector<GameState*>* _states) : GameState(window, _states), gOBuild(false) {
 	setEntity();
@@ -41,6 +42,12 @@ void Game::setEntity() {
 		player->setAnimation(myAnimation);
 		player->setSize({ 100,100 });
 
+		//Parallax
+		parallax = new Parallax();
+		parallax->addLayer(Textures::texturesIndices::layer0, 0.5f);
+		parallax->addLayer(Textures::texturesIndices::layer1, 0.8f);
+		//parallax->addLayer(Textures::texturesIndices::Layer2?, 1.0f);
+
 		//Camera
 		camera = new Camera(0.01);
 
@@ -70,6 +77,10 @@ void Game::update(float& dt) {
 }
 
 void Game::render() {
+	window->setView(window->getDefaultView());
+	if (parallax) {
+		parallax->render(window, camera);
+	}
 
 	camera->setCamera(window);
 
@@ -94,4 +105,7 @@ Game::~Game() {
 
 	delete myLevel;
 	myLevel = nullptr;
+
+	delete parallax;
+	parallax = nullptr;
 }
