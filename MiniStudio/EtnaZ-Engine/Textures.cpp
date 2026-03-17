@@ -16,6 +16,8 @@ Textures* Textures::getMyTextures() {
 
 void Textures::loadAllTexture() {
     //loadTexture(Textures::texturesIndices::Platform, assets/iahgiuahioua.png);
+    
+	//add layers for parallax
 }
 
 void Textures::loadAllFont() {

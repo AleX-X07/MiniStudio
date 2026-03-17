@@ -2,6 +2,7 @@
 #include "GameState.h"
 #include "Player.h"
 #include "Camera.h"
+#include "Parallax.h"
 
 class MainMenu;
 
@@ -10,6 +11,7 @@ class Game : public GameState
 private:
 	Camera* camera;
 	Player* player;
+	Parallax* parallax = nullptr;
 	vector<GameObject*> gameObject;
 	vector<GameObject*> gameObjectCollider;
 	bool gOBuild;

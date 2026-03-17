@@ -140,6 +140,7 @@
     <ClCompile Include="LoadLevel.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Parallax.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Textures.cpp" />
   </ItemGroup>
@@ -153,6 +154,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="LoadLevel.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="Parallax.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Textures.h" />
   </ItemGroup>

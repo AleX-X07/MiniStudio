@@ -44,6 +44,12 @@ void Game::setEntity() {
 		//Camera
 		camera = new Camera(0.01);
 
+		//Parallax
+		parallax = new Parallax();
+		//parallax->addLayer(Textures::texturesIndices::Layer0?, 0.5f);
+		//parallax->addLayer(Textures::texturesIndices::Layer1?, 0.8f);
+		//parallax->addLayer(Textures::texturesIndices::Layer2?, 1.0f);
+
 		gOBuild = true;
 	}
 }
@@ -71,6 +77,10 @@ void Game::update(float& dt) {
 }
 
 void Game::render() {
+	window->setView(window->getDefaultView());
+	if (parallax) {
+		parallax->render(*window, *camera);
+	}
 	
 	camera->setCamera(window);
 
@@ -90,4 +100,6 @@ void Game::render() {
 Game::~Game() {
 	delete player;
 	player = nullptr;
+	delete parallax;
+	parallax = nullptr;
 }

@@ -18,4 +18,5 @@ public:
 
 	void updateCamera(GameObject* myObject);
 	void setCamera(RenderWindow* window);
+	void getCameraPos(Vector2f& pos) const;
 };
