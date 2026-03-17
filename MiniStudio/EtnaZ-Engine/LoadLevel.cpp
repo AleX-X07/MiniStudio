@@ -72,9 +72,14 @@ bool LoadLevel::loadLevel(){
 
 				while(row >> tileId) {
 					if (tileId != 0) {
-						int tileCol = (tileId - 1) % tilesetColumns;
-						int tileRow = (tileId - 1) / tilesetColumns;
-
+						if (!(tilesetColumns == 0)) {
+							tileCol = (tileId - 1) % tilesetColumns;
+							tileRow = (tileId - 1) / tilesetColumns;
+						}
+						else {
+							tileCol = (tileId - 1);
+							tileRow = (tileId - 1);
+						}
 						sf::IntRect tileRect({ tileCol * tileSize, tileRow * tileSize }, { tileSize, tileSize });
 						Tile* tile = new Tile(tileId, column * tileSize, currentRow * tileSize, tileSize, &tileSet);
 						tile->setTileRect(tileRect);
@@ -86,7 +91,7 @@ bool LoadLevel::loadLevel(){
 
 			}
 		}
-		else if (section == "SEEDS") {
+		/*else if (section == "SEEDS") {
 			float x, y, w, h;
 			iss >> x >> y >> w >> h;
 			Seed* mySeed = new Seed(x, y, w, h);
@@ -97,7 +102,7 @@ bool LoadLevel::loadLevel(){
 			iss >> x >> y >> w >> h;
 			Orb* myOrb = new Orb(x, y, w, h);
 			Orbs.push_back(myOrb);
-		}
+		}*/
 			
 	}
 

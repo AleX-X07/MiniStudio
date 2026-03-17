@@ -14,7 +14,8 @@ class LoadLevel{
 
 private:
 	sf::Texture tileSet;
-	
+	int tileCol;
+	int tileRow;
 
 public:
 	vector<GameObject*> Platform;

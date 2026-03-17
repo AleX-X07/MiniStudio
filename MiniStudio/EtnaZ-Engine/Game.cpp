@@ -57,6 +57,12 @@ void Game::updateCollision() {
 			player->resolveCollision(*gameObject);
 		}
 	}
+
+	for (auto& platform : myLevel-> Platform) {
+		if (player->isColliding(*platform)) {
+			player->resolveCollision(*platform);
+		}
+	}
 }
 
 void Game::update(float& dt) {
