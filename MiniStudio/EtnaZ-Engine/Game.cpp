@@ -2,7 +2,6 @@
 #include "MainMenu.h"
 #include "Player.h"
 #include "LoadLevel.h"
-#include "parallax.h"
 
 Game::Game(RenderWindow* window, vector<GameState*>* _states) : GameState(window, _states), gOBuild(false) {
 	setEntity();
@@ -79,7 +78,7 @@ void Game::update(float& dt) {
 void Game::render() {
 	window->setView(window->getDefaultView());
 	if (parallax) {
-		parallax->render(window, camera);
+		parallax->render(*window, *camera);
 	}
 
 	camera->setCamera(window);

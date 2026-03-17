@@ -19,7 +19,7 @@ void Textures::loadAllTexture() {
     loadTexture(Textures::texturesIndices::buttonPlay, "assets/button_play.png");
     loadTexture(Textures::texturesIndices::buttonQuit, "assets/button_quit.png");
     loadTexture(Textures::texturesIndices::backgroundMenu, "assets/fond_du_menu.png");
-    loadTexture(Textures::texturesIndices::layer0, "assets/sewer_back3.png");
+    loadTexture(Textures::texturesIndices::layer0, "assets/sewer_back1.png");
     loadTexture(Textures::texturesIndices::layer1, "assets/parallaxtest.png");
 }
 

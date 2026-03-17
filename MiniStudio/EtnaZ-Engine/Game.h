@@ -4,6 +4,7 @@
 #include "Camera.h"
 #include "LoadLevel.h"
 #include "Textures.h"
+#include "Parallax.h"
 
 class MainMenu;
 
@@ -13,6 +14,7 @@ private:
 	LoadLevel* myLevel;
 	Camera* camera;
 	Player* player;
+	Parallax* parallax;
 	vector<GameObject*> gameObject;
 	vector<GameObject*> gameObjectCollider;
 	bool gOBuild;
