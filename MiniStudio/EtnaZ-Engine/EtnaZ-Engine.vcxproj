@@ -141,7 +141,9 @@
     <ClCompile Include="LoadLevel.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Orb.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Seed.cpp" />
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
@@ -156,7 +158,9 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="LoadLevel.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="Orb.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Seed.h" />
     <ClInclude Include="Textures.h" />
     <ClInclude Include="Tile.h" />
   </ItemGroup>

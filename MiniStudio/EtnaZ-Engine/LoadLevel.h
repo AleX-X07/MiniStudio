@@ -5,6 +5,8 @@
 #include "GameObject.h"
 #include "Textures.h"
 #include "Tile.h"
+#include "Seed.h"
+#include "Orb.h"
 
 using namespace std;
 
@@ -17,6 +19,9 @@ private:
 public:
 	vector<GameObject*> Platform;
 	vector<Tile*> tiles;
+	vector<Seed*> Seeds;
+	vector<Orb*> Orbs;
+
 
 	LoadLevel();
 	~LoadLevel();

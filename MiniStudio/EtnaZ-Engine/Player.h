@@ -11,6 +11,12 @@ private :
 	float gravity = 980.f;
 	float velocityX = 0.f;
 	float velocityY = 0.f;
+
+	int seedNb = 0;
+
+	// bool of competence acquired or not
+	// dash/ double jump ect
+
 	Animation* myAnimation;	
 
 public :

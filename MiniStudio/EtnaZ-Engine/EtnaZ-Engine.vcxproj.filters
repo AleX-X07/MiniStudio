@@ -93,6 +93,12 @@
     <ClCompile Include="Animation.cpp">
       <Filter>Fichiers sources\Tool</Filter>
     </ClCompile>
+    <ClCompile Include="Seed.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="Orb.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">
@@ -136,6 +142,12 @@
     </ClInclude>
     <ClInclude Include="Animation.h">
       <Filter>Fichiers d%27en-tête\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="Seed.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Orb.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
