@@ -13,7 +13,7 @@ private:
 
 public:
 	Camera() = default;
-	Camera(float lag);
+	Camera(float lag, float zoom);
 	~Camera() = default;
 
 	void updateCamera(GameObject* myObject);
