@@ -34,11 +34,21 @@ void Player::render(RenderWindow * window) {
 }
 
 void Player::update(float& dt, Input & input) {
+	sf::Clock clock;
+
 	if (Keyboard::isKeyPressed(Keyboard::Key::Q)) {
 		pos.x -= speed * dt;
+		if (Keyboard::isKeyPressed(Keyboard::Key::S)) {
+			pos.x -= dash;
+			sf::Time elapsed = clock.restart();
+		}
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::D)) {
 		pos.x += speed * dt;
+		if (Keyboard::isKeyPressed(Keyboard::Key::S)) {
+			pos.x += dash;
+			sf::Time elapsed = clock.restart();
+		}
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Space)) {
 		jump();
@@ -51,6 +61,7 @@ void Player::update(float& dt, Input & input) {
 		pos.x += velocityX * dt;
 		velocityX = 0;
 	}
+	
 	clampInScreen();
 	setPos(pos);
 	myAnimation->update(dt);

@@ -7,15 +7,18 @@ class Player : public GameObject
 {
 private :
 	float speed = 300.f;
+	float dash = 50;
 	float jumpForce = -500.f;
 	float gravity = 980.f;
 	float velocityX = 0.f;
 	float velocityY = 0.f;
+	
+
 	Animation* myAnimation;	
 
 public :
 	bool onGround = false;
-
+	float Cooldown;
 	Player() = default;
 	Player(float x, float y);
 	~Player() = default;
