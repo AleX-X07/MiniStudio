@@ -7,6 +7,19 @@ MainMenu::MainMenu(RenderWindow* window, vector<GameState*>* _states) : GameStat
 	background->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::backgroundMenu));
 
 	created = false;
+
+	setButton();
+}
+
+MainMenu::~MainMenu() {
+	delete background;
+	background = nullptr;
+	
+	delete play;
+	play = nullptr;
+
+	delete quit;
+	quit = nullptr;
 }
 
 void MainMenu::Instance(RenderWindow* window, vector<GameState*>*& states) {
@@ -15,33 +28,30 @@ void MainMenu::Instance(RenderWindow* window, vector<GameState*>*& states) {
 }
 
 void MainMenu::setButton(){
-	Button* play = new Button(800,375, 400, 150, states, window);
-	Button* quit = new Button(1000, 495, 350, 100, states, window);
+	play = new Button(800,375, 400, 150, states, window);
+	quit = new Button(1000, 495, 350, 100, states, window);
 
 	play->setTexture((&Textures::getMyTextures()->getTexture(Textures::texturesIndices::buttonPlay)));
 	quit->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::buttonQuit));
 
-	myButton.push_back(play);
-	myButton.push_back(quit);
 }
 
 void MainMenu::manageState() {
-	
+	if (play->isClicked(input)) {
+		GameState::nextState(states);
+		Game::Instance(window, states);
+	}
+	else if (quit->isClicked(input)) {
+		window->close();
+	}
 }
 
 void MainMenu::update(float& dt) {
-	if (!created) {
-		setButton();
-		created = true;
-	}
-	for (auto& mB : myButton) {
-		mB->update(dt, input);
-	}
+	
 }
 
 void MainMenu::render() {
 	background->render(window);
-	for (auto& mB : myButton) {
-		mB->render(window);
-	}
+	play->render(window);
+	quit->render(window);
 }

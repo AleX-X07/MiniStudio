@@ -17,21 +17,8 @@ bool Button::isClicked(Input& input) {
 	return false;
 }
 
-void Button::buttonPlay(Input& input){ 
-	if (isClicked(input)) {
-		GameState::nextState(states);
-		Game::Instance(window, states);
-	}
-}
-
-void Button::buttonQuit(Input& input) {
-	if (isClicked(input)) {
-		input.quit = true;
-	}
-}
-
 void Button::update(float& dt, Input& input) {
-	buttonPlay(input);
+	
 }
 
 void Button::render(sf::RenderWindow* window) {

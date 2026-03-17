@@ -23,8 +23,5 @@ public:
 	virtual void render(sf::RenderWindow* window) override;
 
 	bool isClicked(Input& input);
-
-	void buttonPlay(Input& input);
-	void buttonQuit(Input& input);
 };
 

@@ -18,7 +18,7 @@ public:
 	GameState(RenderWindow* window, std::vector<GameState*>* states);
 	virtual ~GameState() = default;
 
-	static void nextState(std::vector<GameState*>* states);
+	void nextState(std::vector<GameState*>* states);
 
 	void setInput(Input &input);
 

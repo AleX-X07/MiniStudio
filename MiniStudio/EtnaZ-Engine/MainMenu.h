@@ -10,13 +10,14 @@ class MainMenu : public GameState
 {
 private:
 	GameObject* background;
-	std::vector<GameObject*> myButton;
+	Button* play;
+	Button* quit;
 	bool created;
 
 public:
 	MainMenu() = default;
 	MainMenu(RenderWindow* window, std::vector<GameState*>* states);
-	~MainMenu() = default;
+	~MainMenu();
 
 	static void Instance(RenderWindow* window, std::vector<GameState*>*& states);
 

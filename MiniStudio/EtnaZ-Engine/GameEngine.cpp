@@ -23,9 +23,6 @@ void GameEngine::updateEvent() {
 			window->close();
 		}
 		input.setEvent(event.value());
-		if (input.quit) {
-			window->close();
-		}
 	}
 }
 
