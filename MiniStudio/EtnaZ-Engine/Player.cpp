@@ -55,7 +55,7 @@ void Player::takeSlime(Input& input){
 			if (input.isKeyPressed((sf::Keyboard::Key::W))) {
 				if (isColliding(*slimePiece[X])) {
 					const auto It = slimePiece.begin() + X;
-					sf::Vector2f multiSlime = { float(slimePiece[X]->getSize().x * 1), float(slimePiece[X]->getSize().y * 1) };
+					sf::Vector2f multiSlime = { float(slimePiece[X]->getSize().x * 0.9), float(slimePiece[X]->getSize().y * 0.9) };
 					sf::Vector2f nSize = { getSize().x + multiSlime.x, getSize().y + multiSlime.y };
 					setSize(nSize);
 					weightLoss = 0.3;
@@ -65,7 +65,6 @@ void Player::takeSlime(Input& input){
 		}
 	}
 }
-
 
 void Player::setAnimation(Animation * _myAnimation) {
 	myAnimation = _myAnimation;
