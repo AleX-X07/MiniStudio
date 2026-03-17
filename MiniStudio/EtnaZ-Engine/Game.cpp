@@ -62,8 +62,7 @@ void Game::updateCollision() {
 	}
 
 	for (auto& platform : myLevel->Platform) {
-		//player->onGround = false;
-		if (player->isColliding(*platform) && platform != player) {
+		if (player->isColliding(*platform)) {
 			player->resolveCollision(*platform);
 		}
 	} 
