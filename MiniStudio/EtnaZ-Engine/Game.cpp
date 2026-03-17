@@ -30,11 +30,6 @@ void Game::setEntity() {
 		backWhite->setColor(Color::White);
 		gameObject.push_back(backWhite);
 
-		// Test platform
-		GameObject* platform = new GameObject(0, 980, 1920, 100);
-		platform->setColor(Color::Green);
-		gameObjectCollider.push_back(platform);
-
 		//Player
 		player = new Player(900, 750);
 		Animation* myAnimation = new Animation(Textures::getMyTextures()->getTexture(Textures::texturesIndices::testSprite), 5, 1, 0.09f, 512, 104);
@@ -50,15 +45,9 @@ void Game::setEntity() {
 
 void Game::updateCollision() {
 	if (!player) return;
+	player->onGround = false;
 
-	for (auto& gameObject : gameObjectCollider) {
-		player->onGround = false;
-		if (player->isColliding(*gameObject) && gameObject != player) {
-			player->resolveCollision(*gameObject);
-		}
-	}
-
-	for (auto& platform : myLevel-> Platform) {
+	for (auto& platform : myLevel->Platform) {
 		if (player->isColliding(*platform)) {
 			player->resolveCollision(*platform);
 		}

@@ -69,7 +69,6 @@ bool LoadLevel::loadLevel(){
 				istringstream row(line);
 				int tileId = 0;
 				int column = 0;
-
 				while(row >> tileId) {
 					if (tileId != 0) {
 						if (!(tilesetColumns == 0)) {
@@ -80,8 +79,9 @@ bool LoadLevel::loadLevel(){
 							tileCol = (tileId - 1);
 							tileRow = (tileId - 1);
 						}
-						sf::IntRect tileRect({ tileCol * tileSize, tileRow * tileSize }, { tileSize, tileSize });
-						Tile* tile = new Tile(tileId, column * tileSize, currentRow * tileSize, tileSize, &tileSet);
+						
+						sf::IntRect tileRect({ tileCol * tileSize, tileRow * tileSize }, { tileSize , tileSize });
+						Tile* tile = new Tile(tileId, column * tileSize, currentRow * tileSize , tileSize, &tileSet);
 						tile->setTileRect(tileRect);
 						tiles.push_back(tile);
 					}
