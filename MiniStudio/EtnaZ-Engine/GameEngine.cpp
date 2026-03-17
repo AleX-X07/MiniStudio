@@ -46,6 +46,11 @@ void GameEngine::render() {
 
 void GameEngine::run() {
 
+	Textures::getMyTextures();
+
+	Textures::getMyTextures()->getTexture(Textures::texturesIndices::Layer0);
+	Textures::getMyTextures()->getTexture(Textures::texturesIndices::Layer1);
+
 	MainMenu::Instance(window, states);
 
 	while (window->isOpen()) {

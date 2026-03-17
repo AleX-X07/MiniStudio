@@ -14,7 +14,7 @@ void Parallax::addLayer(Textures::texturesIndices textureIndex, float speed)
 {
     ParallaxLayer layer;
     layer.textureIndex = textureIndex;
-    layer.speed = speed;
+    layer.speed = - speed;
     layers.push_back(layer);
 }
 

@@ -18,6 +18,8 @@ void Textures::loadAllTexture() {
     //loadTexture(Textures::texturesIndices::Platform, assets/iahgiuahioua.png);
     
 	//add layers for parallax
+    loadTexture(Textures::texturesIndices::Layer0, "assets/sewer_back3.png");
+    loadTexture(Textures::texturesIndices::Layer1, "assets/parallaxtest.png");
 }
 
 void Textures::loadAllFont() {

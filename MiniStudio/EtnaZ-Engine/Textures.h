@@ -8,6 +8,8 @@ class Textures {
 public:
     enum class texturesIndices{
         Platform,
+        Layer0,
+        Layer1
     };
 
     enum class fontsIndices{

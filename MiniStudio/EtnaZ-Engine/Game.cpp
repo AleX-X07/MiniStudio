@@ -46,8 +46,8 @@ void Game::setEntity() {
 
 		//Parallax
 		parallax = new Parallax();
-		//parallax->addLayer(Textures::texturesIndices::Layer0?, 0.5f);
-		//parallax->addLayer(Textures::texturesIndices::Layer1?, 0.8f);
+		parallax->addLayer(Textures::texturesIndices::Layer0, 0.5f);
+		parallax->addLayer(Textures::texturesIndices::Layer1, 0.8f);
 		//parallax->addLayer(Textures::texturesIndices::Layer2?, 1.0f);
 
 		gOBuild = true;
