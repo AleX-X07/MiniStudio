@@ -37,8 +37,9 @@ public :
 
 	void clampInScreen();
 	void jump();
-	void skillsLeaveSlime(Input& input);
 
+	void skillsLeaveSlime(Input& input);
+	void takeSlime(Input& input);
 
 	void setAnimation(Animation* myAnimation);
 

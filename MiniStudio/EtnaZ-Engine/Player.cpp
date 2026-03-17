@@ -49,6 +49,24 @@ void Player::skillsLeaveSlime(Input& input) {
 	}
 }
 
+void Player::takeSlime(Input& input){
+	if (!slimePiece.empty()) {
+		for (int X = 0; X < slimePiece.size(); X++) {
+			if (input.isKeyPressed((sf::Keyboard::Key::W))) {
+				if (isColliding(*slimePiece[X])) {
+					const auto It = slimePiece.begin() + X;
+					sf::Vector2f multiSlime = { float(slimePiece[X]->getSize().x * 1), float(slimePiece[X]->getSize().y * 1) };
+					sf::Vector2f nSize = { getSize().x + multiSlime.x, getSize().y + multiSlime.y };
+					setSize(nSize);
+					weightLoss = 0.3;
+					slimePiece.erase(It);
+				}
+			}
+		}
+	}
+}
+
+
 void Player::setAnimation(Animation * _myAnimation) {
 	myAnimation = _myAnimation;
 }
@@ -60,11 +78,12 @@ void Player::render(RenderWindow * window) {
 	rect.setTexture(&myAnimation->texture);
 	rect.setTextureRect(myAnimation->myStateRect);
 
-	window->draw(rect);
-
 	for (auto& sP : slimePiece) {
 		sP->render(window);
 	}
+
+	window->draw(rect);
+
 }
 
 void Player::update(float& dt, Input & input) {
@@ -88,6 +107,7 @@ void Player::update(float& dt, Input & input) {
 	clampInScreen();
 	setPos(pos);
 	skillsLeaveSlime(input);
+	takeSlime(input);
 	myAnimation->update(dt);
 }
 

@@ -57,7 +57,9 @@ void Game::updateCollision() {
 			player->resolveCollision(*gameObject);
 		}
 		for (auto& psP : player->slimePiece) {
-			psP->resolveCollision(*gameObject);
+			if (!(psP == nullptr)) {
+				psP->resolveCollision(*gameObject);
+			}
 		}
 	}
 
@@ -66,7 +68,6 @@ void Game::updateCollision() {
 			player->resolveCollision(*platform);
 		}
 	} 
-
 }
 
 void Game::update(float& dt) {
@@ -76,7 +77,6 @@ void Game::update(float& dt) {
 	}
 	camera->updateCamera(player);
 	updateCollision();
-
 }
 
 void Game::render() {
