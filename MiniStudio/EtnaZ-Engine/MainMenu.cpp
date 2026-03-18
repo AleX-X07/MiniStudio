@@ -6,8 +6,6 @@ MainMenu::MainMenu(sf::RenderWindow* window, std::vector<GameState*>* _states) :
 	background = new GameObject(200,0,1529,1080);
 	background->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::backgroundMenu));
 
-	created = false;
-
 	setButton();
 }
 

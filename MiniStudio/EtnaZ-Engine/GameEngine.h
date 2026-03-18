@@ -19,6 +19,8 @@ private:
 
 	const sf::Event::KeyPressed* currentInputKey;
 	const sf::Event::MouseButtonPressed* currentInputMouse;
+public:
+	static std::vector<GameState*> statesPause;
 
 public:
 	GameEngine();

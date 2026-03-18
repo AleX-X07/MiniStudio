@@ -12,7 +12,6 @@ private:
 	GameObject* background;
 	Button* play;
 	Button* quit;
-	bool created;
 
 public:
 	MainMenu() = default;

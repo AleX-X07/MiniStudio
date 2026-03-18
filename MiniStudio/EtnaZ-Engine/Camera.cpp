@@ -21,3 +21,7 @@ void Camera::updateCamera(GameObject* myObject) {
 void Camera::setCamera(sf::RenderWindow* window) {
     window->setView(myView);
 }
+
+void Camera::camHUD(sf::RenderWindow* window){
+    window->setView(window->getDefaultView());
+}

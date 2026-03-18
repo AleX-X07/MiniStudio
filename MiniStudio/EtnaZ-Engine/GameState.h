@@ -19,6 +19,8 @@ public:
 	virtual ~GameState() = default;
 
 	void nextState(std::vector<GameState*>* states);
+	void pause(std::vector<GameState*>* states);
+	void resume();
 
 	void setInput(Input &input);
 

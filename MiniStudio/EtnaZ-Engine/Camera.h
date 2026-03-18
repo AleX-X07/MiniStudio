@@ -1,6 +1,7 @@
 #pragma once
 #include "Globals.h"
 #include "GameObject.h"
+#include "HUD.h"
 
 class Camera
 {
@@ -18,4 +19,5 @@ public:
 
 	void updateCamera(GameObject* myObject);
 	void setCamera(sf::RenderWindow* window);
+	void camHUD(sf::RenderWindow* window);
 };

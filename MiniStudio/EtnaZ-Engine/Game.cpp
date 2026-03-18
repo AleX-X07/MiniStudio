@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "MainMenu.h"
+#include "PauseMenu.h"
 #include "Player.h"
 #include "LoadLevel.h"
 
@@ -14,8 +15,8 @@ void Game::Instance(sf::RenderWindow* window, std::vector<GameState*>*& states) 
 
 void Game::manageState() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) {
-		GameState::nextState(states);
-		MainMenu::Instance(window, states);
+		GameState::pause(states);
+		PauseMenu::Instance(window, states, camera);
 	}
 } 
 

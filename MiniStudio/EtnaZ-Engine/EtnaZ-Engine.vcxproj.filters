@@ -99,6 +99,9 @@
     <ClCompile Include="SlimePiece.cpp">
       <Filter>Fichiers sources\GameObject\Entity</Filter>
     </ClCompile>
+    <ClCompile Include="PauseMenu.cpp">
+      <Filter>Fichiers sources\Game\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">
@@ -148,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="SlimePiece.h">
       <Filter>Fichiers d%27en-tête\GameObject\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseMenu.h">
+      <Filter>Fichiers d%27en-tête\Game\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

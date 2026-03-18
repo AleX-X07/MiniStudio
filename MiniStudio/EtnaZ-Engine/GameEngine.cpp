@@ -1,5 +1,7 @@
 #include "GameEngine.h"
 
+std::vector<GameState*> GameEngine::statesPause;
+
 GameEngine::GameEngine() {
 	window = new sf::RenderWindow(sf::VideoMode({ win_width, win_height }), "EtnaZ-Engine", sf::Style::Default, sf::State::Fullscreen);
 	dt = 0;
@@ -41,6 +43,9 @@ void GameEngine::update() {
 }
 
 void GameEngine::render() {
+	if (!statesPause.empty()) {
+		statesPause.back()->render();
+	}
 	if (!states->empty()) {
 		states->back()->render();
 	}
