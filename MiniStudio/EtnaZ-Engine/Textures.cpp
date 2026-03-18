@@ -15,10 +15,23 @@ Textures* Textures::getMyTextures() {
 }
 
 void Textures::loadAllTexture() {
-    loadTexture(Textures::texturesIndices::testSprite, "assets/myAnimation.png");
     loadTexture(Textures::texturesIndices::buttonPlay, "assets/button_play.png");
     loadTexture(Textures::texturesIndices::buttonQuit, "assets/button_quit.png");
     loadTexture(Textures::texturesIndices::backgroundMenu, "assets/fond_du_menu.png");
+    //Animation player
+    // Right
+    loadTexture(Textures::texturesIndices::idleRight, "assets/animation_idl.png");
+    loadTexture(Textures::texturesIndices::walkRight, "assets/animation_marcher.png");
+    loadTexture(Textures::texturesIndices::runRight, "assets/animation_courir.png");
+    loadTexture(Textures::texturesIndices::jumpRight, "assets/animation_saut.png");
+    loadTexture(Textures::texturesIndices::deadRight, "assets/animation_mort.png");
+    // Left
+    loadTexture(Textures::texturesIndices::idleLeft, "assets/animation_idl_left.png");
+    loadTexture(Textures::texturesIndices::walkLeft, "assets/animation_marcher_left.png");
+    loadTexture(Textures::texturesIndices::runLeft, "assets/animation_courir_left.png");
+    loadTexture(Textures::texturesIndices::jumpLeft, "assets/animation_saut_left.png");
+    loadTexture(Textures::texturesIndices::deadLeft, "assets/animation_mort_left.png");
+
 }
 
 void Textures::loadAllFont() {

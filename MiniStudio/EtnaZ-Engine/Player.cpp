@@ -1,9 +1,8 @@
 #include "Player.h"
 
-Player::Player(float x, float y) : GameObject(x,y)
+Player::Player(float x, float y, float w, float h) : GameObject(x,y,w,h)
 {
 	speed = 300.0f;
-	myAnimation = nullptr;
 }
 
 void Player::clampInScreen() {
@@ -35,15 +34,6 @@ void Player::skillsLeaveSlime(Input& input) {
 
 			slimePieceLeave.push_back((block));
 
-			/*if (slimePiece.size() == 0) {
-				currentStates = Player::SlimeStates::normal;
-			}
-			else if (slimePiece.size() == 1) {
-				currentStates = Player::SlimeStates::light;
-			}
-			else if (slimePiece.size() == 2) {
-				currentStates = Player::SlimeStates::micro;
-			}*/
 			weightLoss *= 0.9;
 		}
 	}
@@ -83,7 +73,7 @@ void Player::takeSlime(Input& input){
 }
 
 void Player::setAnimation(Animation * _myAnimation) {
-	myAnimation = _myAnimation;
+	myAnimation=_myAnimation;
 }
 
 
@@ -92,6 +82,7 @@ void Player::render(sf::RenderWindow * window) {
 
 	rect.setTexture(&myAnimation->texture);
 	rect.setTextureRect(myAnimation->myStateRect);
+
 
 	for (auto& sP : slimePiece) {
 		sP->render(window);
@@ -127,11 +118,22 @@ void Player::update(float& dt, Input & input) {
 	skillsLeaveSlime(input);
 	takeSlime(input);
 	myAnimation->update(dt);
+	
 	for (auto& sP : slimePiece) {
 		sP->update(dt, input);
 	}
 	for (auto& sP : slimePieceLeave) {
 		sP->update(dt, input);
+	}
+
+	if (getSize().x < defautlSize.x * 0.6 && getSize().y < defautlSize.y * 0.6) {
+		currentStates = SlimeStates::light;
+	}
+	else if ((getSize().x > defautlSize.x * 0.6 && getSize().y > defautlSize.y * 0.6) && (getSize().x < defautlSize.x * 1.1 && getSize().y < defautlSize.y * 1.1)) {
+		currentStates = SlimeStates::normal;
+	}
+	else if (getSize().x > defautlSize.x * 1.1 && getSize().y > defautlSize.y * 1.1) {
+		currentStates = SlimeStates::heavy;
 	}
 }
 

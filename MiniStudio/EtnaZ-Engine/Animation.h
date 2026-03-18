@@ -7,9 +7,14 @@ class Player;
 class GameObject;
 
 enum class CharacterState {
-    IDLE,
+    IDLERIGHT,
+    IDLELEFT,
     LEFT,
     RIGHT,
+    RUNRIGHT,
+    RUNLEFT,
+    JUMPRIGHT,
+    JUMPLEFT,
 };
 
 class Animation
@@ -29,6 +34,8 @@ private:
     int spriteWidth;
     int spriteHeight;
 
+    bool jump;
+
 public:
     sf::IntRect myStateRect;
     int animationRow;
@@ -37,7 +44,7 @@ public:
 public:
     // Constructor/Destructor
     Animation() = default;
-    Animation(sf::Texture texture, int maxFrames, int nbrAnimation, float frameDuration, int spriteWidth, int spriteHeight);
+    Animation(int maxFrames, int nbrAnimation, float frameDuration, int spriteWidth, int spriteHeight);
     ~Animation();
 
     //Get/Set

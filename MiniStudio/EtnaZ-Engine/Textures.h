@@ -8,10 +8,19 @@ class Textures {
 public:
     enum class texturesIndices {
         Platform,
-        testSprite,
         buttonPlay,
         buttonQuit,
         backgroundMenu,
+        idleRight,
+        walkRight,
+        runRight,
+        jumpRight,
+        deadRight,
+        idleLeft,
+        walkLeft,
+        runLeft,
+        jumpLeft,
+        deadLeft,
     };
 
     enum class fontsIndices{

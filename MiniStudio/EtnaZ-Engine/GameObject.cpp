@@ -6,6 +6,7 @@ GameObject::GameObject(float x, float y) : GameObject(x, y, 50, 50) {
 
 GameObject::GameObject(float x, float y, float w, float h) : pos({ x,y }), size({ w,h }), visibility(true), tex(nullptr), scale({ 1,1 }) {
     color = sf::Color::White;
+    defautlSize = size;
     rect.setFillColor(color);
     rect.setPosition(pos);
     rect.setSize(size);

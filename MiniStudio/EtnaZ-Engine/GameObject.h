@@ -18,6 +18,7 @@ public:
     bool visibility;
 
 public:
+    sf::Vector2f defautlSize;
     // Constructor/Destructor
     GameObject() = default;
     GameObject(float x, float y);

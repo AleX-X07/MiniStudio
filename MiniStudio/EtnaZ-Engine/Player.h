@@ -18,7 +18,6 @@ private :
 	float weightLoss = 0.3; 
 
 	enum class SlimeStates {
-		micro,
 		light,
 		normal,
 		heavy,
@@ -34,7 +33,7 @@ public :
 	bool onGround = false;
 
 	Player() = default;
-	Player(float x, float y);
+	Player(float x, float y, float w, float h);
 	~Player() = default;
 
 	void clampInScreen();

@@ -1,13 +1,13 @@
 #include "Animation.h"
 #include "GameObject.h"
 #include "Player.h"
+#include "Textures.h"
 
-Animation::Animation(sf::Texture _texture, int _maxFrames, int _nbrAnimation, float _frameDuration, int _spriteWidth, int _spriteHeight) {
+Animation::Animation(int _maxFrames, int _nbrAnimation, float _frameDuration, int _spriteWidth, int _spriteHeight) {
 
-    currentState = CharacterState::IDLE;
-    previousState = CharacterState::IDLE;
+    currentState = CharacterState::IDLERIGHT;
+    previousState = CharacterState::IDLERIGHT;
 
-    texture = _texture;
     maxFrames = _maxFrames;
     nbrAnimation = _nbrAnimation;
     frameDuration = _frameDuration;
@@ -58,17 +58,34 @@ void Animation::update(float dt) {
 
         if (currentFrame >= maxFrames) {
             currentFrame = 0;
+            jump = false;
         }
     }
 
+    jump = true;
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
         currentState = CharacterState::RIGHT;
     }
     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) {
         currentState = CharacterState::LEFT;
     }
-    else {
-        currentState = CharacterState::IDLE;
+
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
+        /*if (previousState == CharacterState::LEFT || previousState == CharacterState::IDLELEFT) {
+            currentState = CharacterState::JUMPLEFT;
+        }
+        else if (previousState == CharacterState::RIGHT || previousState == CharacterState::IDLERIGHT) {
+            currentState = CharacterState::JUMPRIGHT;
+        }
+        else if (jump == false){
+            currentState = CharacterState::RIGHT;
+        }*/
+    }
+    else if (previousState == CharacterState::RIGHT){
+        currentState = CharacterState::IDLERIGHT;
+    }
+    else if (previousState == CharacterState::LEFT) {
+        currentState = CharacterState::IDLELEFT;
     }
 
     if (currentState != previousState) {
@@ -81,21 +98,25 @@ void Animation::update(float dt) {
 void Animation::render(sf::RenderWindow& window) {
 
     switch (currentState) {
-    case CharacterState::IDLE:
-        animationRow = 0;
-        break;
+    case CharacterState::IDLERIGHT:
+        texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::idleRight);
+        break; 
+    case CharacterState::IDLELEFT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::idleLeft);
+            break;
     case CharacterState::LEFT:
-        animationRow = 0;
+        texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::walkLeft);
         break;
     case CharacterState::RIGHT:
-        animationRow = 0;
+        texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::walkRight);
+        break;
+    case CharacterState::JUMPRIGHT: 
+    	texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::jumpRight);
+        break; 
+    case CharacterState::JUMPLEFT:
+        texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::jumpLeft);
         break;
     }
-
-    if (currentState != CharacterState::IDLE) {
-        myStateRect = { {  currentFrame * spriteWidth, animationRow * spriteHeight}, {spriteWidth,spriteHeight} };
-    }
-    else {
-        myStateRect = { {0 * spriteWidth, animationRow * spriteHeight}, {spriteWidth,spriteHeight} };
-    }
+    myStateRect = { {  currentFrame * spriteWidth, animationRow * spriteHeight}, {spriteWidth,spriteHeight} };
+    
 }
