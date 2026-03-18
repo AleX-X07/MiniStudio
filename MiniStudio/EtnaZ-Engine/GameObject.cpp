@@ -12,11 +12,6 @@ GameObject::GameObject(float x, float y, float w, float h) : pos({ x,y }), size(
     rect.setScale(scale);
 }
 
-GameObject::~GameObject() {
-
-}
-
-
 Texture* GameObject::getTexture() {
     return tex;
 }

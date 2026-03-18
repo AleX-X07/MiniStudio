@@ -2,7 +2,13 @@
 #include "GameObject.h"
 
 class SlimePiece : public GameObject {
+public:
+	bool onGround;
+
 private:
+	float velocityX;
+	float velocityY;
+	float gravity;
 
 public:
 	SlimePiece() = default;

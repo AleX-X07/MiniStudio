@@ -58,7 +58,10 @@ void Game::updateCollision() {
 		}
 		for (auto& psP : player->slimePiece) {
 			if (!(psP == nullptr)) {
-				psP->resolveCollision(*gameObject);
+				psP->onGround = false;
+				if (psP->isColliding(*gameObject)) { 
+					psP->resolveCollision(*gameObject);
+				}
 			}
 		}
 	}

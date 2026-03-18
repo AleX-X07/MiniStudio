@@ -24,7 +24,7 @@ void Player::skillsLeaveSlime(Input& input) {
 		if (slimePiece.size() <= 2) {
 			float multipliterSlilme = 1 - weightLoss;
 
-			GameObject* block = new GameObject(getPos().x, getPos().y, 50, 50);
+			SlimePiece* block = new SlimePiece(getPos().x, getPos().y, 50, 50);
 			block->setColor((sf::Color::Blue));
 
 			sf::Vector2f sBlock = { float(getSize().x * weightLoss), float(getSize().y * weightLoss) };
@@ -108,6 +108,9 @@ void Player::update(float& dt, Input & input) {
 	skillsLeaveSlime(input);
 	takeSlime(input);
 	myAnimation->update(dt);
+	for (auto& sP : slimePiece) {
+		sP->update(dt, input);
+	}
 }
 
 void Player::resolveCollision(GameObject & gameObject) {

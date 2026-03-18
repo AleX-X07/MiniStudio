@@ -2,6 +2,7 @@
 #include "Globals.h"
 #include "GameObject.h"
 #include "Animation.h"
+#include "SlimePiece.h"
 
 class Player : public GameObject
 {
@@ -26,7 +27,7 @@ private :
 	SlimeStates currentStates;
 
 public:
-	std::vector<GameObject*> slimePiece;
+	std::vector<SlimePiece*> slimePiece;
 
 public :
 	bool onGround = false;
