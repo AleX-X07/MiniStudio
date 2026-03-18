@@ -44,3 +44,25 @@ void Parallax::render(sf::RenderWindow& window, const Camera& camera)
         }
     }
 };
+
+void Parallax::loadZone(zone zoneToLoad)
+{
+    layers.clear();
+    buildLayers(zoneToLoad);
+}
+
+void Parallax::buildLayers(zone zoneToLoad)
+{
+    switch (zoneToLoad) {
+    case zone::zone1:
+        addLayer(Textures::texturesIndices::zone1Layer0, 0.2f);
+        addLayer(Textures::texturesIndices::zone1Layer1, 0.5f);
+        break;
+    case zone::zone2:
+        break;
+    case zone::zone3:
+        break;
+    case zone::zone4:
+        break;
+    }
+}

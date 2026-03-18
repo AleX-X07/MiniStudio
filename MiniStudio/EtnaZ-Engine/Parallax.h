@@ -11,7 +11,18 @@ struct ParallaxLayer {
 };
 
 class Parallax {
+public:
+    enum class zone {
+        zone1,
+        zone2,
+        zone3,
+        zone4
+    };
+
+    void loadZone(zone zoneToLoad);
+
 private:
+	void buildLayers(zone zoneToLoad);
     std::vector<ParallaxLayer> layers;
 
 public:

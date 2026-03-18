@@ -43,8 +43,6 @@ void Game::setEntity() {
 
 		//Parallax
 		parallax = new Parallax();
-		parallax->addLayer(Textures::texturesIndices::layer0, 0.5f);
-		parallax->addLayer(Textures::texturesIndices::layer1, 0.8f);
 		//parallax->addLayer(Textures::texturesIndices::Layer2?, 1.0f);
 
 		//Camera
@@ -69,6 +67,19 @@ void Game::update(float& dt) {
 	
 	if (player) {
 		player->update(dt, input);
+
+		if (player->pos.x < 1920 && player->pos.y < 1080 ) {
+			parallax->loadZone(Parallax::zone::zone1);
+		}
+		 else if (player->pos.x > 1920 && player->pos.y < 1080) {
+			parallax->loadZone(Parallax::zone::zone2);
+		}
+		 else if (player->pos.x > 1920 && player->pos.y > 1080) {
+			parallax->loadZone(Parallax::zone::zone3);
+		}
+		 else {
+			parallax->loadZone(Parallax::zone::zone4);
+		}
 	}
 	camera->updateCamera(player);
 	updateCollision();
