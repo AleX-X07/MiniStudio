@@ -3,7 +3,12 @@
 Player::Player(float x, float y) : GameObject(x,y)
 {
 	speed = 300.0f;
+	dash = 300.0f;
 	myAnimation = nullptr;
+
+	dashCooldown = 3.0f;
+	dashTimer = 0.0f;
+	canDash = true;
 }
 
 void Player::clampInScreen() {
@@ -36,18 +41,27 @@ void Player::render(RenderWindow * window) {
 void Player::update(float& dt, Input & input) {
 	sf::Clock clock;
 
+	if (!canDash) {
+		dashTimer -= dt;
+		if (dashTimer <= 0.0f) {
+			canDash = true;
+			dashTimer = 0.0f;
+		}
+	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Q)) {
 		pos.x -= speed * dt;
-		if (Keyboard::isKeyPressed(Keyboard::Key::S)) {
+		if (Keyboard::isKeyPressed(Keyboard::Key::S) && canDash) {
 			pos.x -= dash;
-			sf::Time elapsed = clock.restart();
+			canDash = false;
+			dashTimer = dashCooldown;
 		}
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::D)) {
 		pos.x += speed * dt;
-		if (Keyboard::isKeyPressed(Keyboard::Key::S)) {
+		if (Keyboard::isKeyPressed(Keyboard::Key::S) && canDash) {
 			pos.x += dash;
-			sf::Time elapsed = clock.restart();
+			canDash = false;
+			dashTimer = dashCooldown;
 		}
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Space)) {
