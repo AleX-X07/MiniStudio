@@ -44,7 +44,7 @@ public :
 
 	void setAnimation(Animation* myAnimation);
 
-	virtual void render(RenderWindow* window) override;
+	virtual void render(sf::RenderWindow* window) override;
 	virtual void update(float& dt, Input& input) override;
 	virtual void resolveCollision(GameObject& gameObject) override;
 };

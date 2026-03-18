@@ -24,8 +24,8 @@ bool LoadLevel::loadLevel(){
 	std::ifstream file("niveau.txt");
 	tileSet.loadFromFile("tileset.png");
 
-	string line;
-	string section;
+	std::string line;
+	std::string section;
 
 	while(getline(file, line)) {
 
@@ -38,7 +38,7 @@ bool LoadLevel::loadLevel(){
 			continue;
 		}
 
-		istringstream iss(line);
+		std::istringstream iss(line);
 
 		if (section == "PLATFORM") {
 			float x, y, w, h;
@@ -57,7 +57,7 @@ bool LoadLevel::loadLevel(){
 
 			while (getline(file, line)) {
 
-				istringstream row(line);
+				std::istringstream row(line);
 				int tileId = 0;
 				int column = 0;
 

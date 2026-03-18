@@ -15,8 +15,5 @@ public:
 	//Method set
 	void setTileRect(sf::IntRect _rect);
 
-
-
-
 };
 

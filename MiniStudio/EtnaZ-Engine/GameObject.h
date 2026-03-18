@@ -7,14 +7,14 @@ class GameObject
 {
 public:
     // Variable
-    Texture* tex;
-    Color color;
+    sf::Texture* tex;
+    sf::Color color;
 
-    Vector2f pos;
-    Vector2f size;
-    Vector2f scale;
+    sf::Vector2f pos;
+    sf::Vector2f size;
+    sf::Vector2f scale;
 
-    RectangleShape rect;
+    sf::RectangleShape rect;
     bool visibility;
 
 public:
@@ -25,15 +25,15 @@ public:
     ~GameObject() = default;
 
     // Method get/set
-    Texture* getTexture();
-    Vector2f getPos();
-    Vector2f getSize();
+    sf::Texture* getTexture();
+    sf::Vector2f getPos();
+    sf::Vector2f getSize();
 
-    void setTexture(Texture* tex);
-    void setColor(Color nColor);
-    void setPos(Vector2f nPos);
-    void setSize(Vector2f nSize);
-    void setScale(Vector2f scale);
+    void setTexture(sf::Texture* tex);
+    void setColor(sf::Color nColor);
+    void setPos(sf::Vector2f nPos);
+    void setSize(sf::Vector2f nSize);
+    void setScale(sf::Vector2f scale);
 
     void setVisibilityTrue();
     void setVisibilityFalse();
@@ -43,6 +43,6 @@ public:
 
     // Method virtual
     virtual void update(float& dt, Input& input);
-    virtual void render(RenderWindow* window);
+    virtual void render(sf::RenderWindow* window);
     virtual void resolveCollision(GameObject& gameObject);
 };

@@ -1,9 +1,9 @@
 #include "GameEngine.h"
 
 GameEngine::GameEngine() {
-	window = new RenderWindow(VideoMode({ win_width, win_height }), "EtnaZ-Engine", sf::Style::Default, sf::State::Fullscreen);
+	window = new sf::RenderWindow(sf::VideoMode({ win_width, win_height }), "EtnaZ-Engine", sf::Style::Default, sf::State::Fullscreen);
 	dt = 0;
-	states = new vector<GameState*>;
+	states = new std::vector<GameState*>;
 	input = Input();
 	clock.restart();
 
@@ -18,8 +18,8 @@ GameEngine::~GameEngine() {
 
 void GameEngine::updateEvent() {
 	input.reset();
-	while (const optional event = window->pollEvent()) {
-		if (event->is<Event::Closed>()) {
+	while (const std::optional event = window->pollEvent()) {
+		if (event->is<sf::Event::Closed>()) {
 			window->close();
 		}
 		input.setEvent(event.value());
@@ -27,7 +27,7 @@ void GameEngine::updateEvent() {
 }
 
 void GameEngine::updateDt() {
-	Time elapsed = clock.getElapsedTime();
+	sf::Time elapsed = clock.getElapsedTime();
 	clock.restart();
 	dt = elapsed.asSeconds();
 }

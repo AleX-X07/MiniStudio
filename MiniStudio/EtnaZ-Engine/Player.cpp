@@ -71,7 +71,7 @@ void Player::setAnimation(Animation * _myAnimation) {
 }
 
 
-void Player::render(RenderWindow * window) {
+void Player::render(sf::RenderWindow * window) {
 	myAnimation->render(*window);
 
 	rect.setTexture(&myAnimation->texture);
@@ -86,13 +86,13 @@ void Player::render(RenderWindow * window) {
 }
 
 void Player::update(float& dt, Input & input) {
-	if (Keyboard::isKeyPressed(Keyboard::Key::Q)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) {
 		pos.x -= speed * dt;
 	}
-	if (Keyboard::isKeyPressed(Keyboard::Key::D)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
 		pos.x += speed * dt;
 	}
-	if (Keyboard::isKeyPressed(Keyboard::Key::Space)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
 		jump();
 	}
 	if (!onGround) {

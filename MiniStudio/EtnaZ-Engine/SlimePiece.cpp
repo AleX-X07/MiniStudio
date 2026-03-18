@@ -16,7 +16,7 @@ void SlimePiece::update(float& dt, Input& input) {
 	GameObject::update(dt, input);
 }
 
-void SlimePiece::render(RenderWindow* window) {
+void SlimePiece::render(sf::RenderWindow* window) {
 	GameObject::render(window);
 }
 

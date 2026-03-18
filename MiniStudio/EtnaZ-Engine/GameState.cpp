@@ -1,6 +1,6 @@
 #include "GameState.h"
 
-GameState::GameState(RenderWindow* window, std::vector<GameState*>* _states) : window(window), states(_states) {
+GameState::GameState(sf::RenderWindow* window, std::vector<GameState*>* _states) : window(window), states(_states) {
 
 }
 

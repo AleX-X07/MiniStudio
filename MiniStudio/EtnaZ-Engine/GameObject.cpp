@@ -5,45 +5,45 @@ GameObject::GameObject(float x, float y) : GameObject(x, y, 50, 50) {
 }
 
 GameObject::GameObject(float x, float y, float w, float h) : pos({ x,y }), size({ w,h }), visibility(true), tex(nullptr), scale({ 1,1 }) {
-    color = Color::White;
+    color = sf::Color::White;
     rect.setFillColor(color);
     rect.setPosition(pos);
     rect.setSize(size);
     rect.setScale(scale);
 }
 
-Texture* GameObject::getTexture() {
+sf::Texture* GameObject::getTexture() {
     return tex;
 }
 
-Vector2f GameObject::getPos() {
+sf::Vector2f GameObject::getPos() {
     return pos;
 }
 
-Vector2f GameObject::getSize() {
+sf::Vector2f GameObject::getSize() {
     return size;
 }
 
 
-void GameObject::setTexture(Texture* nTex) {
+void GameObject::setTexture(sf::Texture* nTex) {
     tex = nTex;
 }
 
-void GameObject::setColor(Color nColor) {
+void GameObject::setColor(sf::Color nColor) {
     rect.setFillColor(nColor);
 }
 
-void GameObject::setPos(Vector2f nPos) {
+void GameObject::setPos(sf::Vector2f nPos) {
     pos = nPos;
     rect.setPosition(nPos);
 }
 
-void GameObject::setSize(Vector2f nSize) {
+void GameObject::setSize(sf::Vector2f nSize) {
     size = nSize;
     rect.setSize(nSize);
 }
 
-void GameObject::setScale(Vector2f nScale) {
+void GameObject::setScale(sf::Vector2f nScale) {
     scale = nScale;
     rect.setScale(nScale);
 }
@@ -106,7 +106,7 @@ void GameObject::update(float& dt, Input& input) {
 
 }
 
-void GameObject::render(RenderWindow* window) {
+void GameObject::render(sf::RenderWindow* window) {
     if (visibility) {
         if (tex) {
             rect.setTexture(tex);

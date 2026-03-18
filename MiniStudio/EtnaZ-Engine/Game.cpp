@@ -3,17 +3,17 @@
 #include "Player.h"
 #include "LoadLevel.h"
 
-Game::Game(RenderWindow* window, vector<GameState*>* _states) : GameState(window, _states), gOBuild(false) {
+Game::Game(sf::RenderWindow* window, std::vector<GameState*>* _states) : GameState(window, _states), gOBuild(false) {
 	setEntity();
 }
 
-void Game::Instance(RenderWindow* window, vector<GameState*>*& states) {
+void Game::Instance(sf::RenderWindow* window, std::vector<GameState*>*& states) {
 	GameState* mainMenu = new Game(window, states);
 	states->push_back(mainMenu);
 }
 
 void Game::manageState() {
-	if (Keyboard::isKeyPressed(Keyboard::Key::Escape)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) {
 		GameState::nextState(states);
 		MainMenu::Instance(window, states);
 	}
@@ -27,12 +27,12 @@ void Game::setEntity() {
 
 		// Background white
 		GameObject* backWhite = new GameObject(0, 0, win_width, win_height);
-		backWhite->setColor(Color::White);
+		backWhite->setColor(sf::Color::White);
 		gameObject.push_back(backWhite);
 
 		// Test platform
 		GameObject* platform = new GameObject(0, 980, 1920, 100);
-		platform->setColor(Color::Green);
+		platform->setColor(sf::Color::Green);
 		gameObjectCollider.push_back(platform);
 
 		//Player

@@ -18,7 +18,7 @@ public:
 
 	// Method virtual
 	virtual void update(float& dt, Input& input) override;
-	virtual void render(RenderWindow* window) override;
+	virtual void render(sf::RenderWindow* window) override;
 	virtual void resolveCollision(GameObject& gameObject) override;
 };
 

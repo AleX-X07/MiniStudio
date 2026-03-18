@@ -6,8 +6,6 @@
 #include "Textures.h"
 #include "Tile.h"
 
-using namespace std;
-
 class LoadLevel{
 
 private:
@@ -15,8 +13,8 @@ private:
 	
 
 public:
-	vector<GameObject*> Platform;
-	vector<Tile*> tiles;
+	std::vector<GameObject*> Platform;
+	std::vector<Tile*> tiles;
 
 	LoadLevel();
 	~LoadLevel();

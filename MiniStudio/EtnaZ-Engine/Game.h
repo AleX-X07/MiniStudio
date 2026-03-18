@@ -19,10 +19,10 @@ private:
 
 public:
 	Game() = default;
-	Game(RenderWindow * window, vector<GameState*>* states);
+	Game(sf::RenderWindow * window, vector<GameState*>* states);
 	~Game();
 		
-	static void Instance(RenderWindow* window, vector<GameState*>*& states);
+	static void Instance(sf::RenderWindow* window, vector<GameState*>*& states);
 
 	void setEntity();
 	void updateCollision();
