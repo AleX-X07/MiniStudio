@@ -4,6 +4,7 @@
 #include "Camera.h"
 #include "LoadLevel.h"
 #include "Textures.h"
+#include "SlimePiece.h"
 
 class MainMenu;
 class PauseMenu;

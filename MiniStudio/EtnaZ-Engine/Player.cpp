@@ -21,7 +21,7 @@ void Player::jump() {
 
 void Player::skillsLeaveSlime(Input& input) {
 	if (input.isKeyPressed(sf::Keyboard::Key::A)) {
-		if (slimePiece.size() <= 2) {
+		if (slimePieceLeave.size() <= 2) {
 			float multipliterSlilme = 1 - weightLoss;
 
 			SlimePiece* block = new SlimePiece(getPos().x, getPos().y, 50, 50);
@@ -33,9 +33,9 @@ void Player::skillsLeaveSlime(Input& input) {
 			sf::Vector2f nSizeSlime = { float(getSize().x * multipliterSlilme), float(getSize().y * multipliterSlilme) };
 			setSize(nSizeSlime);
 
-			slimePiece.push_back((block));
+			slimePieceLeave.push_back((block));
 
-			if (slimePiece.size() == 0) {
+			/*if (slimePiece.size() == 0) {
 				currentStates = Player::SlimeStates::normal;
 			}
 			else if (slimePiece.size() == 1) {
@@ -43,13 +43,29 @@ void Player::skillsLeaveSlime(Input& input) {
 			}
 			else if (slimePiece.size() == 2) {
 				currentStates = Player::SlimeStates::micro;
-			}
+			}*/
 			weightLoss *= 0.9;
 		}
 	}
 }
 
 void Player::takeSlime(Input& input){
+
+	if (!slimePieceLeave.empty()) {
+		for (int X = 0; X < slimePieceLeave.size(); X++) {
+			if (input.isKeyPressed((sf::Keyboard::Key::W))) {
+				if (isColliding(*slimePieceLeave[X])) {
+					const auto It = slimePieceLeave.begin() + X;
+					sf::Vector2f multiSlime = { float(slimePieceLeave[X]->getSize().x * 0.9), float(slimePieceLeave[X]->getSize().y * 0.9) };
+					sf::Vector2f nSize = { getSize().x + multiSlime.x, getSize().y + multiSlime.y };
+					setSize(nSize);
+					weightLoss = 0.3;
+					slimePieceLeave.erase(It);
+				}
+			}
+		}
+	}
+
 	if (!slimePiece.empty()) {
 		for (int X = 0; X < slimePiece.size(); X++) {
 			if (input.isKeyPressed((sf::Keyboard::Key::W))) {
@@ -78,6 +94,9 @@ void Player::render(sf::RenderWindow * window) {
 	rect.setTextureRect(myAnimation->myStateRect);
 
 	for (auto& sP : slimePiece) {
+		sP->render(window);
+	}
+	for (auto& sP : slimePieceLeave) {
 		sP->render(window);
 	}
 
@@ -109,6 +128,9 @@ void Player::update(float& dt, Input & input) {
 	takeSlime(input);
 	myAnimation->update(dt);
 	for (auto& sP : slimePiece) {
+		sP->update(dt, input);
+	}
+	for (auto& sP : slimePieceLeave) {
 		sP->update(dt, input);
 	}
 }

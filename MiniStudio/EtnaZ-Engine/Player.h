@@ -27,6 +27,7 @@ private :
 	SlimeStates currentStates;
 
 public:
+	std::vector<SlimePiece*> slimePieceLeave;
 	std::vector<SlimePiece*> slimePiece;
 
 public :

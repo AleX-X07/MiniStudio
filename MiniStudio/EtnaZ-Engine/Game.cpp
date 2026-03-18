@@ -42,6 +42,10 @@ void Game::setEntity() {
 		player->setAnimation(myAnimation);
 		player->setSize({ 100,100 });
 
+		SlimePiece* mySP = new SlimePiece(1200,930,50,50);
+		mySP->setColor(sf::Color::Blue);
+		player->slimePiece.push_back(mySP);
+
 		//Camera
 		camera = new Camera(0.01);
 
@@ -61,6 +65,14 @@ void Game::updateCollision() {
 			if (!(psP == nullptr)) {
 				psP->onGround = false;
 				if (psP->isColliding(*gameObject)) { 
+					psP->resolveCollision(*gameObject);
+				}
+			}
+		}
+		for (auto& psP : player->slimePieceLeave) {
+			if (!(psP == nullptr)) {
+				psP->onGround = false;
+				if (psP->isColliding(*gameObject)) {
 					psP->resolveCollision(*gameObject);
 				}
 			}
