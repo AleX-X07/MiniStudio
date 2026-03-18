@@ -1,8 +1,7 @@
 #include "Camera.h"
 
-Camera::Camera(float _lag, float zoom) {
+Camera::Camera(float _lag) {
     myView = View(FloatRect({ 0, 0 }, { win_width, win_height }));
-    myView.zoom(zoom);
     lag = _lag;
 }
 
@@ -16,7 +15,7 @@ void Camera::updateCamera(GameObject* myObject) {
     current.x += (center.x - current.x) * lag;
     current.y += (center.y - current.y) * lag;
 
-    myView.setCenter(center);
+    myView.setCenter(current);
 }
 
 void Camera::setCamera(RenderWindow* window) {

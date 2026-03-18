@@ -143,6 +143,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SlimePiece.cpp" />
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="Tile.cpp" />
   </ItemGroup>
@@ -159,6 +160,7 @@
     <ClInclude Include="LoadLevel.h" />
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="SlimePiece.h" />
     <ClInclude Include="Textures.h" />
     <ClInclude Include="Tile.h" />
   </ItemGroup>

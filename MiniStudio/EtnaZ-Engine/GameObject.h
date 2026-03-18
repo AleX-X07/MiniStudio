@@ -22,7 +22,7 @@ public:
     GameObject() = default;
     GameObject(float x, float y);
     GameObject(float x, float y, float w, float h);
-    virtual ~GameObject();
+    ~GameObject() = default;
 
     // Method get/set
     Texture* getTexture();

@@ -42,7 +42,7 @@ void Game::setEntity() {
 		player->setSize({ 100,100 });
 
 		//Camera
-		camera = new Camera(0.01,0.5);
+		camera = new Camera(0.01);
 
 		gOBuild = true;
 	}
