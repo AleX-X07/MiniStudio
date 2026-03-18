@@ -12,6 +12,8 @@ private :
 	float gravity = 980.f;
 	float velocityX = 0.f;
 	float velocityY = 0.f;
+	int jumpCount = 0;
+	int maxJumpCount = 2;
 
 	Animation* myAnimation;
 
@@ -32,6 +34,7 @@ public:
 
 public :
 	bool onGround = false;
+	bool spaceWasPressed = false;
 
 	Player() = default;
 	Player(float x, float y);

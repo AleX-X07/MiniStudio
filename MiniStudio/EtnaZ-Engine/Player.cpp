@@ -13,9 +13,10 @@ void Player::clampInScreen() {
 }
 
 void Player::jump() {
-	if (onGround) {
+	if (jumpCount < maxJumpCount) {
 		velocityY = jumpForce;
 		onGround = false;
+		jumpCount++;
 	}
 }
 
@@ -111,9 +112,11 @@ void Player::update(float& dt, Input & input) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
 		pos.x += speed * dt;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
+	bool spacePressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space);
+	if (spacePressed && !spaceWasPressed) {  
 		jump();
 	}
+	spaceWasPressed = spacePressed;
 	if (!onGround) {
 		velocityY += gravity * dt;
 		if (velocityY > 600.0f) velocityY = 600.0f;
@@ -121,6 +124,9 @@ void Player::update(float& dt, Input & input) {
 		pos.y += velocityY * dt;
 		pos.x += velocityX * dt;
 		velocityX = 0;
+	}
+	if (!onGround && jumpCount == 0) {
+		jumpCount = 1;
 	}
 	clampInScreen();
 	setPos(pos);
@@ -163,5 +169,9 @@ void Player::resolveCollision(GameObject & gameObject) {
 		}
 	}
 	setPos(pos);
+
+	if (onGround) {
+		jumpCount = 0;
+	}
 }
 
