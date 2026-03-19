@@ -19,7 +19,6 @@ private :
 	
 
 	float jumpForce = -800.f;
-	float gravity = 980.f;
 	float velocityX = 0.f;
 	float velocityY = 0.f;
 
@@ -45,7 +44,6 @@ public:
 	float spawnX = 0.f;
 	float spawnY = 0.f;
 
-	//bool canDash = false;
 	bool canDoubleJump = false;
 	bool canDivision = false;
 

@@ -160,7 +160,7 @@ void Player::update(float& dt, Input & input) {
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) {
 		pos.x -= speed * dt;
-		if (Keyboard::isKeyPressed(Keyboard::Key::S) && canDash) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) && canDash) {
 			pos.x -= dash;
 			canDash = false;
 			dashTimer = dashCooldown;
@@ -168,7 +168,7 @@ void Player::update(float& dt, Input & input) {
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
 		pos.x += speed * dt;
-		if (Keyboard::isKeyPressed(Keyboard::Key::S) && canDash) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) && canDash) {
 			pos.x += dash;
 			canDash = false;
 			dashTimer = dashCooldown;
