@@ -28,23 +28,8 @@ Dans **Echoes of Slime**, vous contrôlez une créature gluante dotée d'une cap
 
 ---
 
-## Crédits
+## Équipe
 
-**Programmation**
-- Dev 1
-- Dev 2
-- Dev 3
-- Dev 4
-
-**Art & Direction artistique**
-- Artiste 1
-- Artiste 2
-- Artiste 3
-
-**Business & Production**
-- Business 1
-- Business 2
-
----
+Echoes of Slime est un projet étudiant réalisé en équipe de 9 personnes, réunissant des profils complémentaires : 4 développeurs, 3 artistes et 2 étudiants en business. Chacun a contribué selon son domaine — que ce soit la conception technique du moteur, la création des assets visuels ou la gestion du projet et de sa communication. Cette collaboration pluridisciplinaire a été au cœur de la démarche, avec l'objectif de simuler les conditions d'une production de jeu vidéo réelle.
 
 *Echoes of Slime — Projet réalisé avec SFML*
