@@ -17,9 +17,17 @@ GameEngine::~GameEngine() {
 	delete window;
 	window = nullptr;
 
+	for (auto& s : states) {
+		delete s;
+		s = nullptr;
+	}
 	states->clear();
-	delete states;
-	states = nullptr;
+
+	for (auto& sP : statesPause) {
+		delete sP;
+		sP = nullptr;
+	}
+	statesPause.clear();
 }
 
 void GameEngine::updateEvent() {

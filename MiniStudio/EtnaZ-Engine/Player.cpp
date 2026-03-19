@@ -17,6 +17,18 @@ Player::Player(float x, float y, float w, float h) : GameObject(x,y,w,h) {
 Player::~Player() {
 	delete myAnimation;
 	myAnimation = nullptr;
+
+	for (auto& sP : slimePiece) {
+		delete sP;
+		sP = nullptr;
+	}
+	slimePiece.clear();
+
+	for (auto& sPL : slimePieceLeave) {
+		delete sPL;
+		sPL = nullptr;
+	}
+	slimePieceLeave.clear();
 }
 
 void Player::clampInScreen() {
