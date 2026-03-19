@@ -178,6 +178,7 @@ void Player::render(sf::RenderWindow * window) {
 }
 
 void Player::update(float& dt, Input & input) {
+	dash(dt);
 	if (currentStates != SlimeStates::death) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) {
 			pos.x -= speed * dt;

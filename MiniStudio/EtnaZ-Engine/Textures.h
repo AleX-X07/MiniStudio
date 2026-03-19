@@ -53,8 +53,8 @@ public:
         seed,
         orb,
         crate,
-        door
-        title,
+        door,
+        title
     };
 
     enum class fontsIndices{
