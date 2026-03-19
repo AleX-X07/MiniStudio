@@ -158,10 +158,25 @@ void Player::update(float& dt, Input & input) {
 			dashTimer = 0.0f;
 		}
 	}
+	if (isDashing) {
+		dashProgress += dt;
+		if (dashProgress >= dashTotalTime) {
+			isDashing = false;
+			pos.x = dashTargetX;
+		}
+		else {
+			float t = dashProgress / dashTotalTime;
+			pos.x = dashStartX + (dashTargetX - dashStartX) * t;
+		}
+		setPos(pos);
+	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) {
 		pos.x -= speed * dt;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) && canDash) {
-			pos.x -= dash;
+			isDashing = true;
+			dashProgress = 0.0f;
+			dashStartX = pos.x;
+			dashTargetX = pos.x - dash;
 			canDash = false;
 			dashTimer = dashCooldown;
 		}
@@ -169,7 +184,10 @@ void Player::update(float& dt, Input & input) {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
 		pos.x += speed * dt;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) && canDash) {
-			pos.x += dash;
+			isDashing = true;
+			dashProgress = 0.0f;
+			dashStartX = pos.x;
+			dashTargetX = pos.x + dash;
 			canDash = false;
 			dashTimer = dashCooldown;
 		}

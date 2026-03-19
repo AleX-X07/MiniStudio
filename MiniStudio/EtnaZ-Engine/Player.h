@@ -15,7 +15,11 @@ private :
 	float dashTimer = 0.0f;
 	bool canDash = true;
 	float gravity = 980.f;
-
+	bool isDashing = false;
+	float dashProgress = 0.0f;
+	float dashStartX = 0.0f;
+	float dashTargetX = 0.0f;
+	float dashTotalTime = 0.5f;
 	
 
 	float jumpForce = -800.f;
