@@ -1,4 +1,6 @@
 #pragma once
+#include <SFML/Audio/Music.hpp>
+
 #include "GameState.h"
 #include "GameObject.h"
 #include "Textures.h"
@@ -14,6 +16,7 @@ private:
 	Button* play;
 	Button* quit;
 	
+	sf::Music music;
 
 public:
 	MainMenu() = default;

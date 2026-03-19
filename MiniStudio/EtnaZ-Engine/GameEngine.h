@@ -18,7 +18,6 @@ private:
 	std::vector<GameState*>* states;
 	Input input;
 	sf::Clock clock;
-	sf::Music music;
 
 	const sf::Event::KeyPressed* currentInputKey;
 	const sf::Event::MouseButtonPressed* currentInputMouse;

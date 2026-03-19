@@ -34,6 +34,7 @@ public:
 	void setEntity();
 	void updateCollision();
 
+	virtual void onResume() override;
 	virtual void manageState() override;
 	virtual void update(float& dt) override;
 	virtual void render() override;

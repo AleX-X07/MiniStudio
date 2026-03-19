@@ -10,7 +10,6 @@ Game::Game(sf::RenderWindow* window, std::vector<GameState*>* _states) : GameSta
 	music.openFromFile("assets/sound/water-drop.ogg");
 	music.setLooping(true);
 	music.setVolume(100.f);
-	music.play();
 }
 
 void Game::Instance(sf::RenderWindow* window, std::vector<GameState*>*& states) {
@@ -20,10 +19,12 @@ void Game::Instance(sf::RenderWindow* window, std::vector<GameState*>*& states) 
 
 void Game::manageState() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) {
+		music.pause();
 		GameState::pause(states);
 		PauseMenu::Instance(window, states, camera);
 	}
 	if (player->currentStates == Player::SlimeStates::death) {
+		music.pause();
 		GameState::pause(states);
 		GameOver::Instance(window, states, camera);
 	}
@@ -34,7 +35,6 @@ void Game::setEntity() {
 
 		myLevel = new LoadLevel();
 		myLevel->loadLevel();
-
 
 		// Background white
 		GameObject* backWhite = new GameObject(0, 0, win_width, win_height);
@@ -152,8 +152,11 @@ void Game::updateCollision() {
 
 }
 
+void Game::onResume() {
+	music.play();
+}
+
 void Game::update(float& dt) {
-	
 	if (player) {
 		player->update(dt, input);
 	}
