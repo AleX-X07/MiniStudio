@@ -55,7 +55,7 @@ public:
         orb,
         crate,
         door,
-        title
+        title,
 
         particle,
         zone1Layer0,

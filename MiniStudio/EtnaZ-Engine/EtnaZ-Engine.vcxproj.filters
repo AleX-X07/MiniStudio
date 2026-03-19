@@ -72,7 +72,7 @@
       <Filter>Fichiers sources\Tool</Filter>
     </ClCompile>
     <ClCompile Include="Parallax.cpp">
-      <Filter>Fichiers sources\Game\Scene</Filter>
+      <Filter>Fichiers sources\Tool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -149,7 +149,7 @@
       <Filter>Fichiers d%27en-tête\GameObject</Filter>
     </ClInclude>
     <ClCompile Include="Parallax.h">
-      <Filter>Fichiers sources\Game\Scene</Filter>
+      <Filter>Fichiers d%27en-tête\Tool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

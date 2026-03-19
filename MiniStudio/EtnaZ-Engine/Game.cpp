@@ -4,6 +4,7 @@
 #include "PauseMenu.h"
 #include "Player.h"
 #include "LoadLevel.h"
+#include "Parallax.h"
 
 Game::Game(sf::RenderWindow* window, std::vector<GameState*>* _states) : GameState(window, _states), gOBuild(false) {
 	setEntity();

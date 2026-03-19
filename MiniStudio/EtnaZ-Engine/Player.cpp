@@ -177,28 +177,28 @@ void Player::render(sf::RenderWindow * window) {
 
 }
 
-void Player::update(float& dt, Input & input) {
+void Player::update(float& dt, Input& input) {
 	dash(dt);
 	if (currentStates != SlimeStates::death) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) {
 			pos.x -= speed * dt;
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) && canDash) {
-			   isDashing = true;
-			   dashProgress = 0.0f;
-			   dashTarget = pos.x - dashDistance;
-			   canDash = false;
-			   dashTimer = dashCooldown;
-		    }
+				isDashing = true;
+				dashProgress = 0.0f;
+				dashTarget = pos.x - dashDistance;
+				canDash = false;
+				dashTimer = dashCooldown;
+			}
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
 			pos.x += speed * dt;
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) && canDash) {
-			   isDashing = true;
-			   dashProgress = 0.0f;
-			   dashTarget = pos.x + dashDistance;
-			   canDash = false;
-			   dashTimer = dashCooldown;
-		    }
+				isDashing = true;
+				dashProgress = 0.0f;
+				dashTarget = pos.x + dashDistance;
+				canDash = false;
+				dashTimer = dashCooldown;
+			}
 		}
 		if (input.isKeyPressed(sf::Keyboard::Key::Space)) {
 			jump();
@@ -210,59 +210,60 @@ void Player::update(float& dt, Input & input) {
 		skillsLeaveSlime(input);
 		takeSlime(input);
 
-	bool spacePressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space);
-	if (spacePressed && !spaceWasPressed) {  
-		jump();
-	}
-	spaceWasPressed = spacePressed;
-	if (!onGround) {
-		velocityY += gravity * dt;
-		if (velocityY > 600.0f) velocityY = 600.0f;
+		bool spacePressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space);
+		if (spacePressed && !spaceWasPressed) {
+			jump();
+		}
+		spaceWasPressed = spacePressed;
+		if (!onGround) {
+			velocityY += gravity * dt;
+			if (velocityY > 600.0f) velocityY = 600.0f;
 
-		pos.y += velocityY * dt;
-		pos.x += velocityX * dt;
-		velocityX = 0;
-	}
+			pos.y += velocityY * dt;
+			pos.x += velocityX * dt;
+			velocityX = 0;
+		}
 
-	if (!onGround && jumpCount == 0) {
-		jumpCount = 1;
-	}
+		if (!onGround && jumpCount == 0) {
+			jumpCount = 1;
+		}
 
-	clampInScreen();
-	setPos(pos);
-	myAnimation->update(dt,input, this);
-	
-	for (auto& sP : slimePiece) {
-		sP->update(dt, input);
-	}
-	for (auto& sP : slimePieceLeave) {
-		sP->update(dt, input);
-	}
+		clampInScreen();
+		setPos(pos);
+		myAnimation->update(dt, input, this);
 
-	if (currentStates != SlimeStates::death) {
+		for (auto& sP : slimePiece) {
+			sP->update(dt, input);
+		}
+		for (auto& sP : slimePieceLeave) {
+			sP->update(dt, input);
+		}
+
+		if (currentStates != SlimeStates::death) {
+			if (getSize().x < defautlSize.x * 0.75 && getSize().y < defautlSize.y * 0.75) {
+				currentStates = SlimeStates::light;
+				nbrDepotSlime = 0;
+			}
+			else if ((getSize().x > defautlSize.x * 0.8 && getSize().y > defautlSize.y * 0.8) && (getSize().x < defautlSize.x * 1.1 && getSize().y < defautlSize.y * 1.1)) {
+				currentStates = SlimeStates::normal;
+				nbrDepotSlime = 1;
+			}
+			else if (getSize().x > defautlSize.x * 1.1 && getSize().y > defautlSize.y * 1.1) {
+				currentStates = SlimeStates::heavy;
+				nbrDepotSlime = 2;
+			}
+		}
+
+		if (getSize().x > defautlSize.x * 1.15 && getSize().y > defautlSize.y * 1.15) {
+			setSize({ float(defautlSize.x * 1.15), float(defautlSize.y * 1.15) });
+		}
 		if (getSize().x < defautlSize.x * 0.75 && getSize().y < defautlSize.y * 0.75) {
-			currentStates = SlimeStates::light;
-			nbrDepotSlime = 0;
+			setSize({ float(defautlSize.x * 0.75), float(defautlSize.y * 0.75) });
 		}
-		else if ((getSize().x > defautlSize.x * 0.8 && getSize().y > defautlSize.y * 0.8) && (getSize().x < defautlSize.x * 1.1 && getSize().y < defautlSize.y * 1.1)) {
-			currentStates = SlimeStates::normal;
-			nbrDepotSlime = 1;
-		}
-		else if (getSize().x > defautlSize.x * 1.1 && getSize().y > defautlSize.y * 1.1) {
-			currentStates = SlimeStates::heavy;
-			nbrDepotSlime = 2;
-		}
-	}
-
-	if (getSize().x > defautlSize.x * 1.15 && getSize().y > defautlSize.y * 1.15) {
-		setSize({float(defautlSize.x * 1.15), float(defautlSize.y * 1.15)});
-	}
-	if (getSize().x < defautlSize.x * 0.75 && getSize().y < defautlSize.y * 0.75) {
-		setSize({ float(defautlSize.x * 0.75), float(defautlSize.y * 0.75) });
 	}
 }
 
-void Player::resolveCollision(GameObject & gameObject) {
+void Player::resolveCollision(GameObject& gameObject) {
 	float overlapLeft = (pos.x + size.x) - gameObject.pos.x;
 	float overlapright = (gameObject.pos.x + gameObject.size.x) - pos.x;
 	float overlaptop = (pos.y + size.y) - gameObject.pos.y;
