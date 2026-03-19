@@ -10,6 +10,7 @@ Game::Game(sf::RenderWindow* window, std::vector<GameState*>* _states) : GameSta
 	music.openFromFile("assets/sound/water-drop.ogg");
 	music.setLooping(true);
 	music.setVolume(100.f);
+	music.play();
 }
 
 void Game::Instance(sf::RenderWindow* window, std::vector<GameState*>*& states) {
