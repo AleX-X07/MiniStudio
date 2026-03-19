@@ -15,6 +15,7 @@ enum class CharacterState {
     RUNLEFT,
     JUMPRIGHT,
     JUMPLEFT,
+    DEATH,
 };
 
 class Animation
@@ -28,13 +29,12 @@ private:
     int maxFrames;
     int nbrAnimation;
 
+    float defautlDuration;
     float animationTimer;
     float frameDuration;
 
     int spriteWidth;
     int spriteHeight;
-
-    bool jump;
 
 public:
     sf::IntRect myStateRect;
@@ -53,6 +53,6 @@ public:
 
     // Method
     void updatePNJ(float dt);
-    void update(float dt);
-    void render(sf::RenderWindow& window);
+    void update(float dt, Input& input, Player* Owner);
+    void render(sf::RenderWindow& window, Player* Owner);
 };

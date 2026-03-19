@@ -18,12 +18,12 @@ void PauseMenu::Instance(sf::RenderWindow* window, std::vector<GameState*>*& sta
 }
 
 void PauseMenu::setButton() {
-	resume = new Button(760, 375, 400, 125, states, window);
-	menu = new Button(780, 525,380,125,states, window);
+	resume = new Button(760, 375, 400, 150, states, window);
+	menu = new Button(780, 525,380,120,states, window);
 	quit = new Button(800, 650, 335, 100, states, window);
 
-	resume->setTexture((&Textures::getMyTextures()->getTexture(Textures::texturesIndices::buttonPlay)));
-	menu->setTexture((&Textures::getMyTextures()->getTexture(Textures::texturesIndices::buttonPlay)));
+	resume->setTexture((&Textures::getMyTextures()->getTexture(Textures::texturesIndices::buttonResume)));
+	menu->setTexture((&Textures::getMyTextures()->getTexture(Textures::texturesIndices::buttonMenu)));
 	quit->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::buttonQuit));
 }
 

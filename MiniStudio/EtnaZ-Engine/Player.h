@@ -17,17 +17,19 @@ private :
 
 	float weightLoss = 0.3; 
 
+
+public:
+	bool runBool;
 	enum class SlimeStates {
 		light,
 		normal,
 		heavy,
+		death,
 	};
 
-	SlimeStates currentStates;
-
-public:
 	std::vector<SlimePiece*> slimePieceLeave;
 	std::vector<SlimePiece*> slimePiece;
+	SlimeStates currentStates;
 
 public :
 	bool onGround = false;
@@ -38,6 +40,8 @@ public :
 
 	void clampInScreen();
 	void jump();
+	void run();
+	void takeDamage();
 
 	void skillsLeaveSlime(Input& input);
 	void takeSlime(Input& input);

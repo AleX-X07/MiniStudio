@@ -11,6 +11,7 @@ Animation::Animation(int _maxFrames, int _nbrAnimation, float _frameDuration, in
     maxFrames = _maxFrames;
     nbrAnimation = _nbrAnimation;
     frameDuration = _frameDuration;
+    defautlDuration = _frameDuration;
     spriteWidth = _spriteWidth/maxFrames;
     spriteHeight = _spriteHeight/nbrAnimation;
 
@@ -50,7 +51,7 @@ void Animation::updatePNJ(float dt)
     }
 }
 
-void Animation::update(float dt) {
+void Animation::update(float dt, Input& input, Player* Owner) {
     animationTimer += dt;
     if (animationTimer >= frameDuration) {
         animationTimer = 0.0f;
@@ -58,34 +59,62 @@ void Animation::update(float dt) {
 
         if (currentFrame >= maxFrames) {
             currentFrame = 0;
-            jump = false;
         }
     }
 
-    jump = true;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
-        currentState = CharacterState::RIGHT;
-    }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) {
-        currentState = CharacterState::LEFT;
+    if (!(Owner->currentStates == Player::SlimeStates::death)) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
+            if (Owner->onGround) {
+                currentState = CharacterState::RIGHT;
+                if (Owner->runBool) currentState = CharacterState::RUNRIGHT;
+            }
+        }
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) {
+            if (Owner->onGround) {
+                currentState = CharacterState::LEFT;
+                if (Owner->runBool) currentState = CharacterState::RUNLEFT;
+            }
+        }
+
+        else if (previousState == CharacterState::RIGHT) {
+            currentState = CharacterState::IDLERIGHT;
+        }
+        else if (previousState == CharacterState::LEFT) {
+            currentState = CharacterState::IDLELEFT;
+        }
+
+        if (!Owner->onGround && input.isKeyPressed(sf::Keyboard::Key::Space)) {
+            if (currentState == CharacterState::LEFT || currentState == CharacterState::IDLELEFT || currentState == CharacterState::RUNLEFT) {
+                currentState = CharacterState::JUMPLEFT;
+            }
+            else if (currentState == CharacterState::RIGHT || currentState == CharacterState::IDLERIGHT || currentState == CharacterState::RUNRIGHT) {
+                currentState = CharacterState::JUMPRIGHT;
+            }
+        }
+
+        else if ((!Owner->onGround && currentState == CharacterState::JUMPRIGHT)) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) {
+
+                currentState = CharacterState::JUMPLEFT;
+            }
+        }
+        else if ((!Owner->onGround && currentState == CharacterState::JUMPLEFT)) {
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
+
+                currentState = CharacterState::JUMPRIGHT;
+            }
+        }
+
+        else if ((currentState == CharacterState::JUMPRIGHT) && Owner->onGround) {
+            currentState = CharacterState::IDLERIGHT;
+        }
+        else if ((currentState == CharacterState::JUMPLEFT) && Owner->onGround) {
+            currentState = CharacterState::IDLELEFT;
+        }
     }
 
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
-        /*if (previousState == CharacterState::LEFT || previousState == CharacterState::IDLELEFT) {
-            currentState = CharacterState::JUMPLEFT;
-        }
-        else if (previousState == CharacterState::RIGHT || previousState == CharacterState::IDLERIGHT) {
-            currentState = CharacterState::JUMPRIGHT;
-        }
-        else if (jump == false){
-            currentState = CharacterState::RIGHT;
-        }*/
-    }
-    else if (previousState == CharacterState::RIGHT){
-        currentState = CharacterState::IDLERIGHT;
-    }
-    else if (previousState == CharacterState::LEFT) {
-        currentState = CharacterState::IDLELEFT;
+    else {
+        currentState = CharacterState::DEATH;
     }
 
     if (currentState != previousState) {
@@ -95,28 +124,93 @@ void Animation::update(float dt) {
     }
 }
 
-void Animation::render(sf::RenderWindow& window) {
-
-    switch (currentState) {
-    case CharacterState::IDLERIGHT:
-        texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::idleRight);
-        break; 
-    case CharacterState::IDLELEFT:
+void Animation::render(sf::RenderWindow& window, Player* Owner) {
+    switch (Owner->currentStates) {
+    case Player::SlimeStates::normal:
+        switch (currentState) {
+        case CharacterState::IDLERIGHT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::idleRight);
+            break;
+        case CharacterState::IDLELEFT:
             texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::idleLeft);
             break;
-    case CharacterState::LEFT:
-        texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::walkLeft);
+        case CharacterState::LEFT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::walkLeft);
+            break;
+        case CharacterState::RIGHT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::walkRight);
+            break;
+		case CharacterState::RUNRIGHT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::runRight);
+            break; 
+        case CharacterState::RUNLEFT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::runLeft);
+            break;
+        case CharacterState::JUMPRIGHT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::jumpRight);
+            break;
+        case CharacterState::JUMPLEFT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::jumpLeft);
+            break;
+        }
+		break;
+    case Player::SlimeStates::heavy:
+        switch (currentState) {
+        case CharacterState::IDLERIGHT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::idleRightHeavy);
+            break;
+        case CharacterState::IDLELEFT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::idleLeftHeavy);
+            break;
+        case CharacterState::LEFT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::walkLeftHeavy);
+            break;
+        case CharacterState::RIGHT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::walkRightHeavy);
+            break;
+        case CharacterState::RUNRIGHT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::walkRightHeavy);
+            break;
+        case CharacterState::RUNLEFT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::walkLeftHeavy);
+            break;
+        case CharacterState::JUMPRIGHT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::jumpRightHeavy);
+            break;
+        case CharacterState::JUMPLEFT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::jumpLeftHeavy);
+            break;
+        }
         break;
-    case CharacterState::RIGHT:
-        texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::walkRight);
-        break;
-    case CharacterState::JUMPRIGHT: 
-    	texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::jumpRight);
-        break; 
-    case CharacterState::JUMPLEFT:
-        texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::jumpLeft);
+    case Player::SlimeStates::light:
+        switch (currentState) {
+        case CharacterState::IDLERIGHT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::idleRightLight);
+            break;
+        case CharacterState::IDLELEFT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::idleLeftLight);
+            break;
+        case CharacterState::LEFT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::walkLeftLight);
+            break;
+        case CharacterState::RIGHT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::walkRightLight);
+            break;
+        case CharacterState::RUNRIGHT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::walkRightLight);
+            break;
+        case CharacterState::RUNLEFT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::walkLeftLight);
+            break;
+        case CharacterState::JUMPRIGHT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::jumpRightLight);
+            break;
+        case CharacterState::JUMPLEFT:
+            texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::jumpLeftLight);
+            break;
+        }
         break;
     }
+   
     myStateRect = { {  currentFrame * spriteWidth, animationRow * spriteHeight}, {spriteWidth,spriteHeight} };
-    
 }
