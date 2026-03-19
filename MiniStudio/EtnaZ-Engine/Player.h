@@ -19,18 +19,19 @@ private :
 
 	float weightLoss = 0.3; 
 
+public:
+	bool runBool;
+
 	enum class SlimeStates {
-		micro,
 		light,
 		normal,
 		heavy,
+		death,
 	};
 
-	SlimeStates currentStates;
-
-public:
 	std::vector<SlimePiece*> slimePieceLeave;
 	std::vector<SlimePiece*> slimePiece;
+
 	int seedNb = 0;
 	int orbNb = 0;
 
@@ -39,17 +40,20 @@ public:
 
 	bool canDash = false;
 	bool canDoubleJump = false;
-	bool canDivision = false;
+
+	SlimeStates currentStates;
 
 public :
 	bool onGround = false;
 
 	Player() = default;
-	Player(float x, float y);
+	Player(float x, float y, float w, float h);
 	~Player() = default;
 
 	void clampInScreen();
 	void jump();
+	void run();
+	void takeDamage();
 
 	void skillsLeaveSlime(Input& input);
 	void takeSlime(Input& input);

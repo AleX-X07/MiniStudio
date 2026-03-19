@@ -1,5 +1,5 @@
 #include "Player.h"
-
+#include "Textures.h"
 
 Player::Player(float x, float y) : GameObject(x,y)
 {
@@ -23,13 +23,34 @@ void Player::jump() {
 	}
 }
 
+void Player::run() {
+	if (runBool) {
+		speed *= 1.5;
+	}
+	else {
+		speed /= 1.5;
+	}
+}
+
+void Player::takeDamage() {
+	if (currentStates == SlimeStates::light) {
+		currentStates = SlimeStates::death;
+	}
+	else if (currentStates == SlimeStates::normal) {
+		setSize({float(getSize().x * 0.8), float(getSize().y * 0.8)});
+	}
+	else if (currentStates == SlimeStates::heavy) {
+		setSize({ float(getSize().x * 0.95), float(getSize().y * 0.95) });
+	}
+}
+
 void Player::skillsLeaveSlime(Input& input) {
 	if (input.isKeyPressed(sf::Keyboard::Key::A)) {
-		if (slimePieceLeave.size() <= 2) {
+		if (slimePieceLeave.size() <= 1) {
 			float multipliterSlilme = 1 - weightLoss;
 
 			SlimePiece* block = new SlimePiece(getPos().x, getPos().y, 50, 50);
-			block->setColor((sf::Color::Blue));
+			block->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::depotSlime));;
 
 			sf::Vector2f sBlock = { float(getSize().x * weightLoss), float(getSize().y * weightLoss) };
 			block->setSize(sBlock);
@@ -39,15 +60,6 @@ void Player::skillsLeaveSlime(Input& input) {
 
 			slimePieceLeave.push_back((block));
 
-			/*if (slimePiece.size() == 0) {
-				currentStates = Player::SlimeStates::normal;
-			}
-			else if (slimePiece.size() == 1) {
-				currentStates = Player::SlimeStates::light;
-			}
-			else if (slimePiece.size() == 2) {
-				currentStates = Player::SlimeStates::micro;
-			}*/
 			weightLoss *= 0.9;
 		}
 	}
@@ -74,6 +86,7 @@ void Player::takeSlime(Input& input) {
 		for (int X = 0; X < slimePiece.size(); X++) {
 			if (input.isKeyPressed((sf::Keyboard::Key::W))) {
 				if (isColliding(*slimePiece[X])) {
+					//takeDamage();
 					const auto It = slimePiece.begin() + X;
 					sf::Vector2f multiSlime = { float(slimePiece[X]->getSize().x * 0.9), float(slimePiece[X]->getSize().y * 0.9) };
 					sf::Vector2f nSize = { getSize().x + multiSlime.x, getSize().y + multiSlime.y };
@@ -122,15 +135,16 @@ void Player::applyWind(float windForce, float dt) {
 }
 
 void Player::setAnimation(Animation * _myAnimation) {
-	myAnimation = _myAnimation;
+	myAnimation=_myAnimation;
 }
 
 
 void Player::render(sf::RenderWindow * window) {
-	myAnimation->render(*window);
+	myAnimation->render(*window,this);
 
 	rect.setTexture(&myAnimation->texture);
 	rect.setTextureRect(myAnimation->myStateRect);
+
 
 	for (auto& sP : slimePiece) {
 		sP->render(window);
@@ -144,14 +158,22 @@ void Player::render(sf::RenderWindow * window) {
 }
 
 void Player::update(float& dt, Input & input) {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) {
-		pos.x -= speed * dt;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
-		pos.x += speed * dt;
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
-		jump();
+	if (currentStates != SlimeStates::death) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) {
+			pos.x -= speed * dt;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
+			pos.x += speed * dt;
+		}
+		if (input.isKeyPressed(sf::Keyboard::Key::Space)) {
+			jump();
+		}
+		if (input.isKeyPressed(sf::Keyboard::Key::LControl)) {
+			runBool = !runBool;
+			run();
+		}
+		skillsLeaveSlime(input);
+		takeSlime(input);
 	}
 	if (!onGround) {
 		velocityY += gravity * dt;
@@ -163,14 +185,32 @@ void Player::update(float& dt, Input & input) {
 	}
 	clampInScreen();
 	setPos(pos);
-	skillsLeaveSlime(input);
-	takeSlime(input);
-	myAnimation->update(dt);
+	myAnimation->update(dt,input, this);
+	
 	for (auto& sP : slimePiece) {
 		sP->update(dt, input);
 	}
 	for (auto& sP : slimePieceLeave) {
 		sP->update(dt, input);
+	}
+
+	if (currentStates != SlimeStates::death) {
+		if (getSize().x < defautlSize.x * 0.75 && getSize().y < defautlSize.y * 0.75) {
+			currentStates = SlimeStates::light;
+		}
+		else if ((getSize().x > defautlSize.x * 0.8 && getSize().y > defautlSize.y * 0.8) && (getSize().x < defautlSize.x * 1.1 && getSize().y < defautlSize.y * 1.1)) {
+			currentStates = SlimeStates::normal;
+		}
+		else if (getSize().x > defautlSize.x * 1.1 && getSize().y > defautlSize.y * 1.1) {
+			currentStates = SlimeStates::heavy;
+		}
+	}
+
+	if (getSize().x > defautlSize.x * 1.15 && getSize().y > defautlSize.y * 1.15) {
+		setSize({float(defautlSize.x * 1.15), float(defautlSize.y * 1.15)});
+	}
+	if (getSize().x < defautlSize.x * 0.75 && getSize().y < defautlSize.y * 0.75) {
+		setSize({ float(defautlSize.x * 0.75), float(defautlSize.y * 0.75) });
 	}
 }
 

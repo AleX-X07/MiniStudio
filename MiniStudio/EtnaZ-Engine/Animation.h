@@ -7,9 +7,16 @@ class Player;
 class GameObject;
 
 enum class CharacterState {
-    IDLE,
+    IDLERIGHT,
+    IDLELEFT,
     LEFT,
     RIGHT,
+    RUNRIGHT,
+    RUNLEFT,
+    JUMPRIGHT,
+    JUMPLEFT,
+    DEATHRIGHT,
+    DEATHLEFT,
 };
 
 class Animation
@@ -23,6 +30,7 @@ private:
     int maxFrames;
     int nbrAnimation;
 
+    float defautlDuration;
     float animationTimer;
     float frameDuration;
 
@@ -37,7 +45,7 @@ public:
 public:
     // Constructor/Destructor
     Animation() = default;
-    Animation(sf::Texture texture, int maxFrames, int nbrAnimation, float frameDuration, int spriteWidth, int spriteHeight);
+    Animation(int maxFrames, int nbrAnimation, float frameDuration, int spriteWidth, int spriteHeight);
     ~Animation();
 
     //Get/Set
@@ -46,6 +54,6 @@ public:
 
     // Method
     void updatePNJ(float dt);
-    void update(float dt);
-    void render(sf::RenderWindow& window);
+    void update(float dt, Input& input, Player* Owner);
+    void render(sf::RenderWindow& window, Player* Owner);
 };

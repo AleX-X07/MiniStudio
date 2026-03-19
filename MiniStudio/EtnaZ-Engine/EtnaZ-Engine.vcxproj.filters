@@ -122,6 +122,9 @@
     <ClCompile Include="Ventilation.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="GameOver.cpp">
+      <Filter>Fichiers sources\Game\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">
@@ -194,6 +197,9 @@
     </ClInclude>
     <ClInclude Include="Ventilation.h">
       <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOver.h">
+      <Filter>Fichiers d%27en-tête\Game\Scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

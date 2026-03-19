@@ -32,13 +32,12 @@ void Game::setEntity() {
 		gameObject.push_back(backWhite);
 
 		//Player
-		player = new Player(750, 750);
-		Animation* myAnimation = new Animation(Textures::getMyTextures()->getTexture(Textures::texturesIndices::testSprite), 5, 1, 0.09f, 512, 104);
-		player->setAnimation(myAnimation);
-		player->setSize({ 100,100 });
+		player = new Player(750, 750,100,100);
+		Animation* myAnmation = new Animation(4,1,0.15f,1024,256);
+		player->setAnimation(myAnmation);
 
 		SlimePiece* mySP = new SlimePiece(1200,930,50,50);
-		mySP->setColor(sf::Color::Blue);
+		mySP->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::depotSlime));;
 		player->slimePiece.push_back(mySP);
 
 		//Camera
