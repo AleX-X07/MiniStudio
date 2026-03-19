@@ -17,7 +17,7 @@ private:
 public:
 	Button() = default;
 	Button(float x, float y, float w, float h, std::vector<GameState*>* states, sf::RenderWindow* window);
-	virtual ~Button() override;
+	virtual ~Button() override = default;
 
 	virtual void update(float& dt, Input& input) override;
 	virtual void render(sf::RenderWindow* window) override;
