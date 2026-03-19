@@ -11,11 +11,18 @@ GameEngine::GameEngine() {
 
 	currentInputKey = nullptr;
 	currentInputMouse = nullptr;
+	music.openFromFile("assets/sound/dark-ambiance.ogg");
+	music.setLooping(true);
+	music.setVolume(50.f);
 }
 
 GameEngine::~GameEngine() {
 	delete window;
 	window = nullptr;
+
+	states->clear();
+	delete states;
+	states = nullptr;
 }
 
 void GameEngine::updateEvent() {
@@ -56,6 +63,8 @@ void GameEngine::run() {
 	Textures::getMyTextures();
 
 	MainMenu::Instance(window, states);
+
+	music.play();
 
 	while (window->isOpen()) {
 		updateEvent();

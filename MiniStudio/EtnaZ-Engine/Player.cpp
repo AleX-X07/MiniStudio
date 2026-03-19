@@ -112,14 +112,13 @@ void Player::takeSlime(Input& input) {
 		for (int X = 0; X < slimePiece.size(); X++) {
 			if (input.isKeyPressed((sf::Keyboard::Key::W))) {
 				if (isColliding(*slimePiece[X])) {
-					//takeDamage();
+					takeDamage();
 					const auto It = slimePiece.begin() + X;
 					sf::Vector2f multiSlime = { float(slimePiece[X]->getSize().x * 0.9), float(slimePiece[X]->getSize().y * 0.9) };
 					sf::Vector2f nSize = { getSize().x + multiSlime.x, getSize().y + multiSlime.y };
 					setSize(nSize);
 					weightLoss = 0.3;
 					slimePiece.erase(It);
-					
 				}
 			}
 		}

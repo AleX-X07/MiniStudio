@@ -9,9 +9,10 @@ private:
 	Button* menu;
 	Button* quit;
 
-	Camera* camera;
-
 	sf::Vector2f center;
+
+protected:
+	Camera* camera;
 
 public:
 	PauseMenu() = default;
