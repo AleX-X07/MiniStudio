@@ -1,15 +1,28 @@
 #pragma once
-#include "Globals.h"
+#include "SFMl/Graphics.hpp"
 
-struct Input
+class Input
 {
-	const Event::KeyPressed* currentInputKey;
-	const Event::MouseButtonPressed* currentInputMouse;
+private:
+	bool keyPressed;
+	sf::Keyboard::Key key;
 
-	Input() = default;
+	bool mousePressed;
+	sf::Mouse::Button mouse;
+	sf::Vector2i mousePos;
+
+public:
+	bool quit;
+
+public:
+	Input();
 	~Input() = default;
 
-	void setInputKey(const Event::KeyPressed* input);
-	void setInputMouse(const Event::MouseButtonPressed* input);
+	void setEvent(sf::Event event);
+	void reset();
+
+	bool isKeyPressed(sf::Keyboard::Key key);
+	bool isMousePressed(sf::Mouse::Button button);
+	sf::Vector2i getMousePos();
 };
 

@@ -1,25 +1,28 @@
 #pragma once
 #include <iostream>
+#include "SFML/Graphics.hpp"
+#include "SFML/Audio.hpp"
 
 #include "Globals.h"
 #include "Input.h"
 
 #include "GameState.h"
 #include "MainMenu.h"
-
-using namespace std;
+#include "Textures.h"
 
 class GameEngine
 {
 private:
-	RenderWindow* window;
+	sf::RenderWindow* window;
 	float dt;
-	vector<GameState*>* states;
-	Input* input;
-	Clock clock;
+	std::vector<GameState*>* states;
+	Input input;
+	sf::Clock clock;
 
-	const Event::KeyPressed* currentInputKey;
-	const Event::MouseButtonPressed* currentInputMouse;
+	const sf::Event::KeyPressed* currentInputKey;
+	const sf::Event::MouseButtonPressed* currentInputMouse;
+public:
+	static std::vector<GameState*> statesPause;
 
 public:
 	GameEngine();

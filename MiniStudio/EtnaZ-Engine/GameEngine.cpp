@@ -1,10 +1,12 @@
 #include "GameEngine.h"
 
+std::vector<GameState*> GameEngine::statesPause;
+
 GameEngine::GameEngine() {
-	window = new RenderWindow(VideoMode({ win_width, win_heigt }), "EtnaZ-Engine");
+	window = new sf::RenderWindow(sf::VideoMode({ win_width, win_height }), "EtnaZ-Engine"); //, sf::Style::Default, sf::State::Fullscreen
 	dt = 0;
-	states = new vector<GameState*>;
-	input = new Input();
+	states = new std::vector<GameState*>;
+	input = Input();
 	clock.restart();
 
 	currentInputKey = nullptr;
@@ -14,48 +16,48 @@ GameEngine::GameEngine() {
 GameEngine::~GameEngine() {
 	delete window;
 	window = nullptr;
+
+	for (auto& s : *states) {
+		delete s;
+		s = nullptr;
+	}
+	states->clear();
+
+	for (auto& sP : statesPause) {
+		delete sP;
+		sP = nullptr;
+	}
+	statesPause.clear();
 }
 
 void GameEngine::updateEvent() {
-
-	/*currentInputKey = nullptr;
-	currentInputMouse = nullptr;*/
-
-	/*while (const optional event = window->pollEvent()) {
-		if (event->is<Event::Closed>()) {
+	input.reset();
+	while (const std::optional event = window->pollEvent()) {
+		if (event->is<sf::Event::Closed>()) {
 			window->close();
 		}
-
-		if (currentInputKey = event->getIf<sf::Event::KeyPressed>()) {
-			input->setInputKey(currentInputKey);
-		}
-		if (currentInputMouse = event->getIf<sf::Event::MouseButtonPressed>()) {
-			input->setInputMouse(currentInputMouse);
-		}
+		input.setEvent(event.value());
 	}
-
-	if (input->currentInputKey) {
-		if (input->currentInputKey->scancode == Keyboard::Scancode::D) {
-			cout << "rohjapjth";
-		}
-	}*/
-
 }
 
 void GameEngine::updateDt() {
-	Time elapsed = clock.getElapsedTime();
+	sf::Time elapsed = clock.getElapsedTime();
 	clock.restart();
 	dt = elapsed.asSeconds();
 }
 
 void GameEngine::update() {
 	if (!states->empty()) {
+		states->back()->setInput(input);
 		states->back()->manageState();
 		states->back()->update(dt);
 	}
 }
 
 void GameEngine::render() {
+	if (!statesPause.empty()) {
+		statesPause.back()->render();
+	}
 	if (!states->empty()) {
 		states->back()->render();
 	}
@@ -63,14 +65,16 @@ void GameEngine::render() {
 
 void GameEngine::run() {
 
+	Textures::getMyTextures();
+
 	MainMenu::Instance(window, states);
 
 	while (window->isOpen()) {
 		updateEvent();
 		updateDt();
 		update();
-		render();
 		window->clear();
+		render();
 		window->display();
 	}
 }

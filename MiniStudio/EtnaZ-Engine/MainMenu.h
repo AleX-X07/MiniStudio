@@ -1,18 +1,31 @@
 #pragma once
-#include "GameState.h"
+#include <SFML/Audio/Music.hpp>
 
+#include "GameState.h"
+#include "GameObject.h"
+#include "Textures.h"
+
+class Button;
 class Game;
 
 class MainMenu : public GameState
 {
 private:
+	GameObject* background;
+	GameObject* title;
+	Button* play;
+	Button* quit;
+	
+	sf::Music music;
 
 public:
 	MainMenu() = default;
-	MainMenu(RenderWindow* window, vector<GameState*>* states);
-	~MainMenu() = default;
+	MainMenu(sf::RenderWindow* window, std::vector<GameState*>* states);
+	virtual ~MainMenu() override;
 
-	static void Instance(RenderWindow* window, vector<GameState*>*& states);
+	static void Instance(sf::RenderWindow* window, std::vector<GameState*>*& states);
+
+	void setButton();
 
 	virtual void manageState() override;
 	virtual void update(float& dt) override;
