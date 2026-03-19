@@ -1,4 +1,5 @@
 #include "Game.h"
+
 #include "MainMenu.h"
 #include "PauseMenu.h"
 #include "Player.h"
@@ -6,6 +7,10 @@
 
 Game::Game(sf::RenderWindow* window, std::vector<GameState*>* _states) : GameState(window, _states), gOBuild(false) {
 	setEntity();
+	music.openFromFile("assets/sound/water-drop.ogg");
+	music.setLooping(true);
+	music.setVolume(100.f);
+	music.play();
 }
 
 void Game::Instance(sf::RenderWindow* window, std::vector<GameState*>*& states) {
@@ -17,6 +22,10 @@ void Game::manageState() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) {
 		GameState::pause(states);
 		PauseMenu::Instance(window, states, camera);
+	}
+	if (player->currentStates == Player::SlimeStates::death) {
+		GameState::pause(states);
+		GameOver::Instance(window, states, camera);
 	}
 } 
 
@@ -36,9 +45,9 @@ void Game::setEntity() {
 		Animation* myAnmation = new Animation(4,1,0.15f,1024,256);
 		player->setAnimation(myAnmation);
 
-		/*SlimePiece* mySP = new SlimePiece(1200,930,50,50);
+		SlimePiece* mySP = new SlimePiece(1200,700,50,50);
 		mySP->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::depotSlime));;
-		player->slimePiece.push_back(mySP);*/
+		player->slimePiece.push_back(mySP);
 
 		//Camera
 		camera = new Camera(0.01);
@@ -159,4 +168,10 @@ Game::~Game() {
 
 	delete myLevel;
 	myLevel = nullptr;
+
+	delete camera;
+	camera = nullptr;
+
+	gameObject.clear();
+	gameObjectCollider.clear();
 }

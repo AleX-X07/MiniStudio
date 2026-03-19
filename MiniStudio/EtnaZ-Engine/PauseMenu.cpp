@@ -2,9 +2,9 @@
 
 PauseMenu::PauseMenu(sf::RenderWindow* window, std::vector<GameState*>* states, Camera* _camera) : GameState(window, states){
 	camera = _camera;
-	background = new GameObject(0,0,win_width,win_height);
-	background->setColor({0,0,0,150});
-	//background->setColor(sf::Color::Red);
+	background = nullptr;
+	resume = nullptr;
+	quit = nullptr;
 	setButton();
 }
 
@@ -18,6 +18,10 @@ void PauseMenu::Instance(sf::RenderWindow* window, std::vector<GameState*>*& sta
 }
 
 void PauseMenu::setButton() {
+
+	background = new GameObject(0, 0, win_width, win_height);
+	background->setColor({ 0,0,0,150 });
+
 	resume = new Button(760, 375, 400, 150, states, window);
 	menu = new Button(780, 525,380,120,states, window);
 	quit = new Button(800, 650, 335, 100, states, window);

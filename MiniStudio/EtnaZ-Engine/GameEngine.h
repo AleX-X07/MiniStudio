@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include "SFML/Graphics.hpp"
+#include "SFML/Audio.hpp"
 
 #include "Globals.h"
 #include "Input.h"
@@ -16,6 +18,7 @@ private:
 	std::vector<GameState*>* states;
 	Input input;
 	sf::Clock clock;
+	sf::Music music;
 
 	const sf::Event::KeyPressed* currentInputKey;
 	const sf::Event::MouseButtonPressed* currentInputMouse;

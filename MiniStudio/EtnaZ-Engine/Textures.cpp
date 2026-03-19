@@ -15,8 +15,9 @@ Textures* Textures::getMyTextures() {
 }
 
 void Textures::loadAllTexture() {
-    // Menu/Pause
+    // Menu/Pause/GameOver
     loadTexture(Textures::texturesIndices::backgroundMenu, "assets/fond_du_menu.png");
+    loadTexture(Textures::texturesIndices::backgroundGameOver, "assets/game_over.png");
     loadTexture(Textures::texturesIndices::buttonPlay, "assets/button/button_play.png");
     loadTexture(Textures::texturesIndices::buttonQuit, "assets/button/button_quit.png");
     loadTexture(Textures::texturesIndices::buttonMenu, "assets/button/button_menu.png");

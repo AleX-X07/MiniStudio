@@ -15,6 +15,7 @@ public:
         buttonResume,
         // Background
         backgroundMenu,
+        backgroundGameOver,
         // Animation
 		depotSlime,
         // Normal
