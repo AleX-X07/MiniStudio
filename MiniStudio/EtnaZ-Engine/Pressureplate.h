@@ -22,9 +22,7 @@ public:
 		slime
 	};
 
-
 	typePuzzle currentType;
-	Door* linkedDoor = nullptr;
 
 public:
 	Pressureplate(float x, float y, float w, float h);
@@ -32,6 +30,7 @@ public:
 
 	bool isActivated();
 	void activate(Player* player, std::vector<Crate*>& crates);
+
 
 	void render(sf::RenderWindow* window) override;
 

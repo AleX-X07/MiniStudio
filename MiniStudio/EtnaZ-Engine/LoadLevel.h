@@ -37,9 +37,11 @@ public:
 	LoadLevel();
 	~LoadLevel();
 
+	float spawnX = 100.f;
+	float spawnY = 500.f;
+
 	bool loadLevel();
 
 	void render(sf::RenderWindow* window);
 
 };
-

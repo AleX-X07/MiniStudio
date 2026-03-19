@@ -30,7 +30,7 @@ void Game::manageState() {
 		GameState::pause(states);
 		GameOver::Instance(window, states, camera);
 	}
-} 
+}
 
 void Game::setEntity() {
 	if (!gOBuild) {
@@ -52,13 +52,17 @@ void Game::setEntity() {
 		gameObject.push_back(assets3);
 
 		//Player
-		player = new Player(100, 500,100,100);
-		Animation* myAnmation = new Animation(4,1,0.15f,1024,256);
+		player = new Player(myLevel->spawnX, myLevel->spawnY, 100, 100);
+		Animation* myAnmation = new Animation(4, 1, 0.15f, 1024, 256);
 		player->setAnimation(myAnmation);
 
 		for (auto& slime : myLevel->Slime) {
 			player->slimePiece.push_back(slime);
 		}
+
+		SlimePiece* mySP = new SlimePiece(1200, 930, 50, 50);
+		mySP->setColor(sf::Color::Blue);
+		player->slimePiece.push_back(mySP);
 
 		//Parallax
 		parallax = new Parallax();
@@ -74,6 +78,7 @@ void Game::setEntity() {
 		gOBuild = true;
 	}
 }
+
 void Game::updateCollision() {
 	if (!player) return;
 	player->onGround = false;
@@ -103,32 +108,30 @@ void Game::updateCollision() {
 
 		for (auto& crate : myLevel->Crates) {
 			if (crate->isColliding(*platform)) {
-				crate->resolveCollision(*platform);
-			}
-		}
-	}
+				float overlapLeft = (crate->pos.x + crate->size.x) - platform->pos.x;
+				float overlapRight = (platform->pos.x + platform->size.x) - crate->pos.x;
+				float overlapTop = (crate->pos.y + crate->size.y) - platform->pos.y;
+				float overlapBottom = (platform->pos.y + platform->size.y) - crate->pos.y;
 
-	for (auto& pp : myLevel->Pressureplates) {
-		if (player->isColliding(*pp)) {
-			player->resolveCollision(*pp);
-		}
-		for (auto& psP : player->slimePiece) {
-			if (psP != nullptr) {
-				if (psP->isColliding(*pp)) {
-					psP->resolveCollision(*pp);
+				bool fromLeft = std::abs(overlapLeft) < std::abs(overlapRight);
+				bool fromTop = std::abs(overlapTop) < std::abs(overlapBottom);
+
+				float minX = fromLeft ? overlapLeft : overlapRight;
+				float minY = fromTop ? overlapTop : overlapBottom;
+
+				if (std::abs(minX) < std::abs(minY)) {
+					crate->pos.x += fromLeft ? -minX : minX;
 				}
-			}
-		}
-		for (auto& psP : player->slimePieceLeave) {
-			if (psP != nullptr) {
-				if (psP->isColliding(*pp)) {
-					psP->resolveCollision(*pp);
+				else {
+					if (fromTop) {
+						crate->pos.y -= minY;
+						crate->onGround = true;
+					}
+					else {
+						crate->pos.y += minY;
+					}
 				}
-			}
-		}
-		for (auto& crate : myLevel->Crates) {
-			if (crate->isColliding(*pp)) {
-				crate->resolveCollision(*pp);
+				crate->setPos(crate->pos);
 			}
 		}
 	}
@@ -161,8 +164,8 @@ void Game::updateCollision() {
 			player->resolveCollision(*crate);
 
 			if (player->currentStates == Player::SlimeStates::heavy) {
-				float playerCenterX = player->pos.x + player->getSize().x * 0.5f;
-				float crateCenterX = crate->pos.x + crate->getSize().x * 0.5f;
+				float playerCenterX = player->pos.x + player->size.x * 0.5f;
+				float crateCenterX = crate->pos.x + crate->size.x * 0.5f;
 				float direction = (playerCenterX < crateCenterX) ? 1.f : -1.f;
 				crate->push(direction, 250.f);
 			}
@@ -172,6 +175,31 @@ void Game::updateCollision() {
 	for (auto& ventilation : myLevel->Ventilations) {
 		if (player->isColliding(*ventilation)) {
 			player->applyWind(ventilation->getWindForce(), 0.016f);
+		}
+	}
+
+	for (auto& pp : myLevel->Pressureplates) {
+		if (player->isColliding(*pp)) {
+			player->resolveCollision(*pp);
+		}
+		for (auto& psP : player->slimePiece) {
+			if (psP != nullptr) {
+				if (psP->isColliding(*pp)) {
+					psP->resolveCollision(*pp);
+				}
+			}
+		}
+		for (auto& psP : player->slimePieceLeave) {
+			if (psP != nullptr) {
+				if (psP->isColliding(*pp)) {
+					psP->resolveCollision(*pp);
+				}
+			}
+		}
+		for (auto& crate : myLevel->Crates) {
+			if (crate->isColliding(*pp)) {
+				crate->resolveCollision(*pp);
+			}
 		}
 	}
 
@@ -193,23 +221,23 @@ void Game::update(float& dt) {
 	if (player) {
 		player->update(dt, input);
 
-		if (player->pos.x < 1920 && player->pos.y < 1080 ) {
+		if (player->pos.x < 1920 && player->pos.y < 1080) {
 			parallax->loadZone(Parallax::zone::zone1);
 		}
-		 else if (player->pos.x > 1920 && player->pos.y < 1080) {
+		else if (player->pos.x > 1920 && player->pos.y < 1080) {
 			parallax->loadZone(Parallax::zone::zone2);
 		}
-		 else if (player->pos.x > 1920 && player->pos.y > 1080) {
+		else if (player->pos.x > 1920 && player->pos.y > 1080) {
 			parallax->loadZone(Parallax::zone::zone3);
 		}
-		 else {
+		else {
 			parallax->loadZone(Parallax::zone::zone4);
 		}
 	}
 	camera->updateCamera(player);
 	updateCollision();
 
-	
+
 	for (auto& crate : myLevel->Crates) {
 		crate->update(dt, input);
 	}
@@ -258,4 +286,3 @@ Game::~Game() {
 	gameObject.clear();
 	gameObjectCollider.clear();
 }
-

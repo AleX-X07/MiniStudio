@@ -71,16 +71,20 @@ LoadLevel::~LoadLevel()
 	Slime.clear();
 }
 
-bool LoadLevel::loadLevel(){
-	std::ifstream file("Room_3.txt");
+bool LoadLevel::loadLevel() {
+	std::ifstream file("Room_2.txt");
 	tileSet.loadFromFile("tileset.png");
 
 	std::string line;
 	std::string section;
 
-	while(getline(file, line)) {
+	while (getline(file, line)) {
 
 		if (line.empty()) {
+			continue;
+		}
+		if (line == "SPAWN") {
+			section = "SPAWN";
 			continue;
 		}
 		if (line == "PLATFORM") {
@@ -127,7 +131,10 @@ bool LoadLevel::loadLevel(){
 
 		std::istringstream iss(line);
 
-		if (section == "PLATFORM") {
+		if (section == "SPAWN") {
+			iss >> spawnX >> spawnY;
+		}
+		else if (section == "PLATFORM") {
 			float x, y, w, h;
 			iss >> x >> y >> w >> h;
 			GameObject* myPlatform = new GameObject(x, y, w, h);
@@ -189,8 +196,8 @@ bool LoadLevel::loadLevel(){
 			iss >> x >> y >> w >> h >> typeStr;
 			Pressureplate* myPp = new Pressureplate(x, y, w, h);
 
-			if (typeStr == "block") { 
-				myPp->currentType = Pressureplate::typePuzzle::block; 
+			if (typeStr == "block") {
+				myPp->currentType = Pressureplate::typePuzzle::block;
 			}
 			else if (typeStr == "slime") {
 				myPp->currentType = Pressureplate::typePuzzle::slime;
@@ -202,21 +209,8 @@ bool LoadLevel::loadLevel(){
 		}
 		else if (section == "DOOR") {
 			float x, y, w, h;
-			std::string typeStr;
-			iss >> x >> y >> w >> h >> typeStr;
-
+			iss >> x >> y >> w >> h;
 			Door* myDoor = new Door(x, y, w, h);
-
-			if (typeStr == "block") {
-				myDoor->currentType = Door::doorType::block;
-			}
-			else if (typeStr == "slime") {
-				myDoor->currentType = Door::doorType::slime;
-			}
-			else {
-				myDoor->currentType = Door::doorType::player;
-			}
-
 			Doors.push_back(myDoor);
 		}
 		else if (section == "SPIKE") {
@@ -239,31 +233,10 @@ bool LoadLevel::loadLevel(){
 		}
 	}
 
-	for (auto& pp : Pressureplates) {
-		for (auto& door : Doors) {
-
-			bool match = false;
-			if (pp->currentType == Pressureplate::typePuzzle::player && door->currentType == Door::doorType::player) {
-				match = true;
-			}
-			if (pp->currentType == Pressureplate::typePuzzle::block && door->currentType == Door::doorType::block) {
-				match = true;
-			}
-			if (pp->currentType == Pressureplate::typePuzzle::slime && door->currentType == Door::doorType::slime) {
-				match = true;
-			}
-
-			if (match && pp->linkedDoor == nullptr) {
-				pp->linkedDoor = door;
-				break;
-			}
-		}
-	}
-
 	return true;
 }
 
-void LoadLevel::render(sf::RenderWindow* window){
+void LoadLevel::render(sf::RenderWindow* window) {
 
 	for (auto& tile : tiles) {
 		tile->render(window);
