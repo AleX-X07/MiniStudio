@@ -61,7 +61,7 @@ LoadLevel::~LoadLevel()
 }
 
 bool LoadLevel::loadLevel(){
-	std::ifstream file("Room_1.txt");
+	std::ifstream file("Room_2.txt");
 	tileSet.loadFromFile("tileset.png");
 
 	std::string line;

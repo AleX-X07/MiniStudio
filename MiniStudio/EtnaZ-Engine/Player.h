@@ -10,7 +10,7 @@ class Player : public GameObject
 {
 private :
 	float speed = 300.f;
-	float jumpForce = -550;
+	float jumpForce = -900;
 	float gravity = 980.f;
 	float velocityX = 0.f;
 	float velocityY = 0.f;
