@@ -13,7 +13,7 @@ private:
 public:
 	SlimePiece() = default;
 	SlimePiece(float x, float y, float w, float h);
-	~SlimePiece() = default;
+	virtual ~SlimePiece() override = default;
 
 
 	// Method virtual

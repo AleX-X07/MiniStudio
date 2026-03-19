@@ -46,7 +46,7 @@ public:
     // Constructor/Destructor
     Animation() = default;
     Animation(int maxFrames, int nbrAnimation, float frameDuration, int spriteWidth, int spriteHeight);
-    ~Animation();
+    ~Animation() = default;
 
     //Get/Set
     CharacterState getCurrentState();

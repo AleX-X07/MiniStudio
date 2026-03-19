@@ -65,7 +65,7 @@ public :
 
 	Player() = default;
 	Player(float x, float y, float w, float h);
-	~Player() = default;
+	virtual ~Player() override;
 
 	void clampInScreen();
 	void jump();

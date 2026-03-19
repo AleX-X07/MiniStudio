@@ -64,7 +64,7 @@ void Textures::loadAllTexture() {
     loadTexture(Textures::texturesIndices::seed, "assets/graine.png");
     loadTexture(Textures::texturesIndices::crate, "assets/crate.png");
     loadTexture(Textures::texturesIndices::door, "assets/porte.png");
-    loadTexture(Textures::texturesIndices::title, "assets/titre_cacacacac.png");
+    loadTexture(Textures::texturesIndices::title, "assets/title.png");
 
     loadTexture(Textures::texturesIndices::particle, "assets/particle.png");
     loadTexture(Textures::texturesIndices::zone1Layer0, "assets/background1.png");

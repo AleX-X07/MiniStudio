@@ -21,12 +21,11 @@ private:
 public:
 	MainMenu() = default;
 	MainMenu(sf::RenderWindow* window, std::vector<GameState*>* states);
-	~MainMenu();
+	virtual ~MainMenu() override;
 
 	static void Instance(sf::RenderWindow* window, std::vector<GameState*>*& states);
 
 	void setButton();
-	void setTitle();
 
 	virtual void manageState() override;
 	virtual void update(float& dt) override;

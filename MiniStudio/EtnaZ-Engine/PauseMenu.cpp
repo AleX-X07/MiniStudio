@@ -9,7 +9,14 @@ PauseMenu::PauseMenu(sf::RenderWindow* window, std::vector<GameState*>* states, 
 }
 
 PauseMenu::~PauseMenu(){
-
+	delete background;
+	background = nullptr;
+	delete resume;
+	resume = nullptr;
+	delete menu;
+	menu = nullptr;
+	delete quit;
+	quit = nullptr;
 }
 
 void PauseMenu::Instance(sf::RenderWindow* window, std::vector<GameState*>*& states, Camera* camera) {

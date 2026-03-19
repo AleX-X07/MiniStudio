@@ -10,7 +10,14 @@ GameOver::GameOver(sf::RenderWindow* window, std::vector<GameState*>* states, Ca
 }
 
 GameOver::~GameOver() {
-
+	delete backgroundTransparent;
+	backgroundTransparent = nullptr;
+	delete background;
+	background = nullptr;
+	delete menu;
+	menu = nullptr;
+	delete quit;
+	quit = nullptr;
 }
 
 void GameOver::Instance(sf::RenderWindow* window, std::vector<GameState*>*& states, Camera* camera) {

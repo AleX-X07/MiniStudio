@@ -5,6 +5,8 @@
 MainMenu::MainMenu(sf::RenderWindow* window, std::vector<GameState*>* _states) : GameState(window, _states) {
 	background = new GameObject(200,0,1529,1080);
 	background->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::backgroundMenu));
+	title = new GameObject(509*1.25,0, 509*1.25, 360*1.25);
+	title->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::title));
 	music.openFromFile("assets/sound/dark-ambiance.ogg");
 	music.setLooping(true);
 	music.setVolume(50.f);
@@ -21,6 +23,9 @@ MainMenu::~MainMenu() {
 
 	delete quit;
 	quit = nullptr;
+
+	delete title;
+	title = nullptr;
 }
 
 void MainMenu::Instance(sf::RenderWindow* window, std::vector<GameState*>*& states) {
@@ -35,12 +40,6 @@ void MainMenu::setButton(){
 	play->setTexture((&Textures::getMyTextures()->getTexture(Textures::texturesIndices::buttonPlay)));
 	quit->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::buttonQuit));
 
-}
-
-void MainMenu::setTitle() {
-	GameObject* title = new GameObject(500, 100, 400, 150);
-	title->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::title));
-	this->title = title;
 }
 
 void MainMenu::manageState() {
@@ -60,9 +59,7 @@ void MainMenu::update(float& dt) {
 
 void MainMenu::render() {
 	background->render(window);
+	title->render(window);
 	play->render(window);
 	quit->render(window);
-	if (title) {
-		title->render(window);
-	}
 }

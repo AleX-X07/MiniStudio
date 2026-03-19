@@ -20,10 +20,6 @@ Animation::Animation(int _maxFrames, int _nbrAnimation, float _frameDuration, in
     animationRow = 0;
 }
 
-Animation::~Animation() {
-
-}
-
 CharacterState Animation::getCurrentState() {
     return currentState;
 }

@@ -17,7 +17,7 @@ protected:
 public:
 	PauseMenu() = default;
 	PauseMenu(sf::RenderWindow* window, std::vector<GameState*>* states, Camera* camera);
-	~PauseMenu();
+	virtual ~PauseMenu() override;
 
 	static void Instance(sf::RenderWindow* window, std::vector<GameState*>*& states, Camera* camera);
 

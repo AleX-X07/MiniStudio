@@ -12,7 +12,7 @@ private:
 public:
 	GameOver() = default;
 	GameOver(sf::RenderWindow* window, std::vector<GameState*>* states, Camera* camera);
-	~GameOver();
+	virtual ~GameOver() override;
 
 	static void Instance(sf::RenderWindow* window, std::vector<GameState*>*& states, Camera* camera);
 

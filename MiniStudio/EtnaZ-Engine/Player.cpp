@@ -14,6 +14,11 @@ Player::Player(float x, float y, float w, float h) : GameObject(x,y,w,h) {
 
 }
 
+Player::~Player() {
+	delete myAnimation;
+	myAnimation = nullptr;
+}
+
 void Player::clampInScreen() {
 	pos.x = std::max(0.f, std::min(pos.x, (float)(level_size_width - size.x)));
 	pos.y = std::max(0.f, std::min(pos.y, (float)(level_size_heigt - size.y)));
