@@ -14,7 +14,7 @@ public:
 	bool isCollected();
 	void collect();
 
-	void render(sf::RenderWindow* window) override;
+	void render(sf::RenderWindow* window);
 
 
 };

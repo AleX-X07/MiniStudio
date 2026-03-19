@@ -76,6 +76,7 @@ void Player::takeSlime(Input& input) {
 					setSize(nSize);
 					weightLoss = 0.3;
 					slimePieceLeave.erase(It);
+
 				}
 			}
 		}
@@ -92,6 +93,7 @@ void Player::takeSlime(Input& input) {
 					setSize(nSize);
 					weightLoss = 0.3;
 					slimePiece.erase(It);
+					
 				}
 			}
 		}
@@ -141,10 +143,6 @@ void Player::render(sf::RenderWindow * window) {
 	rect.setTexture(&myAnimation->texture);
 	rect.setTextureRect(myAnimation->myStateRect);
 
-
-	for (auto& sP : slimePiece) {
-		sP->render(window);
-	}
 	for (auto& sP : slimePieceLeave) {
 		sP->render(window);
 	}

@@ -12,6 +12,8 @@ bool Pressureplate::isActivated() {
 }
 
 void Pressureplate::activate() {
+
+
 	// conditions to activate
 	activated = true;
 }
@@ -21,3 +23,4 @@ void Pressureplate::render(sf::RenderWindow* window) {
 		GameObject::render(window);
 	}
 }
+

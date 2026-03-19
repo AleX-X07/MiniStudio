@@ -49,6 +49,11 @@ public:
         // Dead
         deadRight,
         deadLeft,
+
+        seed,
+        orb,
+        crate,
+        door
     };
 
     enum class fontsIndices{

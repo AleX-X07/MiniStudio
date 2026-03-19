@@ -58,6 +58,11 @@ void Textures::loadAllTexture() {
     // Dead
     loadTexture(Textures::texturesIndices::deadRight, "assets/Animation/animation_death.png");
     loadTexture(Textures::texturesIndices::deadLeft, "assets/Animation/animation_death_left.png");
+
+    loadTexture(Textures::texturesIndices::orb, "assets/rouge.png");
+    loadTexture(Textures::texturesIndices::seed, "assets/graine.png");
+    loadTexture(Textures::texturesIndices::crate, "assets/crate.png");
+    loadTexture(Textures::texturesIndices::door, "assets/porte.png");
 }
 
 void Textures::loadAllFont() {

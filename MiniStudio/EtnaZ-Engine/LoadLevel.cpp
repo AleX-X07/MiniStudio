@@ -54,11 +54,10 @@ LoadLevel::~LoadLevel()
 		ventilation = nullptr;
 	}
 
-
-	/*for (auto& slime : Slimes) {
+	for (auto& slime : Slime) {
 		delete slime;
 		slime = nullptr;
-	}*/
+	}
 }
 
 bool LoadLevel::loadLevel(){
@@ -114,8 +113,6 @@ bool LoadLevel::loadLevel(){
 			continue;
 		}
 
-		
-
 
 		std::istringstream iss(line);
 
@@ -138,7 +135,7 @@ bool LoadLevel::loadLevel(){
 				int column = 0;
 				while (row >> tileId) {
 					if (tileId != 0) {
-						if (!(tilesetColumns == 0)) {
+						if (tilesetColumns != 0) {
 							tileCol = (tileId - 1) % tilesetColumns;
 							tileRow = (tileId - 1) / tilesetColumns;
 						}
@@ -171,72 +168,68 @@ bool LoadLevel::loadLevel(){
 		else if (section == "SLIME") {
 			float x, y, w, h;
 			iss >> x >> y >> w >> h;
-			//Slimes.push_back(new Slime(x, y, w, h));
+			SlimePiece* mySP = new SlimePiece(x, y, w, h);
+			Slime.push_back(mySP);
+
 		}
 		else if (section == "PRESSURE_PLATE") {
-			//
+			float x, y, w, h;
+			iss >> x >> y >> w >> h;
+			Pressureplate* myPp = new Pressureplate(x, y, w, h);
+			Pressureplates.push_back(myPp);
 		}
 		else if (section == "DOOR") {
 			float x, y, w, h;
 			iss >> x >> y >> w >> h;
-			Doors.push_back(new Door(x, y, w, h));
+			Door* myDoor = new Door(x, y, w, h);
+			Doors.push_back(myDoor);
 		}
 		else if (section == "SPIKE") {
 			float x, y, w, h;
 			iss >> x >> y >> w >> h;
-			Spikes.push_back(new Spike(x, y, w, h));
+			Spike* mySpike = new Spike(x, y, w, h);
+			Spikes.push_back(mySpike);
 		}
 		else if (section == "CRATE") {
 			float x, y, w, h;
 			iss >> x >> y >> w >> h;
-			Crates.push_back(new Crate(x, y, w, h));
+			Crate* myCrate = new Crate(x, y, w, h);
+			Crates.push_back(myCrate);
 		}
 		else if (section == "VENTILATION") {
 			float x, y, w, h;
 			iss >> x >> y >> w >> h;
-			Ventilations.push_back(new Ventilation(x, y, w, h));
+			Ventilation* myVent = new Ventilation(x, y, w, h);
+			Ventilations.push_back(myVent);
 		}
 	}
 
 	return true;
 }
 
-void LoadLevel::render(sf::RenderWindow* window)
-{
-	for (auto& platform : Platform) {
-		platform->render(window);
-	}
+void LoadLevel::render(sf::RenderWindow* window){
 
 	for (auto& tile : tiles) {
 		tile->render(window);
 	}
 
 	for (auto& seed : Seeds) {
+		seed->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::seed));
 		seed->render(window);
 	}
 
 	for (auto& orb : Orbs) {
+		orb->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::orb));
 		orb->render(window);
 	}
 
-	for (auto& pressureplate : Pressureplates) {
-		pressureplate->render(window);
-	}
-
 	for (auto& door : Doors) {
+		door->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::door));
 		door->render(window);
 	}
 
-	for (auto& spike : Spikes) {
-		spike->render(window);
-	}
-
 	for (auto& crate : Crates) {
+		crate->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::crate));
 		crate->render(window);
 	}
-
-	for (auto& ventilation : Ventilations) {
-		ventilation->render(window);
-	}
-	 
 }
