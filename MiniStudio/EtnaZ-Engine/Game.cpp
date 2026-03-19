@@ -52,6 +52,58 @@ void Game::updateCollision() {
 			player->resolveCollision(*platform);
 		}
 	}
+
+	for (auto& Seed : myLevel->Seeds) {
+		if (Seed->isCollected()) continue;
+		if (player->isColliding(*Seed)) {
+			Seed->collect();
+			player->collectSeed();
+		}
+	}
+
+	for (auto& Orb : myLevel->Orbs) {
+		if (Orb->isCollected()) continue;
+		if (player->isColliding(*Orb)) {
+			Orb->collect();
+			player->collectOrb();			
+		}
+	}
+
+	for (auto& pressurePlate : myLevel->Pressureplates) {
+		if (pressurePlate->isActivated()) continue;
+		if (player->isColliding(*pressurePlate)) {
+			pressurePlate->activate();
+		}
+	}
+
+	for (auto& door : myLevel->Doors) {
+		if (door->isOpen()) continue;
+		if (player->isColliding(*door)) {
+			// condition to open the door
+			door->openDoor();
+		}
+	}
+
+	for (auto& spike : myLevel->Spikes) {
+		if (player->isColliding(*spike)) {
+			player->respawn();
+		}
+	}
+
+	for (auto& crate : myLevel->Crates) {
+		if (player->isColliding(*crate)) {
+			player->resolveCollision(*crate);
+			// condition to push the crate
+		}
+	}
+
+	for (auto& ventilation : myLevel->Ventilations) {
+		if (player->isColliding(*ventilation)) {
+			// condition to apply wind force
+			player->applyWind(500.f, 0.016f);
+		}
+	}
+
 }
 
 void Game::update(float& dt) {

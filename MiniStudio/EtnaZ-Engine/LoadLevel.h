@@ -7,6 +7,11 @@
 #include "Tile.h"
 #include "Seed.h"
 #include "Orb.h"
+#include "PressurePlate.h"
+#include "Door.h"
+#include "Spike.h"
+#include "Crate.h"
+#include "Ventilation.h"
 
 using namespace std;
 
@@ -22,6 +27,11 @@ public:
 	vector<Tile*> tiles;
 	vector<Seed*> Seeds;
 	vector<Orb*> Orbs;
+	vector<Pressureplate*> Pressureplates;
+	vector<Door*> Doors;
+	vector<Spike*> Spikes;
+	vector<Crate*> Crates;
+	vector<Ventilation*> Ventilations;
 
 
 	LoadLevel();

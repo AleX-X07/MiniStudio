@@ -133,6 +133,8 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Crate.cpp" />
+    <ClCompile Include="Door.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -143,13 +145,18 @@
     <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Orb.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Pressureplate.cpp" />
     <ClCompile Include="Seed.cpp" />
+    <ClCompile Include="Spike.cpp" />
     <ClCompile Include="Textures.cpp" />
     <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="Ventilation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Crate.h" />
+    <ClInclude Include="Door.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
@@ -160,9 +167,12 @@
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Orb.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Pressureplate.h" />
     <ClInclude Include="Seed.h" />
+    <ClInclude Include="Spike.h" />
     <ClInclude Include="Textures.h" />
     <ClInclude Include="Tile.h" />
+    <ClInclude Include="Ventilation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

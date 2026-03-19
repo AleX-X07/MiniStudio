@@ -1,14 +1,21 @@
 #pragma once
 #include "GameObject.h"
 
-
-// type of Orb
-// dash/ double jump ect
-// with enum?
-
-
 class Orb : public GameObject
 {
+private:
+
+	bool collected;
+
+public:
+
+	Orb(float x, float y, float w, float h);
+
+	bool isCollected();
+	void collect();
+
+	void render(RenderWindow* window) override;
+
 
 };
 
