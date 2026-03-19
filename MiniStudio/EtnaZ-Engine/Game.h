@@ -16,10 +16,12 @@ class Game : public GameState
 { 
 private:
 	LoadLevel* myLevel;
+	
 	Camera* camera;
 	Player* player;
 	std::vector<GameObject*> gameObject;
 	std::vector<GameObject*> gameObjectCollider;
+
 	bool gOBuild;
 
 	sf::Music music;

@@ -43,7 +43,7 @@ void Game::setEntity() {
 		gameObject.push_back(backWhite);
 
 		//Player
-		player = new Player(750, 750,100,100);
+		player = new Player(200, 200,100,100);
 		Animation* myAnmation = new Animation(4,1,0.15f,1024,256);
 		player->setAnimation(myAnmation);
 
@@ -107,13 +107,6 @@ void Game::updateCollision() {
 		}
 	}
 
-	for (auto& pressurePlate : myLevel->Pressureplates) {
-		if (pressurePlate->isActivated()) continue;
-		if (player->isColliding(*pressurePlate)) {
-			pressurePlate->activate();
-		}
-	}
-
 	for (auto& door : myLevel->Doors) {
 		if (door->isOpen()) continue;
 		if (player->isColliding(*door)) {
@@ -163,6 +156,11 @@ void Game::update(float& dt) {
 	}
 	camera->updateCamera(player);
 	updateCollision();
+
+	
+	for (auto& pp : myLevel->Pressureplates) {
+		pp->activate(player, myLevel->Crates);
+	}	
 }
 
 void Game::render() {

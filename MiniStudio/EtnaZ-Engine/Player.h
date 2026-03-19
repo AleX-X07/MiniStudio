@@ -10,11 +10,7 @@ class Player : public GameObject
 {
 private :
 	float speed = 300.f;
-	float jumpForce = -550;
-	float dashDistance = 300.0f;
-	float dashCooldown = 3.0f;
-	float dashTimer = 0.0f;
-	bool canDash = true;
+	float jumpForce = -900;
 	float gravity = 980.f;
 	bool isDashing = false;
 	float dashProgress = 0.0f;
