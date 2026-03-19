@@ -5,16 +5,32 @@
 #include "GameObject.h"
 #include "Textures.h"
 #include "Tile.h"
+#include "Seed.h"
+#include "Orb.h"
+#include "PressurePlate.h"
+#include "Door.h"
+#include "Spike.h"
+#include "Crate.h"
+#include "Ventilation.h"
 
 class LoadLevel{
 
 private:
 	sf::Texture tileSet;
-	
+	int tileCol;
+	int tileRow;
 
 public:
-	std::vector<GameObject*> Platform;
-	std::vector<Tile*> tiles;
+	vector<GameObject*> Platform;
+	vector<Tile*> tiles;
+	vector<Seed*> Seeds;
+	vector<Orb*> Orbs;
+	vector<Pressureplate*> Pressureplates;
+	vector<Door*> Doors;
+	vector<Spike*> Spikes;
+	vector<Crate*> Crates;
+	vector<Ventilation*> Ventilations;
+
 
 	LoadLevel();
 	~LoadLevel();

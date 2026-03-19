@@ -3,12 +3,14 @@
 #include "GameObject.h"
 #include "Animation.h"
 #include "SlimePiece.h"
+#include "Orb.h"
+
 
 class Player : public GameObject
 {
 private :
 	float speed = 300.f;
-	float jumpForce = -500.f; 
+	float jumpForce = -800.f;
 	float gravity = 980.f;
 	float velocityX = 0.f;
 	float velocityY = 0.f;
@@ -29,6 +31,17 @@ private :
 public:
 	std::vector<SlimePiece*> slimePieceLeave;
 	std::vector<SlimePiece*> slimePiece;
+	int seedNb = 0;
+	int orbNb = 0;
+
+	float spawnX = 0.f;
+	float spawnY = 0.f;
+
+	bool canDash = false;
+	bool canDoubleJump = false;
+	bool canDivision = false;
+
+	Animation* myAnimation;	
 
 public :
 	bool onGround = false;
@@ -42,6 +55,15 @@ public :
 
 	void skillsLeaveSlime(Input& input);
 	void takeSlime(Input& input);
+	void collectSeed();
+	int getSeedNb();
+
+	void collectOrb();
+
+	void respawn();
+
+	void applyWind(float windForce, float dt);
+
 
 	void setAnimation(Animation* myAnimation);
 
@@ -49,4 +71,5 @@ public :
 	virtual void update(float& dt, Input& input) override;
 	virtual void resolveCollision(GameObject& gameObject) override;
 };
+
 
