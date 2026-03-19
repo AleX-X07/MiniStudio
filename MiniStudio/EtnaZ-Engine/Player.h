@@ -10,7 +10,7 @@ class Player : public GameObject
 {
 private :
 	float speed = 300.f;
-	float jumpForce = -800.f;
+	float jumpForce = -550;
 	float gravity = 980.f;
 	float velocityX = 0.f;
 	float velocityY = 0.f;
@@ -18,6 +18,8 @@ private :
 	Animation* myAnimation;
 
 	float weightLoss = 0.3; 
+
+	int nbrDepotSlime;
 
 public:
 	bool runBool;

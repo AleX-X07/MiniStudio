@@ -1,8 +1,7 @@
 #include "Player.h"
 #include "Textures.h"
 
-Player::Player(float x, float y) : GameObject(x,y)
-{
+Player::Player(float x, float y, float w, float h) : GameObject(x,y,w,h) {
 	speed = 300.0f;
 	myAnimation = nullptr;
 	spawnX = x;
@@ -46,7 +45,7 @@ void Player::takeDamage() {
 
 void Player::skillsLeaveSlime(Input& input) {
 	if (input.isKeyPressed(sf::Keyboard::Key::A)) {
-		if (slimePieceLeave.size() <= 1) {
+		if (slimePieceLeave.size() <= nbrDepotSlime) {
 			float multipliterSlilme = 1 - weightLoss;
 
 			SlimePiece* block = new SlimePiece(getPos().x, getPos().y, 50, 50);
@@ -115,9 +114,6 @@ void Player::collectOrb() {
 	}
 	if (orbNb == 2) {
 		canDoubleJump = true;
-	}
-	if (orbNb == 3) {
-		canDivision = true;
 	}
 }
 
@@ -197,12 +193,15 @@ void Player::update(float& dt, Input & input) {
 	if (currentStates != SlimeStates::death) {
 		if (getSize().x < defautlSize.x * 0.75 && getSize().y < defautlSize.y * 0.75) {
 			currentStates = SlimeStates::light;
+			nbrDepotSlime = 0;
 		}
 		else if ((getSize().x > defautlSize.x * 0.8 && getSize().y > defautlSize.y * 0.8) && (getSize().x < defautlSize.x * 1.1 && getSize().y < defautlSize.y * 1.1)) {
 			currentStates = SlimeStates::normal;
+			nbrDepotSlime = 1;
 		}
 		else if (getSize().x > defautlSize.x * 1.1 && getSize().y > defautlSize.y * 1.1) {
 			currentStates = SlimeStates::heavy;
+			nbrDepotSlime = 2;
 		}
 	}
 

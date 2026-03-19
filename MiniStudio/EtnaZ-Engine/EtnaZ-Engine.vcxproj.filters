@@ -1,139 +1,106 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Fichiers sources">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Fichiers d%27en-tête">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Fichiers de ressources">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Fichiers d%27en-tête\Game">
-      <UniqueIdentifier>{a6d7250c-8d0e-427c-94b3-8a9abdf299be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers sources\Game">
-      <UniqueIdentifier>{e77fdc4f-9feb-44d6-84b0-50c5683ca283}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers d%27en-tête\Game\Scene">
-      <UniqueIdentifier>{18a1a1b3-8811-4f24-beaf-7e96013297b1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers sources\Game\Scene">
-      <UniqueIdentifier>{0bd13dd6-c68f-4d52-af88-d55a007552a6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers d%27en-tête\Tool">
-      <UniqueIdentifier>{de0ac5bd-464a-49c5-a74a-2f93242507f5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers sources\Tool">
-      <UniqueIdentifier>{c4f8f596-b7bc-4f10-800f-473c719e4849}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers sources\GameObject">
-      <UniqueIdentifier>{51a46934-4b68-4a86-bcdf-d452c9639374}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers sources\GameObject\Entity">
-      <UniqueIdentifier>{a0e78ce6-d1d1-4329-966c-dada40d2e0b1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers d%27en-tête\GameObject">
-      <UniqueIdentifier>{7604fff7-a0a1-4de1-b83c-3edee9702b3c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers d%27en-tête\GameObject\Entity">
-      <UniqueIdentifier>{da5590dc-9170-482e-a7c2-e694e1823bd8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers d%27en-tête\Level">
-      <UniqueIdentifier>{95d3617d-c468-4a63-9404-f10c051e7e2b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers sources\Level">
-      <UniqueIdentifier>{ec8a0214-4a9f-4a99-97cb-09cdad089c86}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="GameEngine.cpp">
-      <Filter>Fichiers sources\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
-      <Filter>Fichiers sources\Game\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Fichiers sources\Game\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>Fichiers sources\Tool</Filter>
-    </ClCompile>
-    <ClCompile Include="GameState.cpp">
-      <Filter>Fichiers sources\Game\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Fichiers sources\Tool</Filter>
-    </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Fichiers sources\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Fichiers sources\GameObject\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="LoadLevel.cpp">
-      <Filter>Fichiers sources\Level</Filter>
-    </ClCompile>
-    <ClCompile Include="LoadLevel.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Textures.cpp">
-      <Filter>Fichiers sources\Tool</Filter>
-    </ClCompile>
-    <ClCompile Include="Tile.cpp">
-      <Filter>Fichiers sources\Level</Filter>
-    </ClCompile>
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Animation.cpp">
       <Filter>Fichiers sources\Tool</Filter>
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>Fichiers sources\Tool</Filter>
     </ClCompile>
-    <ClCompile Include="SlimePiece.cpp">
-      <Filter>Fichiers sources\GameObject\Entity</Filter>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Fichiers sources\Tool</Filter>
     </ClCompile>
-    <ClCompile Include="PauseMenu.cpp">
+    <ClCompile Include="MainMenu.cpp">
       <Filter>Fichiers sources\Game\Scene</Filter>
-    <ClCompile Include="Seed.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Orb.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Door.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Pressureplate.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Spike.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Crate.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Ventilation.cpp">
-      <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="GameOver.cpp">
       <Filter>Fichiers sources\Game\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>Fichiers sources\Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseMenu.cpp">
+      <Filter>Fichiers sources\Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Fichiers sources\Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngine.cpp">
+      <Filter>Fichiers sources\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Fichiers sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Fichiers sources\Tool</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Fichiers sources\GameObject\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="SlimePiece.cpp">
+      <Filter>Fichiers sources\GameObject\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Fichiers sources\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadLevel.cpp">
+      <Filter>Fichiers sources\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="Crate.cpp">
+      <Filter>Fichiers sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Door.cpp">
+      <Filter>Fichiers sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Orb.cpp">
+      <Filter>Fichiers sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Pressureplate.cpp">
+      <Filter>Fichiers sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Seed.cpp">
+      <Filter>Fichiers sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Spike.cpp">
+      <Filter>Fichiers sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Ventilation.cpp">
+      <Filter>Fichiers sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Textures.cpp">
+      <Filter>Fichiers sources\Tool</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Game.h">
+      <Filter>Fichiers d%27en-tête\Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Fichiers d%27en-tête\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Fichiers d%27en-tête\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Fichiers d%27en-tête\Tool</Filter>
+    </ClInclude>
     <ClInclude Include="GameEngine.h">
       <Filter>Fichiers d%27en-tête\Game</Filter>
     </ClInclude>
-    <ClInclude Include="MainMenu.h">
+    <ClInclude Include="GameObject.h">
+      <Filter>Fichiers d%27en-tête\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOver.h">
       <Filter>Fichiers d%27en-tête\Game\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
+    <ClInclude Include="GameState.h">
+      <Filter>Fichiers d%27en-tête\Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseMenu.h">
+      <Filter>Fichiers d%27en-tête\Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
       <Filter>Fichiers d%27en-tête\Game\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Globals.h">
@@ -142,23 +109,11 @@
     <ClInclude Include="Input.h">
       <Filter>Fichiers d%27en-tête\Tool</Filter>
     </ClInclude>
-    <ClInclude Include="GameState.h">
-      <Filter>Fichiers d%27en-tête\Game\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Fichiers d%27en-tête\Tool</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Fichiers d%27en-tête\GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Fichiers d%27en-tête\GameObject\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="LoadLevel.h">
-      <Filter>Fichiers d%27en-tête\Level</Filter>
-    </ClInclude>
-    <ClInclude Include="LoadLevel.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+    <ClInclude Include="SlimePiece.h">
+      <Filter>Fichiers d%27en-tête\GameObject\Entity</Filter>
     </ClInclude>
     <ClInclude Include="Textures.h">
       <Filter>Fichiers d%27en-tête\Tool</Filter>
@@ -166,40 +121,76 @@
     <ClInclude Include="Tile.h">
       <Filter>Fichiers d%27en-tête\Level</Filter>
     </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>Fichiers d%27en-tête\Tool</Filter>
-    </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Fichiers d%27en-tête\Tool</Filter>
-    </ClInclude>
-    <ClInclude Include="SlimePiece.h">
-      <Filter>Fichiers d%27en-tête\GameObject\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="PauseMenu.h">
-      <Filter>Fichiers d%27en-tête\Game\Scene</Filter>
-    <ClInclude Include="Seed.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Orb.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Door.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Pressureplate.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Spike.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+    <ClInclude Include="LoadLevel.h">
+      <Filter>Fichiers d%27en-tête\Level</Filter>
     </ClInclude>
     <ClInclude Include="Crate.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Door.h">
+      <Filter>Fichiers d%27en-tête\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Orb.h">
+      <Filter>Fichiers d%27en-tête\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Pressureplate.h">
+      <Filter>Fichiers d%27en-tête\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Seed.h">
+      <Filter>Fichiers d%27en-tête\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Spike.h">
+      <Filter>Fichiers d%27en-tête\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Ventilation.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="GameOver.h">
-      <Filter>Fichiers d%27en-tête\Game\Scene</Filter>
-    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Fichiers de ressources">
+      <UniqueIdentifier>{71f3736b-74d5-4fd2-bc3a-a53a4e3994c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête">
+      <UniqueIdentifier>{1646a9b2-f9a3-4a75-a46d-bad7d0d45e9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources">
+      <UniqueIdentifier>{745831d6-7474-47f8-a27c-bb0a0c861667}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Game">
+      <UniqueIdentifier>{16eeeb35-23bc-4516-ba73-d161a85c12df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Game\Scene">
+      <UniqueIdentifier>{2fec7ede-f27e-4599-aeec-3eeeaba04310}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Tool">
+      <UniqueIdentifier>{d94e845e-2b70-44f3-8cb1-9d7b19ee5918}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GameObject">
+      <UniqueIdentifier>{0db7faf9-e9f7-4cba-9a48-c4997cc8352e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GameObject\Entity">
+      <UniqueIdentifier>{8fc27d26-a0a8-47f4-90c7-734c3087b1cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Game">
+      <UniqueIdentifier>{04f2deb3-6b64-485d-96f7-ecb6bfeebe54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Game\Scene">
+      <UniqueIdentifier>{2605590a-2fba-4d76-8f11-2267ced4a704}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GameObject">
+      <UniqueIdentifier>{ef036466-e536-4151-beda-48d6061ea56c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Tool">
+      <UniqueIdentifier>{a1488775-7512-4136-81e6-53dc6f1431d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GameObject\Entity">
+      <UniqueIdentifier>{95784d4f-2d8c-4f07-8b92-f4dd8b91f4c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Level">
+      <UniqueIdentifier>{79a953eb-7aa0-4f9f-8e91-473296e101dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Level">
+      <UniqueIdentifier>{c8ae0d62-188b-45f0-8e3c-c89316f53513}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

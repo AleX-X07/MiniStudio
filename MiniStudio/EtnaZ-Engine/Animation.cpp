@@ -226,7 +226,7 @@ void Animation::render(sf::RenderWindow& window, Player* Owner) {
 	 //       break;
   //      }
   //      break;
-  //  }
+  }
    
     myStateRect = { {  currentFrame * spriteWidth, animationRow * spriteHeight}, {spriteWidth,spriteHeight} };
 }
