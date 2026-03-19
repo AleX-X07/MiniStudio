@@ -3,7 +3,7 @@
 std::vector<GameState*> GameEngine::statesPause;
 
 GameEngine::GameEngine() {
-	window = new sf::RenderWindow(sf::VideoMode({ win_width, win_height }), "EtnaZ-Engine", sf::Style::Default, sf::State::Fullscreen);
+	window = new sf::RenderWindow(sf::VideoMode({ win_width, win_height }), "EtnaZ-Engine"); //, sf::Style::Default, sf::State::Fullscreen
 	dt = 0;
 	states = new std::vector<GameState*>;
 	input = Input();

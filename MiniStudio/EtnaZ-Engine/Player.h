@@ -20,7 +20,9 @@ private :
 
 	float velocityX = 0.f;
 	float velocityY = 0.f;
+	int jumpCount = 0;
 
+	int maxJumpCount = 2;
 	Animation* myAnimation;
 
 	float weightLoss = 0.3; 
@@ -52,7 +54,10 @@ public:
 
 public :
 	bool onGround = false;
+	bool spaceWasPressed = false;
+
 	float Cooldown;
+
 	Player() = default;
 	Player(float x, float y, float w, float h);
 	~Player() = default;

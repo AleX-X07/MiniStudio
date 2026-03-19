@@ -145,6 +145,7 @@
     <ClCompile Include="LoadLevel.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Parallax.cpp" />
     <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="SlimePiece.cpp" />
     <ClCompile Include="Orb.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="LoadLevel.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClCompile Include="Parallax.h" />
     <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="SlimePiece.h" />
     <ClInclude Include="Orb.h" />

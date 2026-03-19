@@ -71,6 +71,9 @@
     <ClCompile Include="Textures.cpp">
       <Filter>Fichiers sources\Tool</Filter>
     </ClCompile>
+    <ClCompile Include="Parallax.cpp">
+      <Filter>Fichiers sources\Game\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -145,6 +148,9 @@
     <ClInclude Include="Ventilation.h">
       <Filter>Fichiers d%27en-tête\GameObject</Filter>
     </ClInclude>
+    <ClCompile Include="Parallax.h">
+      <Filter>Fichiers sources\Game\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Fichiers de ressources">

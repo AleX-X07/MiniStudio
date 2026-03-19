@@ -27,10 +27,18 @@ void Game::setEntity() {
 		myLevel->loadLevel();
 
 
-		// Background white
-		GameObject* backWhite = new GameObject(0, 0, win_width, win_height);
-		backWhite->setColor(sf::Color::White);
-		gameObject.push_back(backWhite);
+		// Assets
+		GameObject* assets1 = new GameObject(0, 0, win_width, win_height);
+		assets1->setTexture((&Textures::getMyTextures()->getTexture(Textures::texturesIndices::zone1Layer1)));
+		gameObject.push_back(assets1);
+
+		GameObject* assets2 = new GameObject(1920, 0, win_width, win_height);
+		assets2->setTexture((&Textures::getMyTextures()->getTexture(Textures::texturesIndices::zone2Layer1)));
+		gameObject.push_back(assets2);
+
+		GameObject* assets3 = new GameObject(1920, 0, win_width, win_height);
+		assets3->setTexture((&Textures::getMyTextures()->getTexture(Textures::texturesIndices::zone3Layer1)));
+		gameObject.push_back(assets3);
 
 		//Player
 		player = new Player(200, 200,100,100);
@@ -40,6 +48,14 @@ void Game::setEntity() {
 		for (auto& slime : myLevel->Slime) {
 			player->slimePiece.push_back(slime);
 		}
+
+		SlimePiece* mySP = new SlimePiece(1200,930,50,50);
+		mySP->setColor(sf::Color::Blue);
+		player->slimePiece.push_back(mySP);
+
+		//Parallax
+		parallax = new Parallax();
+		//parallax->addLayer(Textures::texturesIndices::Layer2?, 1.0f);
 
 
 		//Camera
@@ -137,6 +153,19 @@ void Game::update(float& dt) {
 	
 	if (player) {
 		player->update(dt, input);
+
+		if (player->pos.x < 1920 && player->pos.y < 1080 ) {
+			parallax->loadZone(Parallax::zone::zone1);
+		}
+		 else if (player->pos.x > 1920 && player->pos.y < 1080) {
+			parallax->loadZone(Parallax::zone::zone2);
+		}
+		 else if (player->pos.x > 1920 && player->pos.y > 1080) {
+			parallax->loadZone(Parallax::zone::zone3);
+		}
+		 else {
+			parallax->loadZone(Parallax::zone::zone4);
+		}
 	}
 	camera->updateCamera(player);
 	updateCollision();
@@ -148,6 +177,10 @@ void Game::update(float& dt) {
 }
 
 void Game::render() {
+	window->setView(window->getDefaultView());
+	if (parallax) {
+		parallax->render(*window, *camera, player);
+	}
 
 	camera->setCamera(window);
 
@@ -172,4 +205,8 @@ Game::~Game() {
 
 	delete myLevel;
 	myLevel = nullptr;
+
+	delete parallax;
+	parallax = nullptr;
 }
+

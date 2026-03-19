@@ -65,6 +65,13 @@ void Textures::loadAllTexture() {
     loadTexture(Textures::texturesIndices::door, "assets/porte.png");
     loadTexture(Textures::texturesIndices::title, "assets/titre_cacacacac.png");
 
+    loadTexture(Textures::texturesIndices::particle, "assets/particle.png");
+    loadTexture(Textures::texturesIndices::zone1Layer0, "assets/background1.png");
+    loadTexture(Textures::texturesIndices::zone1Layer1, "assets/assets1.png");
+    loadTexture(Textures::texturesIndices::zone2Layer1, "assets/assets2.png");
+    loadTexture(Textures::texturesIndices::zone2Layer0, "assets/background2.png");
+    loadTexture(Textures::texturesIndices::zone3Layer0, "assets/background3.png");
+    loadTexture(Textures::texturesIndices::zone4Layer0, "assets/background4.png");
 }
 
 void Textures::loadAllFont() {
