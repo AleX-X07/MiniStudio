@@ -23,10 +23,15 @@ void GameState::resume(){
 	if (!states->empty()) {
 		states->pop_back();
 		states->push_back(GameEngine::statesPause.back());
+		states->back()->onResume();
 		GameEngine::statesPause.pop_back();
 	}
 }
 
 void GameState::setInput(Input &_input) {
 	input = _input;
+}
+
+void GameState::onResume(){
+
 }

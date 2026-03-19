@@ -5,7 +5,10 @@
 MainMenu::MainMenu(sf::RenderWindow* window, std::vector<GameState*>* _states) : GameState(window, _states) {
 	background = new GameObject(200,0,1529,1080);
 	background->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::backgroundMenu));
-
+	music.openFromFile("assets/sound/dark-ambiance.ogg");
+	music.setLooping(true);
+	music.setVolume(50.f);
+	music.play();
 	setButton();
 }
 
@@ -42,6 +45,7 @@ void MainMenu::setTitle() {
 
 void MainMenu::manageState() {
 	if (play->isClicked(input)) {
+		music.stop();
 		GameState::nextState(states);
 		Game::Instance(window, states);
 	}

@@ -1,4 +1,5 @@
 #include "Game.h"
+
 #include "MainMenu.h"
 #include "PauseMenu.h"
 #include "Player.h"
@@ -6,6 +7,10 @@
 
 Game::Game(sf::RenderWindow* window, std::vector<GameState*>* _states) : GameState(window, _states), gOBuild(false) {
 	setEntity();
+	music.openFromFile("assets/sound/water-drop.ogg");
+	music.setLooping(true);
+	music.setVolume(100.f);
+	music.play();
 }
 
 void Game::Instance(sf::RenderWindow* window, std::vector<GameState*>*& states) {
@@ -15,8 +20,14 @@ void Game::Instance(sf::RenderWindow* window, std::vector<GameState*>*& states) 
 
 void Game::manageState() {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Escape)) {
+		music.pause();
 		GameState::pause(states);
 		PauseMenu::Instance(window, states, camera);
+	}
+	if (player->currentStates == Player::SlimeStates::death) {
+		music.pause();
+		GameState::pause(states);
+		GameOver::Instance(window, states, camera);
 	}
 } 
 
@@ -25,7 +36,6 @@ void Game::setEntity() {
 
 		myLevel = new LoadLevel();
 		myLevel->loadLevel();
-
 
 		// Assets
 		GameObject* assets1 = new GameObject(0, 0, win_width, win_height);
@@ -57,6 +67,9 @@ void Game::setEntity() {
 		parallax = new Parallax();
 		//parallax->addLayer(Textures::texturesIndices::Layer2?, 1.0f);
 
+		/*SlimePiece* mySP = new SlimePiece(1200,700,50,50);
+		mySP->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::depotSlime));;
+		player->slimePiece.push_back(mySP);*/
 
 		//Camera
 		camera = new Camera(0.01);
@@ -120,6 +133,7 @@ void Game::updateCollision() {
 
 	for (auto& spike : myLevel->Spikes) {
 		if (player->isColliding(*spike)) {
+			player->takeDamage();
 			player->respawn();
 		}
 	}
@@ -149,8 +163,11 @@ void Game::updateCollision() {
 
 }
 
+void Game::onResume() {
+	music.play();
+}
+
 void Game::update(float& dt) {
-	
 	if (player) {
 		player->update(dt, input);
 
@@ -208,5 +225,11 @@ Game::~Game() {
 
 	delete parallax;
 	parallax = nullptr;
+
+	delete camera;
+	camera = nullptr;
+
+	gameObject.clear();
+	gameObjectCollider.clear();
 }
 

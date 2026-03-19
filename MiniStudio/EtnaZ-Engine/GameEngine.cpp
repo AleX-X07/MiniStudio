@@ -16,6 +16,10 @@ GameEngine::GameEngine() {
 GameEngine::~GameEngine() {
 	delete window;
 	window = nullptr;
+
+	states->clear();
+	delete states;
+	states = nullptr;
 }
 
 void GameEngine::updateEvent() {
