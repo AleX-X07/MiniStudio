@@ -155,7 +155,10 @@ void Player::respawn() {
 }
 
 void Player::applyWind(float windForce, float dt) {
-	//helpppp
+	velocityX += windForce * dt;
+	if (velocityX > 800.f) {
+		velocityX = 800.f;
+	}
 }
 
 void Player::setAnimation(Animation * _myAnimation) {

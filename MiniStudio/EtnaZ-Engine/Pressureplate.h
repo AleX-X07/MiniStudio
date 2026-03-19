@@ -16,16 +16,17 @@ private:
 
 public:
 
-enum class typePuzzle {
-	player,
-	block,
-	slime
-};
+	enum class typePuzzle {
+		player,
+		block,
+		slime
+	};
 
 
-typePuzzle currentType;
+	typePuzzle currentType;
+	Door* linkedDoor = nullptr;
 
-public:	
+public:
 	Pressureplate(float x, float y, float w, float h);
 	~Pressureplate();
 

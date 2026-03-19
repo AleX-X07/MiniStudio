@@ -2,6 +2,7 @@
 
 Door::Door(float x, float y, float w, float h) : GameObject(x, y, w, h){
 	open = false;
+	currentType = doorType::player;
 }
 
 Door::~Door() {
