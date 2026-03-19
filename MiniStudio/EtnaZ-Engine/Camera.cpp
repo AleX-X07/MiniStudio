@@ -11,7 +11,7 @@ void Camera::updateCamera(GameObject* myObject) {
 
     if (myObject->pos.x <= level_size_width / 3.f ) {  // 1920*1080
         center.x = std::clamp(center.x, (float)win_width / 2.0f, (float)level_size_width / 3.0f - (float)win_width / 2.0f);
-        center.y = std::clamp(center.y, (float)win_height / 2.0f, (float)level_size_heigt / 2.f - (float)win_height / 2.0f);
+        center.y = std::clamp(center.y, (float)win_height / 2.0f, (float)level_size_heigt / 4.f - (float)win_height / 2.0f);
     }
 	else if (myObject->pos.x >= level_size_width / 3.f && myObject->pos.x <= level_size_width / 1.5f) { // 3840*1080
         center.x = std::clamp(center.x, (float)level_size_width / 3.0f + (float)win_width / 2.0f, (float)level_size_width / 1.5f - (float)win_width / 2.0f);

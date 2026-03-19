@@ -39,9 +39,9 @@ void Game::setEntity() {
 		myLevel->loadLevel();
 
 		// Assets
-		GameObject* assets1 = new GameObject(0, 0, win_width, win_height);
-		assets1->setTexture((&Textures::getMyTextures()->getTexture(Textures::texturesIndices::zone1Layer1)));
-		gameObject.push_back(assets1);
+		//GameObject* assets1 = new GameObject(0, 0, win_width, win_height);
+		//assets1->setTexture((&Textures::getMyTextures()->getTexture(Textures::texturesIndices::zone1Layer1)));
+		//gameObject.push_back(assets1);
 
 		GameObject* assets2 = new GameObject(1920, 0, win_width, win_height);
 		assets2->setTexture((&Textures::getMyTextures()->getTexture(Textures::texturesIndices::zone2Layer1)));
@@ -52,7 +52,7 @@ void Game::setEntity() {
 		gameObject.push_back(assets3);
 
 		//Player
-		player = new Player(100, 500,100,100);
+		player = new Player(100,100,100,100);
 		Animation* myAnmation = new Animation(4,1,0.15f,1024,256);
 		player->setAnimation(myAnmation);
 

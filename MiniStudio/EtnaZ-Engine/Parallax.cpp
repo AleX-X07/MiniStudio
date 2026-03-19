@@ -53,12 +53,13 @@ void Parallax::buildLayers(zone zoneToLoad)
 {
     switch (zoneToLoad) {
     case zone::zone1:
-        addLayer(Textures::texturesIndices::zone1Layer0, 0.2f);
-        addLayer(Textures::texturesIndices::particle, 0.6f);
-        break;
-    case zone::zone2:
         addLayer(Textures::texturesIndices::zone2Layer0, 0.2f);
         addLayer(Textures::texturesIndices::particle, 0.6f);
+        //addLayer(Textures::texturesIndices::zone1Layer0, 0.2f);
+        //addLayer(Textures::texturesIndices::particle, 0.6f);
+        break;
+    case zone::zone2:
+
         break;
     case zone::zone3:
         addLayer(Textures::texturesIndices::zone3Layer0, 0.2f);
