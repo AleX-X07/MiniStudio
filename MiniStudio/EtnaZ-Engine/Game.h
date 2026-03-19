@@ -17,8 +17,8 @@ private:
 	Camera* camera;
 	Player* player;
 	Parallax* parallax;
-	vector<GameObject*> gameObject;
-	vector<GameObject*> gameObjectCollider;
+	std::vector<GameObject*> gameObject;
+	std::vector<GameObject*> gameObjectCollider;
 	bool gOBuild;
 
 public:

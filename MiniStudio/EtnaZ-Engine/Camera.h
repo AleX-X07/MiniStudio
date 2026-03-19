@@ -22,6 +22,6 @@ public:
 	void setCamera(sf::RenderWindow* window);
 	void camHUD(sf::RenderWindow* window);
 
-	void getCameraPos(Vector2f& _pos) const;
+	void getCameraPos(sf::Vector2f& _pos) const;
 
 };

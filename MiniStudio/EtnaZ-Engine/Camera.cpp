@@ -27,6 +27,6 @@ void Camera::camHUD(sf::RenderWindow* window){
     window->setView(window->getDefaultView());
 }
 
-void Camera::getCameraPos(Vector2f& _pos) const {
+void Camera::getCameraPos(sf::Vector2f& _pos) const {
     _pos = myView.getCenter();
 }
