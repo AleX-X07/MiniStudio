@@ -117,6 +117,7 @@ void Game::updateCollision() {
 
 	for (auto& spike : myLevel->Spikes) {
 		if (player->isColliding(*spike)) {
+			player->takeDamage();
 			player->respawn();
 		}
 	}
