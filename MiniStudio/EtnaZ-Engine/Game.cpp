@@ -26,10 +26,18 @@ void Game::setEntity() {
 		myLevel = new LoadLevel();
 		myLevel->loadLevel();
 
-		// Background white
-		GameObject* backWhite = new GameObject(0, 0, win_width, win_height);
-		backWhite->setColor(sf::Color::White);
-		gameObject.push_back(backWhite);
+		// Assets
+		GameObject* assets1 = new GameObject(0, 0, win_width, win_height);
+		assets1->setTexture((&Textures::getMyTextures()->getTexture(Textures::texturesIndices::zone1Layer1)));
+		gameObject.push_back(assets1);
+
+		GameObject* assets2 = new GameObject(1920, 0, win_width, win_height);
+		assets2->setTexture((&Textures::getMyTextures()->getTexture(Textures::texturesIndices::zone2Layer1)));
+		gameObject.push_back(assets2);
+
+		GameObject* assets3 = new GameObject(1920, 0, win_width, win_height);
+		assets3->setTexture((&Textures::getMyTextures()->getTexture(Textures::texturesIndices::zone3Layer1)));
+		gameObject.push_back(assets3);
 
 		//Player
 		player = new Player(750, 750);
@@ -157,7 +165,7 @@ void Game::update(float& dt) {
 void Game::render() {
 	window->setView(window->getDefaultView());
 	if (parallax) {
-		parallax->render(*window, *camera);
+		parallax->render(*window, *camera, player);
 	}
 
 	camera->setCamera(window);
@@ -186,6 +194,5 @@ Game::~Game() {
 
 	delete parallax;
 	parallax = nullptr;
-
 }
 

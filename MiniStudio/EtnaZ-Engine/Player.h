@@ -15,8 +15,8 @@ private :
 	float velocityX = 0.f;
 	float velocityY = 0.f;
 	int jumpCount = 0;
-	int maxJumpCount = 2;
 
+	int maxJumpCount = 2;
 	Animation* myAnimation;
 
 	float weightLoss = 0.3; 

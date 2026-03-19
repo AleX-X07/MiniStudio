@@ -1,6 +1,4 @@
 #include "Parallax.h"
-#include "Camera.h"
-
 
 Parallax::Parallax() {
 
@@ -18,7 +16,7 @@ void Parallax::addLayer(Textures::texturesIndices textureIndex, float speed)
     layers.push_back(layer);
 }
 
-void Parallax::render(sf::RenderWindow& window, const Camera& camera)
+void Parallax::render(sf::RenderWindow& window, const Camera& camera, const Player *player)
 {
     sf::Vector2u winSize = window.getSize();
     sf::Vector2f camCenter;
@@ -32,7 +30,7 @@ void Parallax::render(sf::RenderWindow& window, const Camera& camera)
         sf::Vector2u texSize = tex.getSize();
         tex.setRepeated(true);
 
-        float offsetX = std::fmod(cameraX * layer.speed, (float)texSize.x);
+        float offsetX = std::fmod(player->pos.x * layer.speed, (float)texSize.x);
         if (offsetX > 0.f) {
             offsetX -= (float)texSize.x;
         }
@@ -56,13 +54,19 @@ void Parallax::buildLayers(zone zoneToLoad)
     switch (zoneToLoad) {
     case zone::zone1:
         addLayer(Textures::texturesIndices::zone1Layer0, 0.2f);
-        addLayer(Textures::texturesIndices::zone1Layer1, 0.5f);
+		addLayer(Textures::texturesIndices::particle, 0.6f);
         break;
     case zone::zone2:
+        addLayer(Textures::texturesIndices::zone2Layer0, 0.2f);
+        addLayer(Textures::texturesIndices::particle, 0.6f);
         break;
     case zone::zone3:
+        addLayer(Textures::texturesIndices::zone3Layer0, 0.2f);
+        addLayer(Textures::texturesIndices::particle, 0.6f);
         break;
     case zone::zone4:
+        addLayer(Textures::texturesIndices::zone4Layer0, 0.2f);
+        addLayer(Textures::texturesIndices::particle, 0.6f);
         break;
     }
 }

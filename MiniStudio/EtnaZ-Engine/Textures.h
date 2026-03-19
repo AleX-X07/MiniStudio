@@ -12,8 +12,15 @@ public:
         buttonPlay,
         buttonQuit,
         backgroundMenu,
+        particle,
         zone1Layer0,
-        zone1Layer1
+        zone1Layer1,
+        zone2Layer0,
+        zone2Layer1,
+		zone3Layer0,
+		zone3Layer1,
+		zone4Layer0,
+		zone4Layer1
     };
 
     enum class fontsIndices{

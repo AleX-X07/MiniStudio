@@ -1,5 +1,6 @@
 #pragma once
 #include "Camera.h"
+#include "Player.h"
 #include "Textures.h"
 #include <vector>
 
@@ -30,5 +31,5 @@ public:
     ~Parallax();
 
     void addLayer(Textures::texturesIndices textureIndex, float speed);
-    void render(sf::RenderWindow& window, const Camera& camera);
+    void render(sf::RenderWindow& window, const Camera& camera, const Player *player);
 };
