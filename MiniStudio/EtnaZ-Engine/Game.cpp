@@ -44,7 +44,7 @@ void Game::setEntity() {
 		//gameObject.push_back(assets1);
 
 		GameObject* assets2 = new GameObject(1920, 0, win_width, win_height);
-		assets2->setTexture((&Textures::getMyTextures()->getTexture(Textures::texturesIndices::zone2Layer1)));
+		assets2->setTexture((&Textures::getMyTextures()->getTexture(Textures::texturesIndices::zone1Layer1)));
 		gameObject.push_back(assets2);
 
 		GameObject* assets3 = new GameObject(1920, 0, win_width, win_height);
