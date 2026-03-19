@@ -3,7 +3,12 @@
 
 Player::Player(float x, float y, float w, float h) : GameObject(x,y,w,h) {
 	speed = 300.0f;
+	dashDistance = 300.0f;
 	myAnimation = nullptr;
+
+	dashCooldown = 3.0f;
+	dashTimer = 0.0f;
+	canDash = true;
 	spawnX = x;
 	spawnY = y;
 
@@ -40,6 +45,27 @@ void Player::takeDamage() {
 	}
 	else if (currentStates == SlimeStates::heavy) {
 		setSize({ float(getSize().x * 0.95), float(getSize().y * 0.95) });
+	}
+}
+
+void Player::dash(float& dt) {
+	if (!canDash) {
+		dashTimer -= dt;
+		if (dashTimer <= 0.0f) {
+			canDash = true;
+			dashTimer = 0.0f;
+		}
+	}
+	if (isDashing) {
+		dashProgress += dt;
+		if (dashProgress >= dashTotalTime) {
+			isDashing = false;
+		}
+		else {
+			float t = dashProgress / dashTotalTime;
+			pos.x = pos.x + (dashTarget - pos.x) * t;
+		}
+		setPos(pos);
 	}
 }
 
@@ -155,9 +181,23 @@ void Player::update(float& dt, Input & input) {
 	if (currentStates != SlimeStates::death) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) {
 			pos.x -= speed * dt;
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) && canDash) {
+			   isDashing = true;
+			   dashProgress = 0.0f;
+			   dashTarget = pos.x - dashDistance;
+			   canDash = false;
+			   dashTimer = dashCooldown;
+		    }
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) {
 			pos.x += speed * dt;
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) && canDash) {
+			   isDashing = true;
+			   dashProgress = 0.0f;
+			   dashTarget = pos.x + dashDistance;
+			   canDash = false;
+			   dashTimer = dashCooldown;
+		    }
 		}
 		if (input.isKeyPressed(sf::Keyboard::Key::Space)) {
 			jump();
@@ -177,6 +217,7 @@ void Player::update(float& dt, Input & input) {
 		pos.x += velocityX * dt;
 		velocityX = 0;
 	}
+	
 	clampInScreen();
 	setPos(pos);
 	myAnimation->update(dt,input, this);

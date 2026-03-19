@@ -11,7 +11,17 @@ class Player : public GameObject
 private :
 	float speed = 300.f;
 	float jumpForce = -550;
+	float dashDistance = 300.0f;
+	float dashCooldown = 3.0f;
+	float dashTimer = 0.0f;
+	bool canDash = true;
 	float gravity = 980.f;
+	bool isDashing = false;
+	float dashProgress = 0.0f;
+	float dashTarget = 0.0f;
+	float dashTotalTime = 0.5f;
+	
+
 	float velocityX = 0.f;
 	float velocityY = 0.f;
 
@@ -40,14 +50,13 @@ public:
 	float spawnX = 0.f;
 	float spawnY = 0.f;
 
-	bool canDash = false;
 	bool canDoubleJump = false;
 
 	SlimeStates currentStates;
 
 public :
 	bool onGround = false;
-
+	float Cooldown;
 	Player() = default;
 	Player(float x, float y, float w, float h);
 	~Player() = default;
@@ -56,6 +65,7 @@ public :
 	void jump();
 	void run();
 	void takeDamage();
+	void dash(float& dt);
 
 	void skillsLeaveSlime(Input& input);
 	void takeSlime(Input& input);

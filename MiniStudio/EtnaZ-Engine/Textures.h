@@ -54,6 +54,7 @@ public:
         orb,
         crate,
         door
+        title,
     };
 
     enum class fontsIndices{

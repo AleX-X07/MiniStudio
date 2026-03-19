@@ -34,6 +34,12 @@ void MainMenu::setButton(){
 
 }
 
+void MainMenu::setTitle() {
+	GameObject* title = new GameObject(500, 100, 400, 150);
+	title->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::title));
+	this->title = title;
+}
+
 void MainMenu::manageState() {
 	if (play->isClicked(input)) {
 		GameState::nextState(states);
@@ -52,4 +58,7 @@ void MainMenu::render() {
 	background->render(window);
 	play->render(window);
 	quit->render(window);
+	if (title) {
+		title->render(window);
+	}
 }

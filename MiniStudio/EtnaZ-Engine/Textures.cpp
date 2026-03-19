@@ -63,6 +63,8 @@ void Textures::loadAllTexture() {
     loadTexture(Textures::texturesIndices::seed, "assets/graine.png");
     loadTexture(Textures::texturesIndices::crate, "assets/crate.png");
     loadTexture(Textures::texturesIndices::door, "assets/porte.png");
+    loadTexture(Textures::texturesIndices::title, "assets/titre_cacacacac.png");
+
 }
 
 void Textures::loadAllFont() {
