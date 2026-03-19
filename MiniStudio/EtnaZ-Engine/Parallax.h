@@ -18,6 +18,7 @@ public:
         zone2,
         zone3,
         zone4
+        //ok
     };
 
     void loadZone(zone zoneToLoad);
