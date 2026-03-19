@@ -42,9 +42,15 @@ void Game::setEntity() {
 		player->setAnimation(myAnimation);
 		player->setSize({ 100,100 });
 
+
 		SlimePiece* mySP = new SlimePiece(1200,930,50,50);
 		mySP->setColor(sf::Color::Blue);
 		player->slimePiece.push_back(mySP);
+
+		//Parallax
+		parallax = new Parallax();
+		//parallax->addLayer(Textures::texturesIndices::Layer2?, 1.0f);
+
 
 		//Camera
 		camera = new Camera(0.01);
@@ -90,12 +96,29 @@ void Game::update(float& dt) {
 	
 	if (player) {
 		player->update(dt, input);
+
+		if (player->pos.x < 1920 && player->pos.y < 1080 ) {
+			parallax->loadZone(Parallax::zone::zone1);
+		}
+		 else if (player->pos.x > 1920 && player->pos.y < 1080) {
+			parallax->loadZone(Parallax::zone::zone2);
+		}
+		 else if (player->pos.x > 1920 && player->pos.y > 1080) {
+			parallax->loadZone(Parallax::zone::zone3);
+		}
+		 else {
+			parallax->loadZone(Parallax::zone::zone4);
+		}
 	}
 	camera->updateCamera(player);
 	updateCollision();
 }
 
 void Game::render() {
+	window->setView(window->getDefaultView());
+	if (parallax) {
+		parallax->render(*window, *camera);
+	}
 
 	camera->setCamera(window);
 
@@ -120,4 +143,9 @@ Game::~Game() {
 
 	delete myLevel;
 	myLevel = nullptr;
+
+	delete parallax;
+	parallax = nullptr;
+
 }
+

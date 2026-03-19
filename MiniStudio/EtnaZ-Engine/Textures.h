@@ -12,6 +12,8 @@ public:
         buttonPlay,
         buttonQuit,
         backgroundMenu,
+        zone1Layer0,
+        zone1Layer1
     };
 
     enum class fontsIndices{

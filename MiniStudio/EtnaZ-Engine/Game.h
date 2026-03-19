@@ -5,6 +5,7 @@
 #include "LoadLevel.h"
 #include "Textures.h"
 #include "SlimePiece.h"
+#include "Parallax.h"
 
 class MainMenu;
 class PauseMenu;
@@ -15,8 +16,9 @@ private:
 	LoadLevel* myLevel;
 	Camera* camera;
 	Player* player;
-	std::vector<GameObject*> gameObject;
-	std::vector<GameObject*> gameObjectCollider;
+	Parallax* parallax;
+	vector<GameObject*> gameObject;
+	vector<GameObject*> gameObjectCollider;
 	bool gOBuild;
 
 public:
