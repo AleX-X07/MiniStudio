@@ -96,6 +96,9 @@
     <ClCompile Include="Button.cpp">
       <Filter>Fichiers sources\Tool</Filter>
     </ClCompile>
+    <ClCompile Include="Parallax.cpp">
+      <Filter>Fichiers sources\Tool</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">
@@ -141,6 +144,9 @@
       <Filter>Fichiers d%27en-tête\Tool</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
+      <Filter>Fichiers d%27en-tête\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="Parallax.h">
       <Filter>Fichiers d%27en-tête\Tool</Filter>
     </ClInclude>
   </ItemGroup>
