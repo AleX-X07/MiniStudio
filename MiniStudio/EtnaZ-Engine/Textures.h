@@ -12,6 +12,11 @@ public:
         buttonPlay,
         buttonQuit,
         backgroundMenu,
+
+        seed,
+        orb,
+        crate,
+        door
     };
 
     enum class fontsIndices{

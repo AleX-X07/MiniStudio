@@ -26,6 +26,7 @@ void Game::setEntity() {
 		myLevel = new LoadLevel();
 		myLevel->loadLevel();
 
+
 		// Background white
 		GameObject* backWhite = new GameObject(0, 0, win_width, win_height);
 		backWhite->setColor(sf::Color::White);
@@ -37,9 +38,10 @@ void Game::setEntity() {
 		player->setAnimation(myAnimation);
 		player->setSize({ 100,100 });
 
-		SlimePiece* mySP = new SlimePiece(1200,930,50,50);
-		mySP->setColor(sf::Color::Blue);
-		player->slimePiece.push_back(mySP);
+		for (auto& slime : myLevel->Slime) {
+			player->slimePiece.push_back(slime);
+		}
+
 
 		//Camera
 		camera = new Camera(0.01);
@@ -56,14 +58,16 @@ void Game::updateCollision() {
 		if (player->isColliding(*platform)) {
 			player->resolveCollision(*platform);
 		}
+
 		for (auto& psP : player->slimePiece) {
-			if (!(psP == nullptr)) {
+			if (psP != nullptr) {
 				psP->onGround = false;
 				if (psP->isColliding(*platform)) { 
 					psP->resolveCollision(*platform);
 				}
 			}
 		}
+
 		for (auto& psP : player->slimePieceLeave) {
 			if (!(psP == nullptr)) {
 				psP->onGround = false;
@@ -73,6 +77,8 @@ void Game::updateCollision() {
 			}
 		}
 	}
+
+
 	for (auto& Seed : myLevel->Seeds) {
 		if (Seed->isCollected()) continue;
 		if (player->isColliding(*Seed)) {
@@ -121,6 +127,15 @@ void Game::updateCollision() {
 		if (player->isColliding(*ventilation)) {
 			// condition to apply wind force
 			player->applyWind(500.f, 0.016f);
+		}
+	}
+
+	for (auto& psP : player->slimePiece) {
+		if (psP != nullptr) {
+			psP->onGround = false;
+			if (player->isColliding(*psP)) {
+				player->resolveCollision(*psP);
+			}
 		}
 	}
 

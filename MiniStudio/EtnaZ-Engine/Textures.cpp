@@ -19,6 +19,11 @@ void Textures::loadAllTexture() {
     loadTexture(Textures::texturesIndices::buttonPlay, "assets/button_play.png");
     loadTexture(Textures::texturesIndices::buttonQuit, "assets/button_quit.png");
     loadTexture(Textures::texturesIndices::backgroundMenu, "assets/fond_du_menu.png");
+
+    loadTexture(Textures::texturesIndices::orb, "assets/rouge.png");
+    loadTexture(Textures::texturesIndices::seed, "assets/graine.png");
+    loadTexture(Textures::texturesIndices::crate, "assets/crate.png");
+    loadTexture(Textures::texturesIndices::door, "assets/porte.png");
 }
 
 void Textures::loadAllFont() {

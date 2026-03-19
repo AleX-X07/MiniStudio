@@ -12,6 +12,7 @@
 #include "Spike.h"
 #include "Crate.h"
 #include "Ventilation.h"
+#include "SlimePiece.h"
 
 class LoadLevel{
 
@@ -30,6 +31,7 @@ public:
 	std::vector<Spike*> Spikes;
 	std::vector<Crate*> Crates;
 	std::vector<Ventilation*> Ventilations;
+	std::vector<SlimePiece*> Slime;
 
 
 	LoadLevel();
