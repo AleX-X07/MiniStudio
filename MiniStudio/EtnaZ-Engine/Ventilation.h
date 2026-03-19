@@ -8,14 +8,12 @@ class Ventilation : public GameObject
 
 		float windForce = 500.f;
 
-		// massThreshold
 
 	public:
 		Ventilation(float x, float y, float w, float h);
 		~Ventilation();
 
 		float getWindForce();
-		// get massThreshold
 		
 		void render(sf::RenderWindow* window);
 

@@ -72,7 +72,7 @@ LoadLevel::~LoadLevel()
 }
 
 bool LoadLevel::loadLevel(){
-	std::ifstream file("Room_2.txt");
+	std::ifstream file("Room_3.txt");
 	tileSet.loadFromFile("tileset.png");
 
 	std::string line;
@@ -185,14 +185,38 @@ bool LoadLevel::loadLevel(){
 		}
 		else if (section == "PRESSURE_PLATE") {
 			float x, y, w, h;
-			iss >> x >> y >> w >> h;
+			std::string typeStr;
+			iss >> x >> y >> w >> h >> typeStr;
 			Pressureplate* myPp = new Pressureplate(x, y, w, h);
+
+			if (typeStr == "block") { 
+				myPp->currentType = Pressureplate::typePuzzle::block; 
+			}
+			else if (typeStr == "slime") {
+				myPp->currentType = Pressureplate::typePuzzle::slime;
+			}
+			else {
+				myPp->currentType = Pressureplate::typePuzzle::player;
+			}
 			Pressureplates.push_back(myPp);
 		}
 		else if (section == "DOOR") {
 			float x, y, w, h;
-			iss >> x >> y >> w >> h;
+			std::string typeStr;
+			iss >> x >> y >> w >> h >> typeStr;
+
 			Door* myDoor = new Door(x, y, w, h);
+
+			if (typeStr == "block") {
+				myDoor->currentType = Door::doorType::block;
+			}
+			else if (typeStr == "slime") {
+				myDoor->currentType = Door::doorType::slime;
+			}
+			else {
+				myDoor->currentType = Door::doorType::player;
+			}
+
 			Doors.push_back(myDoor);
 		}
 		else if (section == "SPIKE") {
@@ -212,6 +236,27 @@ bool LoadLevel::loadLevel(){
 			iss >> x >> y >> w >> h;
 			Ventilation* myVent = new Ventilation(x, y, w, h);
 			Ventilations.push_back(myVent);
+		}
+	}
+
+	for (auto& pp : Pressureplates) {
+		for (auto& door : Doors) {
+
+			bool match = false;
+			if (pp->currentType == Pressureplate::typePuzzle::player && door->currentType == Door::doorType::player) {
+				match = true;
+			}
+			if (pp->currentType == Pressureplate::typePuzzle::block && door->currentType == Door::doorType::block) {
+				match = true;
+			}
+			if (pp->currentType == Pressureplate::typePuzzle::slime && door->currentType == Door::doorType::slime) {
+				match = true;
+			}
+
+			if (match && pp->linkedDoor == nullptr) {
+				pp->linkedDoor = door;
+				break;
+			}
 		}
 	}
 
