@@ -8,17 +8,19 @@
 class GameState
 {
 protected:
-	RenderWindow* window;
-	std::vector<Texture*> textures;
+	sf::RenderWindow* window;
+	std::vector<sf::Texture*> textures;
 	std::vector<GameState*>* states;
 	Input input;
 
 public:
 	GameState() = default;
-	GameState(RenderWindow* window, std::vector<GameState*>* states);
+	GameState(sf::RenderWindow* window, std::vector<GameState*>* states);
 	virtual ~GameState() = default;
 
 	void nextState(std::vector<GameState*>* states);
+	void pause(std::vector<GameState*>* states);
+	void resume();
 
 	void setInput(Input &input);
 

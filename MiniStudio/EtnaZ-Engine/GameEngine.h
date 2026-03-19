@@ -8,19 +8,19 @@
 #include "MainMenu.h"
 #include "Textures.h"
 
-using namespace std;
-
 class GameEngine
 {
 private:
-	RenderWindow* window;
+	sf::RenderWindow* window;
 	float dt;
-	vector<GameState*>* states;
+	std::vector<GameState*>* states;
 	Input input;
-	Clock clock;
+	sf::Clock clock;
 
-	const Event::KeyPressed* currentInputKey;
-	const Event::MouseButtonPressed* currentInputMouse;
+	const sf::Event::KeyPressed* currentInputKey;
+	const sf::Event::MouseButtonPressed* currentInputMouse;
+public:
+	static std::vector<GameState*> statesPause;
 
 public:
 	GameEngine();

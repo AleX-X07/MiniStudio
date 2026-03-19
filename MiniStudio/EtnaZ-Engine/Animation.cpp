@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include "Player.h"
 
-Animation::Animation(Texture _texture, int _maxFrames, int _nbrAnimation, float _frameDuration, int _spriteWidth, int _spriteHeight) {
+Animation::Animation(sf::Texture _texture, int _maxFrames, int _nbrAnimation, float _frameDuration, int _spriteWidth, int _spriteHeight) {
 
     currentState = CharacterState::IDLE;
     previousState = CharacterState::IDLE;

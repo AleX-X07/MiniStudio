@@ -2,11 +2,9 @@
 #include "Game.h"
 #include "Button.h"
 
-MainMenu::MainMenu(RenderWindow* window, vector<GameState*>* _states) : GameState(window, _states) {
+MainMenu::MainMenu(sf::RenderWindow* window, std::vector<GameState*>* _states) : GameState(window, _states) {
 	background = new GameObject(200,0,1529,1080);
 	background->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::backgroundMenu));
-
-	created = false;
 
 	setButton();
 }
@@ -22,7 +20,7 @@ MainMenu::~MainMenu() {
 	quit = nullptr;
 }
 
-void MainMenu::Instance(RenderWindow* window, vector<GameState*>*& states) {
+void MainMenu::Instance(sf::RenderWindow* window, std::vector<GameState*>*& states) {
 	GameState* mainMenu = new MainMenu(window, states);
 	states->push_back(mainMenu);
 }

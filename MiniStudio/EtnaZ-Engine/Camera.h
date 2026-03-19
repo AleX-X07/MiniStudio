@@ -1,14 +1,15 @@
 #pragma once
 #include "Globals.h"
 #include "GameObject.h"
+#include "HUD.h"
 
 class Camera
 {
 private:
-	View myView;
-	Vector2f pos;
-	Vector2f center;
-	Vector2f targetPos;
+	sf::View myView;
+	sf::Vector2f pos;
+	sf::Vector2f center;
+	sf::Vector2f targetPos;
 	float lag;
 
 public:
@@ -17,5 +18,6 @@ public:
 	~Camera() = default;
 
 	void updateCamera(GameObject* myObject);
-	void setCamera(RenderWindow* window);
+	void setCamera(sf::RenderWindow* window);
+	void camHUD(sf::RenderWindow* window);
 };

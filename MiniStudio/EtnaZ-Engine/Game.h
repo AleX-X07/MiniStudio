@@ -4,25 +4,27 @@
 #include "Camera.h"
 #include "LoadLevel.h"
 #include "Textures.h"
+#include "SlimePiece.h"
 
 class MainMenu;
+class PauseMenu;
 
 class Game : public GameState
-{
+{ 
 private:
 	LoadLevel* myLevel;
 	Camera* camera;
 	Player* player;
-	vector<GameObject*> gameObject;
-	vector<GameObject*> gameObjectCollider;
+	std::vector<GameObject*> gameObject;
+	std::vector<GameObject*> gameObjectCollider;
 	bool gOBuild;
 
 public:
 	Game() = default;
-	Game(RenderWindow * window, vector<GameState*>* states);
+	Game(sf::RenderWindow * window, std::vector<GameState*>* states);
 	~Game();
 		
-	static void Instance(RenderWindow* window, vector<GameState*>*& states);
+	static void Instance(sf::RenderWindow* window, std::vector<GameState*>*& states);
 
 	void setEntity();
 	void updateCollision();
