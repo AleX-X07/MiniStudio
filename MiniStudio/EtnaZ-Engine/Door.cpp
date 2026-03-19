@@ -16,7 +16,7 @@ void Door::openDoor() {
 	setVisibilityFalse();
 }
 
-void Door::render(RenderWindow* window) {
+void Door::render(sf::RenderWindow* window) {
 	if (!open) {
 		GameObject::render(window);
 	}

@@ -133,7 +133,7 @@ bool LoadLevel::loadLevel(){
 			int currentRow = 0;
 
 			while (getline(file, line)) {
-				istringstream row(line);
+				std::istringstream row(line);
 				int tileId = 0;
 				int column = 0;
 				while (row >> tileId) {

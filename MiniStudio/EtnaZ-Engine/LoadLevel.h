@@ -21,15 +21,15 @@ private:
 	int tileRow;
 
 public:
-	vector<GameObject*> Platform;
-	vector<Tile*> tiles;
-	vector<Seed*> Seeds;
-	vector<Orb*> Orbs;
-	vector<Pressureplate*> Pressureplates;
-	vector<Door*> Doors;
-	vector<Spike*> Spikes;
-	vector<Crate*> Crates;
-	vector<Ventilation*> Ventilations;
+	std::vector<GameObject*> Platform;
+	std::vector<Tile*> tiles;
+	std::vector<Seed*> Seeds;
+	std::vector<Orb*> Orbs;
+	std::vector<Pressureplate*> Pressureplates;
+	std::vector<Door*> Doors;
+	std::vector<Spike*> Spikes;
+	std::vector<Crate*> Crates;
+	std::vector<Ventilation*> Ventilations;
 
 
 	LoadLevel();

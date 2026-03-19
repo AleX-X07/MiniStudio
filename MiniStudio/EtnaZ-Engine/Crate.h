@@ -21,7 +21,7 @@ public:
 
 	// can push
 
-	void render(RenderWindow* window) override;
+	void render(sf::RenderWindow* window) override;
 	
 
 };

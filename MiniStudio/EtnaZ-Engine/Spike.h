@@ -9,7 +9,7 @@ public:
 	Spike(float x, float y, float w, float h);
 	~Spike();
 
-	void render(RenderWindow* window) override;
+	void render(sf::RenderWindow* window) override;
 
 
 };

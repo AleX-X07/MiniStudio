@@ -41,8 +41,6 @@ public:
 	bool canDoubleJump = false;
 	bool canDivision = false;
 
-	Animation* myAnimation;	
-
 public :
 	bool onGround = false;
 

@@ -53,7 +53,7 @@ void Player::skillsLeaveSlime(Input& input) {
 	}
 }
 
-void Player::takeSlime(Input& input){
+void Player::takeSlime(Input& input) {
 
 	if (!slimePieceLeave.empty()) {
 		for (int X = 0; X < slimePieceLeave.size(); X++) {
@@ -84,6 +84,8 @@ void Player::takeSlime(Input& input){
 			}
 		}
 	}
+}
+
 void Player::collectSeed() {
 	seedNb++;
 }

@@ -59,16 +59,16 @@ void Game::updateCollision() {
 		for (auto& psP : player->slimePiece) {
 			if (!(psP == nullptr)) {
 				psP->onGround = false;
-				if (psP->isColliding(*gameObject)) { 
-					psP->resolveCollision(*gameObject);
+				if (psP->isColliding(*platform)) { 
+					psP->resolveCollision(*platform);
 				}
 			}
 		}
 		for (auto& psP : player->slimePieceLeave) {
 			if (!(psP == nullptr)) {
 				psP->onGround = false;
-				if (psP->isColliding(*gameObject)) {
-					psP->resolveCollision(*gameObject);
+				if (psP->isColliding(*platform)) {
+					psP->resolveCollision(*platform);
 				}
 			}
 		}

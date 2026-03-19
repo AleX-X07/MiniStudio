@@ -17,7 +17,7 @@ class Ventilation : public GameObject
 		float getWindForce();
 		// get massThreshold
 		
-		void render(RenderWindow* window) override;
+		void render(sf::RenderWindow* window);
 
 		
 

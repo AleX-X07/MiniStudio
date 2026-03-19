@@ -13,7 +13,7 @@ void Orb::collect() {
 	setVisibilityFalse();
 }
 
-void Orb::render(RenderWindow* window) {
+void Orb::render(sf::RenderWindow* window) {
 	if (!collected) {
 		GameObject::render(window);
 	}

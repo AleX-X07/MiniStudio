@@ -14,5 +14,5 @@ public:
 	bool isOpen();
 	void openDoor();
 
-	void render(RenderWindow* window);
+	void render(sf::RenderWindow* window);
 };

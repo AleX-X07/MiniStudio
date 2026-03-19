@@ -10,6 +10,6 @@ float Ventilation::getWindForce() {
 	return windForce;
 }
 
-void Ventilation::render(RenderWindow* window) {
+void Ventilation::render(sf::RenderWindow* window) {
 	GameObject::render(window);
 }

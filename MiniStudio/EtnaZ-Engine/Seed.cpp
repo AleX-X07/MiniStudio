@@ -17,7 +17,7 @@ void Seed::collect() {
 	setVisibilityFalse();
 }
 
-void Seed::render(RenderWindow* window) {
+void Seed::render(sf::RenderWindow* window) {
 	if (!collected) {
 		GameObject::render(window);
 	}

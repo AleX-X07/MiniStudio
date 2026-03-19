@@ -18,7 +18,7 @@ public:
 	bool isActivated();
 	void activate();
 
-	void render(RenderWindow* window) override;
+	void render(sf::RenderWindow* window) override;
 
 };
 

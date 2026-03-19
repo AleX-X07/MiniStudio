@@ -16,7 +16,7 @@ void Pressureplate::activate() {
 	activated = true;
 }
 
-void Pressureplate::render(RenderWindow* window) {
+void Pressureplate::render(sf::RenderWindow* window) {
 	if (!activated) {
 		GameObject::render(window);
 	}

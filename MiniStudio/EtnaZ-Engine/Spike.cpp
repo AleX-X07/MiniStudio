@@ -7,6 +7,6 @@ Spike::Spike(float x, float y, float w, float h) : GameObject(x, y, w, h) {
 Spike::~Spike() {
 }
 
-void Spike::render(RenderWindow* window) {
+void Spike::render(sf::RenderWindow* window) {
 	GameObject::render(window);
 }

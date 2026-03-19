@@ -10,6 +10,6 @@ void Crate::update(float& dt, Input& input) {
 	// Apply gravity
 }
 
-void Crate::render(RenderWindow* window) {
+void Crate::render(sf::RenderWindow* window) {
 	GameObject::render(window);
 }
