@@ -10,7 +10,7 @@ class Player : public GameObject
 {
 private :
 	float speed = 300.f;
-	float dash = 300.0f;
+	float dashDistance = 300.0f;
 	float dashCooldown = 3.0f;
 	float dashTimer = 0.0f;
 	bool canDash = true;
@@ -59,6 +59,7 @@ public :
 
 	void clampInScreen();
 	void jump();
+	void dash(float& dt);
 
 	void skillsLeaveSlime(Input& input);
 	void takeSlime(Input& input);

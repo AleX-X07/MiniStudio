@@ -4,7 +4,7 @@
 Player::Player(float x, float y) : GameObject(x,y)
 {
 	speed = 300.0f;
-	dash = 300.0f;
+	dashDistance = 300.0f;
 	myAnimation = nullptr;
 
 	dashCooldown = 3.0f;
@@ -25,6 +25,27 @@ void Player::jump() {
 	if (onGround) {
 		velocityY = jumpForce;
 		onGround = false;
+	}
+}
+
+void Player::dash(float& dt) {
+	if (!canDash) {
+		dashTimer -= dt;
+		if (dashTimer <= 0.0f) {
+			canDash = true;
+			dashTimer = 0.0f;
+		}
+	}
+	if (isDashing) {
+		dashProgress += dt;
+		if (dashProgress >= dashTotalTime) {
+			isDashing = false;
+		}
+		else {
+			float t = dashProgress / dashTotalTime;
+			pos.x = pos.x + (dashTarget - pos.x) * t;
+		}
+		setPos(pos);
 	}
 }
 
@@ -150,30 +171,13 @@ void Player::render(sf::RenderWindow * window) {
 
 void Player::update(float& dt, Input & input) {
 
-	if (!canDash) {
-		dashTimer -= dt;
-		if (dashTimer <= 0.0f) {
-			canDash = true;
-			dashTimer = 0.0f;
-		}
-	}
-	if (isDashing) {
-		dashProgress += dt;
-		if (dashProgress >= dashTotalTime) {
-			isDashing = false;
-		}
-		else {
-			float t = dashProgress / dashTotalTime;
-			pos.x = pos.x + (dashTarget - pos.x) * t;
-		}
-		setPos(pos);
-	}
+	dash(dt);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Q)) {
 		pos.x -= speed * dt;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) && canDash) {
 			isDashing = true;
 			dashProgress = 0.0f;
-			dashTarget = pos.x - dash;
+			dashTarget = pos.x - dashDistance;
 			canDash = false;
 			dashTimer = dashCooldown;
 		}
@@ -183,7 +187,7 @@ void Player::update(float& dt, Input & input) {
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) && canDash) {
 			isDashing = true;
 			dashProgress = 0.0f;
-			dashTarget = pos.x + dash;
+			dashTarget = pos.x + dashDistance;
 			canDash = false;
 			dashTimer = dashCooldown;
 		}
