@@ -13,20 +13,17 @@ bool Pressureplate::isActivated() {
 }
 
 void Pressureplate::activate(Player* player, std::vector<Crate*>& crates) {
+	if (activated) return;
 
-	if (activated) {
-		return;
-	}
-
-	if (currentType == Pressureplate::typePuzzle::player){
+	if (currentType == typePuzzle::player) {
 		if (player->isColliding(*this)) {
 			if (player->currentStates == Player::SlimeStates::heavy) {
 				activated = true;
-			}	
+			}
 		}
 	}
 
-	if (currentType == Pressureplate::typePuzzle::block) {
+	if (currentType == typePuzzle::block) {
 		for (auto& block : crates) {
 			if (block->isColliding(*this)) {
 				activated = true;
@@ -34,19 +31,14 @@ void Pressureplate::activate(Player* player, std::vector<Crate*>& crates) {
 		}
 	}
 
-	if (currentType == Pressureplate::typePuzzle::slime) {
+	if (currentType == typePuzzle::slime) {
 		for (auto& slime : player->slimePiece) {
 			if (slime->isColliding(*this)) {
 				activated = true;
 			}
 		}
 	}
-
-	if (activated && linkedDoor != nullptr) {
-		linkedDoor->openDoor();
-	}
 }
-
 
 void Pressureplate::render(sf::RenderWindow* window) {
 	if (!activated) {
