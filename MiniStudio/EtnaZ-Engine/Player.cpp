@@ -213,9 +213,9 @@ void Player::update(float& dt, Input& input) {
 				dashTimer = dashCooldown;
 			}
 		}
-		if (input.isKeyPressed(sf::Keyboard::Key::Space)) {
+		/*if (input.isKeyPressed(sf::Keyboard::Key::Space)) {
 			jump();
-		}
+		}*/
 		if (input.isKeyPressed(sf::Keyboard::Key::LControl)) {
 			runBool = !runBool;
 			run();
