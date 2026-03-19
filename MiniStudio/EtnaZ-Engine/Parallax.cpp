@@ -16,7 +16,7 @@ void Parallax::addLayer(Textures::texturesIndices textureIndex, float speed)
     layers.push_back(layer);
 }
 
-void Parallax::render(sf::RenderWindow& window, const Camera& camera, const Player *player)
+void Parallax::render(sf::RenderWindow& window, const Camera& camera, const Player* player)
 {
     sf::Vector2u winSize = window.getSize();
     sf::Vector2f camCenter;
@@ -54,7 +54,7 @@ void Parallax::buildLayers(zone zoneToLoad)
     switch (zoneToLoad) {
     case zone::zone1:
         addLayer(Textures::texturesIndices::zone1Layer0, 0.2f);
-		addLayer(Textures::texturesIndices::particle, 0.6f);
+        addLayer(Textures::texturesIndices::particle, 0.6f);
         break;
     case zone::zone2:
         addLayer(Textures::texturesIndices::zone2Layer0, 0.2f);

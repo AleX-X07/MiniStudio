@@ -24,7 +24,7 @@ public:
     void loadZone(zone zoneToLoad);
 
 private:
-	void buildLayers(zone zoneToLoad);
+    void buildLayers(zone zoneToLoad);
     std::vector<ParallaxLayer> layers;
 
 public:
@@ -32,5 +32,5 @@ public:
     ~Parallax();
 
     void addLayer(Textures::texturesIndices textureIndex, float speed);
-    void render(sf::RenderWindow& window, const Camera& camera, const Player *player);
+    void render(sf::RenderWindow& window, const Camera& camera, const Player* player);
 };

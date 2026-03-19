@@ -148,9 +148,9 @@
     <ClInclude Include="Ventilation.h">
       <Filter>Fichiers d%27en-tête\GameObject</Filter>
     </ClInclude>
-    <ClCompile Include="Parallax.h">
+    <ClInclude Include="Parallax.h">
       <Filter>Fichiers d%27en-tête\Tool</Filter>
-    </ClCompile>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Fichiers de ressources">
