@@ -17,7 +17,7 @@ GameEngine::~GameEngine() {
 	delete window;
 	window = nullptr;
 
-	for (auto& s : states) {
+	for (auto& s : *states) {
 		delete s;
 		s = nullptr;
 	}

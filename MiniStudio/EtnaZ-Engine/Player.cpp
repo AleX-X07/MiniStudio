@@ -18,10 +18,6 @@ Player::~Player() {
 	delete myAnimation;
 	myAnimation = nullptr;
 
-	for (auto& sP : slimePiece) {
-		delete sP;
-		sP = nullptr;
-	}
 	slimePiece.clear();
 
 	for (auto& sPL : slimePieceLeave) {

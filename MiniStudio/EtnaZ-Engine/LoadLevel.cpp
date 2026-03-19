@@ -13,51 +13,62 @@ LoadLevel::~LoadLevel()
 		delete platform;
 		platform = nullptr;
 	}
+	Platform.clear();
 
 	for (auto& tile : tiles) {
 		delete tile;
 		tile = nullptr;
 	}
+	tiles.clear();
 
 	for (auto& seed : Seeds) {
 		delete seed;
 		seed = nullptr;
 	}
+	Seeds.clear();
 
 	for (auto& orb : Orbs) {
 		delete orb;
 		orb = nullptr;
 	}
+	Orbs.clear();
 
 	for (auto& pressurePlate : Pressureplates) {
 		delete pressurePlate;
 		pressurePlate = nullptr;
 	}
+	Pressureplates.clear();
+
 
 	for (auto& door : Doors) {
 		delete door;
 		door = nullptr;
 	}	
+	Doors.clear();
 
 	for (auto& spike : Spikes) {
 		delete spike;
 		spike = nullptr;
 	}
+	Spikes.clear();
 
 	for (auto& crate : Crates) {
 		delete crate;
 		crate = nullptr;
 	}
+	Crates.clear();
 
 	for (auto& ventilation : Ventilations) {
 		delete ventilation;
 		ventilation = nullptr;
 	}
+	Ventilations.clear();
 
 	for (auto& slime : Slime) {
 		delete slime;
 		slime = nullptr;
 	}
+	Slime.clear();
 }
 
 bool LoadLevel::loadLevel(){
