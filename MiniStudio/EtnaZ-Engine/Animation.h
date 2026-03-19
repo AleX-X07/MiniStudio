@@ -15,7 +15,8 @@ enum class CharacterState {
     RUNLEFT,
     JUMPRIGHT,
     JUMPLEFT,
-    DEATH,
+    DEATHRIGHT,
+    DEATHLEFT,
 };
 
 class Animation

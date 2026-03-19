@@ -23,13 +23,11 @@ public:
         walkRight,
         runRight,
         jumpRight,
-        deadRight,
         // Left
         idleLeft,
         walkLeft,
         runLeft,
         jumpLeft,
-        deadLeft,
         // Heavy
         // Right
         idleRightHeavy,
@@ -47,8 +45,10 @@ public:
         // Left
         idleLeftLight,
         walkLeftLight,
-        jumpLeftLight
-
+        jumpLeftLight,
+        // Dead
+        deadRight,
+        deadLeft,
     };
 
     enum class fontsIndices{

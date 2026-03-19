@@ -55,6 +55,9 @@ void Textures::loadAllTexture() {
     loadTexture(Textures::texturesIndices::idleLeftLight, "assets/Animation/Light/animation_idle_petit_left.png");
     loadTexture(Textures::texturesIndices::walkLeftLight, "assets/Animation/Light/animation_marche_petit_left.png");
     loadTexture(Textures::texturesIndices::jumpLeftLight, "assets/Animation/Light/animation_jump_petit_left.png");
+    // Dead
+    loadTexture(Textures::texturesIndices::deadRight, "assets/Animation/animation_death.png");
+    loadTexture(Textures::texturesIndices::deadLeft, "assets/Animation/animation_death_left.png");
 }
 
 void Textures::loadAllFont() {

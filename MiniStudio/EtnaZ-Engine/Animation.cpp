@@ -114,7 +114,13 @@ void Animation::update(float dt, Input& input, Player* Owner) {
     }
 
     else {
-        currentState = CharacterState::DEATH;
+        if (previousState == CharacterState::RIGHT || previousState == CharacterState::IDLERIGHT || previousState == CharacterState::JUMPRIGHT || previousState == CharacterState::RUNRIGHT) {
+            currentState = CharacterState::DEATHRIGHT;
+
+        }
+        else if (previousState == CharacterState::LEFT || previousState == CharacterState::IDLELEFT || previousState == CharacterState::JUMPLEFT || previousState == CharacterState::RUNLEFT) {
+            currentState = CharacterState::DEATHLEFT;
+        }
     }
 
     if (currentState != previousState) {
@@ -210,7 +216,17 @@ void Animation::render(sf::RenderWindow& window, Player* Owner) {
             break;
         }
         break;
-    }
+  //  case Player::SlimeStates::death:
+  //      switch (currentState) {
+		//case CharacterState::DEATHRIGHT:
+	 //       texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::deadRight);
+	 //       break;
+		//case CharacterState::DEATHLEFT:
+	 //       texture = Textures::getMyTextures()->getTexture(Textures::texturesIndices::deadLeft);
+	 //       break;
+  //      }
+  //      break;
+  //  }
    
     myStateRect = { {  currentFrame * spriteWidth, animationRow * spriteHeight}, {spriteWidth,spriteHeight} };
 }
