@@ -31,11 +31,6 @@ void Game::setEntity() {
 		backWhite->setColor(sf::Color::White);
 		gameObject.push_back(backWhite);
 
-		// Test platform
-		GameObject* platform = new GameObject(0, 980, 1920, 100);
-		platform->setColor(sf::Color::Green);
-		gameObjectCollider.push_back(platform);
-
 		//Player
 		player = new Player(750, 750);
 		Animation* myAnimation = new Animation(Textures::getMyTextures()->getTexture(Textures::texturesIndices::testSprite), 5, 1, 0.09f, 512, 104);
@@ -61,35 +56,80 @@ void Game::setEntity() {
 
 void Game::updateCollision() {
 	if (!player) return;
+	player->onGround = false;
 
-	for (auto& gameObject : gameObjectCollider) {
-		player->onGround = false;
-		if (player->isColliding(*gameObject) && gameObject != player) {
-			player->resolveCollision(*gameObject);
+	for (auto& platform : myLevel->Platform) {
+		if (player->isColliding(*platform)) {
+			player->resolveCollision(*platform);
 		}
 		for (auto& psP : player->slimePiece) {
 			if (!(psP == nullptr)) {
 				psP->onGround = false;
-				if (psP->isColliding(*gameObject)) { 
-					psP->resolveCollision(*gameObject);
+				if (psP->isColliding(*platform)) { 
+					psP->resolveCollision(*platform);
 				}
 			}
 		}
 		for (auto& psP : player->slimePieceLeave) {
 			if (!(psP == nullptr)) {
 				psP->onGround = false;
-				if (psP->isColliding(*gameObject)) {
-					psP->resolveCollision(*gameObject);
+				if (psP->isColliding(*platform)) {
+					psP->resolveCollision(*platform);
 				}
 			}
 		}
 	}
-
-	for (auto& platform : myLevel->Platform) {
-		if (player->isColliding(*platform)) {
-			player->resolveCollision(*platform);
+	for (auto& Seed : myLevel->Seeds) {
+		if (Seed->isCollected()) continue;
+		if (player->isColliding(*Seed)) {
+			Seed->collect();
+			player->collectSeed();
 		}
-	} 
+	}
+
+	for (auto& Orb : myLevel->Orbs) {
+		if (Orb->isCollected()) continue;
+		if (player->isColliding(*Orb)) {
+			Orb->collect();
+			player->collectOrb();			
+		}
+	}
+
+	for (auto& pressurePlate : myLevel->Pressureplates) {
+		if (pressurePlate->isActivated()) continue;
+		if (player->isColliding(*pressurePlate)) {
+			pressurePlate->activate();
+		}
+	}
+
+	for (auto& door : myLevel->Doors) {
+		if (door->isOpen()) continue;
+		if (player->isColliding(*door)) {
+			// condition to open the door
+			door->openDoor();
+		}
+	}
+
+	for (auto& spike : myLevel->Spikes) {
+		if (player->isColliding(*spike)) {
+			player->respawn();
+		}
+	}
+
+	for (auto& crate : myLevel->Crates) {
+		if (player->isColliding(*crate)) {
+			player->resolveCollision(*crate);
+			// condition to push the crate
+		}
+	}
+
+	for (auto& ventilation : myLevel->Ventilations) {
+		if (player->isColliding(*ventilation)) {
+			// condition to apply wind force
+			player->applyWind(500.f, 0.016f);
+		}
+	}
+
 }
 
 void Game::update(float& dt) {

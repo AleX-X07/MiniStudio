@@ -1,9 +1,13 @@
 #include "Player.h"
 
+
 Player::Player(float x, float y) : GameObject(x,y)
 {
 	speed = 300.0f;
 	myAnimation = nullptr;
+	spawnX = x;
+	spawnY = y;
+
 }
 
 void Player::clampInScreen() {
@@ -50,7 +54,7 @@ void Player::skillsLeaveSlime(Input& input) {
 	}
 }
 
-void Player::takeSlime(Input& input){
+void Player::takeSlime(Input& input) {
 
 	if (!slimePieceLeave.empty()) {
 		for (int X = 0; X < slimePieceLeave.size(); X++) {
@@ -81,6 +85,41 @@ void Player::takeSlime(Input& input){
 			}
 		}
 	}
+}
+
+void Player::collectSeed() {
+	seedNb++;
+}
+
+int Player::getSeedNb() {
+	return seedNb;
+}
+
+void Player::collectOrb() {
+	orbNb++;
+
+	if (orbNb == 1) {
+		canDash = true;
+	}
+	if (orbNb == 2) {
+		canDoubleJump = true;
+	}
+	if (orbNb == 3) {
+		canDivision = true;
+	}
+}
+
+void Player::respawn() {
+	pos.x = spawnX;
+	pos.y = spawnY;
+	velocityX = 0;
+	velocityY = 0;
+	onGround = false;
+	setPos(pos);
+}
+
+void Player::applyWind(float windForce, float dt) {
+	//helpppp
 }
 
 void Player::setAnimation(Animation * _myAnimation) {
