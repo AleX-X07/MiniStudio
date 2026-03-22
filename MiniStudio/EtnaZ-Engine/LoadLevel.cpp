@@ -72,7 +72,7 @@ LoadLevel::~LoadLevel()
 }
 
 bool LoadLevel::loadLevel() {
-	std::ifstream file("Room_2.txt");
+	std::ifstream file("Room_3.txt");
 	tileSet.loadFromFile("tileset.png");
 
 	std::string line;
@@ -89,10 +89,6 @@ bool LoadLevel::loadLevel() {
 		}
 		if (line == "PLATFORM") {
 			section = "PLATFORM";
-			continue;
-		}
-		if (line == "TILES") {
-			section = "TILES";
 			continue;
 		}
 		if (line == "SEED") {
@@ -127,7 +123,10 @@ bool LoadLevel::loadLevel() {
 			section = "VENTILATION";
 			continue;
 		}
-
+		if (line == "TILES") {
+			section = "TILES";
+			continue;
+		}
 
 		std::istringstream iss(line);
 
@@ -148,6 +147,7 @@ bool LoadLevel::loadLevel() {
 			int currentRow = 0;
 
 			while (getline(file, line)) {
+				if (line.empty()) break;
 				std::istringstream row(line);
 				int tileId = 0;
 				int column = 0;

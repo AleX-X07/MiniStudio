@@ -32,7 +32,7 @@ void Pressureplate::activate(Player* player, std::vector<Crate*>& crates) {
 	}
 
 	if (currentType == typePuzzle::slime) {
-		for (auto& slime : player->slimePiece) {
+		for (auto& slime : player->slimePieceLeave) {
 			if (slime->isColliding(*this)) {
 				activated = true;
 			}

@@ -56,13 +56,6 @@ void Game::setEntity() {
 		Animation* myAnmation = new Animation(4, 1, 0.15f, 1024, 256);
 		player->setAnimation(myAnmation);
 
-		for (auto& slime : myLevel->Slime) {
-			player->slimePiece.push_back(slime);
-		}
-
-		SlimePiece* mySP = new SlimePiece(1200, 930, 50, 50);
-		mySP->setColor(sf::Color::Blue);
-		player->slimePiece.push_back(mySP);
 
 		//Parallax
 		parallax = new Parallax();
@@ -81,7 +74,14 @@ void Game::setEntity() {
 
 void Game::updateCollision() {
 	if (!player) return;
+
 	player->onGround = false;
+	for (auto& psP : player->slimePiece) {
+		psP->onGround = false;
+	}
+	for (auto& psP : player->slimePieceLeave) {
+		psP->onGround = false;
+	}
 
 	for (auto& platform : myLevel->Platform) {
 		if (player->isColliding(*platform)) {
@@ -90,7 +90,6 @@ void Game::updateCollision() {
 
 		for (auto& psP : player->slimePiece) {
 			if (psP != nullptr) {
-				psP->onGround = false;
 				if (psP->isColliding(*platform)) {
 					psP->resolveCollision(*platform);
 				}
@@ -98,8 +97,7 @@ void Game::updateCollision() {
 		}
 
 		for (auto& psP : player->slimePieceLeave) {
-			if (!(psP == nullptr)) {
-				psP->onGround = false;
+			if (psP != nullptr) {
 				if (psP->isColliding(*platform)) {
 					psP->resolveCollision(*platform);
 				}
@@ -136,19 +134,26 @@ void Game::updateCollision() {
 		}
 	}
 
-	for (auto& Seed : myLevel->Seeds) {
-		if (Seed->isCollected()) continue;
-		if (player->isColliding(*Seed)) {
-			Seed->collect();
+	for (auto& seed : myLevel->Seeds) {
+		if (seed->isCollected()) continue;
+		if (player->isColliding(*seed)) {
+			seed->collect();
 			player->collectSeed();
 		}
 	}
 
-	for (auto& Orb : myLevel->Orbs) {
-		if (Orb->isCollected()) continue;
-		if (player->isColliding(*Orb)) {
-			Orb->collect();
+	for (auto& orb : myLevel->Orbs) {
+		if (orb->isCollected()) continue;
+		if (player->isColliding(*orb)) {
+			orb->collect();
 			player->collectOrb();
+		}
+	}
+
+	for (int i = myLevel->Slime.size() - 1; i >= 0; i--) {
+		if (player->isColliding(*myLevel->Slime[i])) {
+			player->slimePiece.push_back(myLevel->Slime[i]);
+			myLevel->Slime.erase(myLevel->Slime.begin() + i);
 		}
 	}
 
@@ -162,7 +167,6 @@ void Game::updateCollision() {
 	for (auto& crate : myLevel->Crates) {
 		if (player->isColliding(*crate)) {
 			player->resolveCollision(*crate);
-
 			if (player->currentStates == Player::SlimeStates::heavy) {
 				float playerCenterX = player->pos.x + player->size.x * 0.5f;
 				float crateCenterX = crate->pos.x + crate->size.x * 0.5f;
@@ -182,6 +186,7 @@ void Game::updateCollision() {
 		if (player->isColliding(*pp)) {
 			player->resolveCollision(*pp);
 		}
+
 		for (auto& psP : player->slimePiece) {
 			if (psP != nullptr) {
 				if (psP->isColliding(*pp)) {
@@ -189,6 +194,7 @@ void Game::updateCollision() {
 				}
 			}
 		}
+
 		for (auto& psP : player->slimePieceLeave) {
 			if (psP != nullptr) {
 				if (psP->isColliding(*pp)) {
@@ -196,6 +202,7 @@ void Game::updateCollision() {
 				}
 			}
 		}
+
 		for (auto& crate : myLevel->Crates) {
 			if (crate->isColliding(*pp)) {
 				crate->resolveCollision(*pp);
@@ -205,7 +212,6 @@ void Game::updateCollision() {
 
 	for (auto& psP : player->slimePiece) {
 		if (psP != nullptr) {
-			psP->onGround = false;
 			if (player->isColliding(*psP)) {
 				player->resolveCollision(*psP);
 			}
@@ -245,6 +251,22 @@ void Game::update(float& dt) {
 	for (auto& pp : myLevel->Pressureplates) {
 		pp->activate(player, myLevel->Crates);
 	}
+
+	bool allActivated = true;
+	for (auto& pp : myLevel->Pressureplates) {
+		if (!pp->isActivated()) {
+			allActivated = false;
+			break;
+		}
+	}
+
+	if (allActivated) {
+		for (auto& door : myLevel->Doors) {
+			if (!door->isOpen()) {
+				door->openDoor();
+			}
+		}
+	}
 }
 
 void Game::render() {
@@ -268,6 +290,7 @@ void Game::render() {
 	if (player) {
 		player->render(window);
 	}
+
 }
 
 Game::~Game() {

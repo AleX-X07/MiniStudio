@@ -86,20 +86,25 @@ void Player::dash(float& dt) {
 void Player::skillsLeaveSlime(Input& input) {
 	if (input.isKeyPressed(sf::Keyboard::Key::A)) {
 		if (slimePieceLeave.size() <= nbrDepotSlime) {
-			float multipliterSlilme = 1 - weightLoss;
 
 			SlimePiece* block = new SlimePiece(getPos().x, getPos().y, 50, 50);
-			block->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::depotSlime));;
+			block->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::depotSlime));
 
 			sf::Vector2f sBlock = { float(getSize().x * weightLoss), float(getSize().y * weightLoss) };
 			block->setSize(sBlock);
 
-			sf::Vector2f nSizeSlime = { float(getSize().x * multipliterSlilme), float(getSize().y * multipliterSlilme) };
-			setSize(nSizeSlime);
+			if (currentStates == SlimeStates::heavy) {
+				setSize({ defautlSize.x, defautlSize.y });
+			}
+			else if (currentStates == SlimeStates::normal) {
+				setSize({ defautlSize.x * 0.74f, defautlSize.y * 0.74f });
+			}
+			else if (currentStates == SlimeStates::light) {
+				currentStates = SlimeStates::death;
+			}
 
-			slimePieceLeave.push_back((block));
-
-			weightLoss *= 0.9;
+			slimePieceLeave.push_back(block);
+			weightLoss = 0.3;
 		}
 	}
 }
@@ -108,15 +113,20 @@ void Player::takeSlime(Input& input) {
 
 	if (!slimePieceLeave.empty()) {
 		for (int X = 0; X < slimePieceLeave.size(); X++) {
-			if (input.isKeyPressed((sf::Keyboard::Key::W))) {
+			if (input.isKeyPressed(sf::Keyboard::Key::W)) {
 				if (isColliding(*slimePieceLeave[X])) {
 					const auto It = slimePieceLeave.begin() + X;
-					sf::Vector2f multiSlime = { float(slimePieceLeave[X]->getSize().x * 0.9), float(slimePieceLeave[X]->getSize().y * 0.9) };
-					sf::Vector2f nSize = { getSize().x + multiSlime.x, getSize().y + multiSlime.y };
-					setSize(nSize);
+
+					if (currentStates == SlimeStates::light) {
+						setSize({ defautlSize.x, defautlSize.y });
+					}
+					else if (currentStates == SlimeStates::normal) {
+						setSize({ defautlSize.x * 1.12f, defautlSize.y * 1.12f });
+					}
+
 					weightLoss = 0.3;
 					slimePieceLeave.erase(It);
-
+					break;
 				}
 			}
 		}
@@ -124,15 +134,20 @@ void Player::takeSlime(Input& input) {
 
 	if (!slimePiece.empty()) {
 		for (int X = 0; X < slimePiece.size(); X++) {
-			if (input.isKeyPressed((sf::Keyboard::Key::W))) {
+			if (input.isKeyPressed(sf::Keyboard::Key::W)) {
 				if (isColliding(*slimePiece[X])) {
-					takeDamage();
 					const auto It = slimePiece.begin() + X;
-					sf::Vector2f multiSlime = { float(slimePiece[X]->getSize().x * 0.9), float(slimePiece[X]->getSize().y * 0.9) };
-					sf::Vector2f nSize = { getSize().x + multiSlime.x, getSize().y + multiSlime.y };
-					setSize(nSize);
+
+					if (currentStates == SlimeStates::light) {
+						setSize({ defautlSize.x, defautlSize.y });
+					}
+					else if (currentStates == SlimeStates::normal) {
+						setSize({ defautlSize.x * 1.12f, defautlSize.y * 1.12f });
+					}
+
 					weightLoss = 0.3;
 					slimePiece.erase(It);
+					break;
 				}
 			}
 		}
@@ -272,9 +287,6 @@ void Player::update(float& dt, Input& input) {
 
 		if (getSize().x > defautlSize.x * 1.15 && getSize().y > defautlSize.y * 1.15) {
 			setSize({ float(defautlSize.x * 1.15), float(defautlSize.y * 1.15) });
-		}
-		if (getSize().x < defautlSize.x * 0.75 && getSize().y < defautlSize.y * 0.75) {
-			setSize({ float(defautlSize.x * 0.75), float(defautlSize.y * 0.75) });
 		}
 	}
 }
