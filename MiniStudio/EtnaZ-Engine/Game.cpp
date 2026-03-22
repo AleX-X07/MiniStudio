@@ -36,7 +36,7 @@ void Game::setEntity() {
 	if (!gOBuild) {
 
 		myLevel = new LoadLevel();
-		myLevel->loadLevel();
+		myLevel->loadLevel("Room_1.txt");
 
 		// Assets
 		GameObject* assets1 = new GameObject(0, 0, win_width, win_height);
@@ -67,6 +67,12 @@ void Game::setEntity() {
 		//Parallax
 		parallax = new Parallax();
 		//parallax->addLayer(Textures::texturesIndices::Layer2?, 1.0f);
+
+		//ZoneState
+		zoneState = new ZoneState(parallax);
+		zoneState->addZone(sf::FloatRect({ 0.f,    0.f }, { 1920.f, 1080.f }), Parallax::zone::zone1, "Room_1.txt");
+		zoneState->addZone(sf::FloatRect({ 1920.f, 0.f }, { 1920.f, 1080.f }), Parallax::zone::zone2, "Room_2.txt");
+		zoneState->addZone(sf::FloatRect({ 3840.f, 0.f }, { 1920.f, 2160.f }), Parallax::zone::zone3, "Room_3.txt");
 
 		/*SlimePiece* mySP = new SlimePiece(1200,700,50,50);
 		mySP->setTexture(&Textures::getMyTextures()->getTexture(Textures::texturesIndices::depotSlime));;
@@ -218,20 +224,11 @@ void Game::onResume() {
 }
 
 void Game::update(float& dt) {
-	if (player) {
+	if (player && zoneState != nullptr) {
 		player->update(dt, input);
 
-		if (player->pos.x < 1920 && player->pos.y < 1080) {
-			parallax->loadZone(Parallax::zone::zone1);
-		}
-		else if (player->pos.x > 1920 && player->pos.y < 1080) {
-			parallax->loadZone(Parallax::zone::zone2);
-		}
-		else if (player->pos.x > 1920 && player->pos.y > 1080) {
-			parallax->loadZone(Parallax::zone::zone3);
-		}
-		else {
-			parallax->loadZone(Parallax::zone::zone4);
+		if (zoneState->updateZone(player->pos.x, player->pos.y)) {
+			myLevel->loadLevel(zoneState->getMyRoomFile());
 		}
 	}
 	camera->updateCamera(player);
@@ -279,6 +276,9 @@ Game::~Game() {
 
 	delete parallax;
 	parallax = nullptr;
+
+	delete zoneState;
+	zoneState = nullptr;
 
 	delete camera;
 	camera = nullptr;

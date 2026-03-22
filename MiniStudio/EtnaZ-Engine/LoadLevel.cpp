@@ -71,8 +71,8 @@ LoadLevel::~LoadLevel()
 	Slime.clear();
 }
 
-bool LoadLevel::loadLevel() {
-	std::ifstream file("Room_2.txt");
+bool LoadLevel::loadLevel(const std::string& fileName) {
+	std::ifstream file(fileName);
 	tileSet.loadFromFile("tileset.png");
 
 	std::string line;

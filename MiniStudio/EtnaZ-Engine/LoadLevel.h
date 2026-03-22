@@ -40,7 +40,7 @@ public:
 	float spawnX = 100.f;
 	float spawnY = 500.f;
 
-	bool loadLevel();
+	bool loadLevel(const std::string& fileName);
 
 	void render(sf::RenderWindow* window);
 

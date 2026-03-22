@@ -74,6 +74,9 @@
     <ClCompile Include="Parallax.cpp">
       <Filter>Fichiers sources\Tool</Filter>
     </ClCompile>
+    <ClCompile Include="ZoneState.cpp">
+      <Filter>Fichiers sources\Game\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -150,6 +153,9 @@
     </ClInclude>
     <ClInclude Include="Parallax.h">
       <Filter>Fichiers d%27en-tête\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="ZoneState.h">
+      <Filter>Fichiers d%27en-tête\Game\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -14,6 +14,7 @@ struct ParallaxLayer {
 class Parallax {
 public:
     enum class zone {
+        zone0,
         zone1,
         zone2,
         zone3,

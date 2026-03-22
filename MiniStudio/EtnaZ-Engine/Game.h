@@ -8,6 +8,7 @@
 #include "Textures.h"
 #include "SlimePiece.h"
 #include "Parallax.h"
+#include "ZoneState.h"
 #include "GameOver.h"
 
 class MainMenu;
@@ -21,6 +22,7 @@ private:
 	Camera* camera;
 	Player* player;
 	Parallax* parallax;
+	ZoneState* zoneState;
 	std::vector<GameObject*> gameObject;
 	std::vector<GameObject*> gameObjectCollider;
 
